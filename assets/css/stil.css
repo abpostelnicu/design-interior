@@ -1,0 +1,480 @@
+@charset "UTF-8";
+
+/* Stilurile site-ului: culori calde (stejar, antracit), lizibil pe telefon, în modul întunecat și la tipărire. */
+
+:root {
+  color-scheme: light dark;
+  --fundal: #faf7f2;
+  --suprafata: #ffffff;
+  --text: #24282a;
+  --text-secundar: #5b6164;
+  --accent: #7a4e22;
+  --accent-deschis: #c9a26b;
+  --antet: #2b2f31;
+  --antet-text: #f3eee6;
+  --linie: #e4ddd2;
+  --tabel-antet: #f1ebe1;
+  --tabel-alternativ: #fcfaf6;
+  --umbra: 0 1px 2px rgb(0 0 0 / 0.06), 0 8px 24px rgb(0 0 0 / 0.06);
+  --latime: 56rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fundal: #1b1d1e;
+    --suprafata: #232628;
+    --text: #e8e4dd;
+    --text-secundar: #a9a49b;
+    --accent: #e3b97f;
+    --antet: #111314;
+    --linie: #3a3e40;
+    --tabel-antet: #2c3032;
+    --tabel-alternativ: #202325;
+    --umbra: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px rgb(0 0 0 / 0.3);
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--fundal);
+  color: var(--text);
+  font: 1.0625rem/1.65 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+main {
+  flex: 1;
+}
+
+.cadru {
+  width: 100%;
+  max-width: var(--latime);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.sari {
+  position: absolute;
+  top: -4rem;
+  left: 1rem;
+  z-index: 10;
+  padding: 0.5rem 1rem;
+  border-radius: 0 0 0.5rem 0.5rem;
+  background: var(--accent-deschis);
+  color: #1b1d1e;
+  font-weight: 600;
+}
+
+.sari:focus {
+  top: 0;
+}
+
+/* Antet */
+
+.antet {
+  background: var(--antet);
+  color: var(--antet-text);
+}
+
+.antet__cadru {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  padding-top: 0.9rem;
+  padding-bottom: 0.9rem;
+}
+
+.antet__titlu {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: inherit;
+  font-size: 1.05rem;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.antet__titlu::before {
+  content: "";
+  flex: none;
+  width: 1.6rem;
+  height: 1.6rem;
+  background: url("../favicon.svg") center / contain no-repeat;
+}
+
+.antet__meniu ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.antet__meniu li {
+  margin: 0;
+}
+
+.antet__meniu a {
+  display: inline-block;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  color: var(--antet-text);
+  text-decoration: none;
+  opacity: 0.85;
+}
+
+.antet__meniu a:hover,
+.antet__meniu a:focus-visible {
+  background: rgb(255 255 255 / 0.08);
+  opacity: 1;
+}
+
+.antet__meniu a[aria-current] {
+  background: rgb(255 255 255 / 0.12);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.2);
+  opacity: 1;
+}
+
+/* Cale de navigare */
+
+.cale {
+  margin: 1.5rem 0 0;
+  color: var(--text-secundar);
+  font-size: 0.9rem;
+}
+
+.cale ol {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cale li {
+  margin: 0;
+}
+
+.cale li + li::before {
+  content: "\203A";
+  margin: 0 0.5rem;
+}
+
+.cale a {
+  color: inherit;
+}
+
+/* Conținut */
+
+.continut {
+  padding-top: 0.5rem;
+  padding-bottom: 3rem;
+}
+
+.continut:focus {
+  outline: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 2.2em 0 0.7em;
+  font-weight: 650;
+  line-height: 1.25;
+  scroll-margin-top: 1rem;
+}
+
+h1 {
+  margin-top: 1em;
+  font-size: clamp(1.75rem, 1.2rem + 2.2vw, 2.4rem);
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--linie);
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1.2rem;
+}
+
+h4 {
+  font-size: 1.05rem;
+}
+
+p,
+ul,
+ol,
+table,
+blockquote,
+pre {
+  margin: 0 0 1.1rem;
+}
+
+ul,
+ol {
+  padding-left: 1.5rem;
+}
+
+li {
+  margin: 0.3rem 0;
+}
+
+li > ul,
+li > ol {
+  margin: 0.3rem 0 0;
+}
+
+strong {
+  font-weight: 650;
+}
+
+a {
+  color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+a:focus-visible {
+  outline: 3px solid var(--accent-deschis);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.continut a[target="_blank"]::after {
+  content: "\2197";
+  content: "\2197" / "";
+  margin-left: 0.15em;
+  font-size: 0.8em;
+}
+
+.ascuns {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+code {
+  padding: 0.1em 0.35em;
+  border-radius: 0.3em;
+  background: var(--tabel-antet);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.9em;
+}
+
+blockquote {
+  padding: 0.25rem 1rem;
+  border-left: 4px solid var(--accent-deschis);
+  color: var(--text-secundar);
+}
+
+hr {
+  margin: 2rem 0;
+  border: 0;
+  border-top: 1px solid var(--linie);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.continut img {
+  display: block;
+  width: auto;
+  max-height: 85vh;
+  margin: 1.5rem auto;
+  border-radius: 0.75rem;
+  background: var(--suprafata);
+  box-shadow: var(--umbra);
+}
+
+.continut a.imagine-mare {
+  display: block;
+  cursor: zoom-in;
+}
+
+/* Tabele: se derulează pe orizontală pe ecrane înguste */
+
+table {
+  position: relative;
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--linie);
+  border-collapse: collapse;
+  border-radius: 0.6rem;
+  background: var(--suprafata);
+  box-shadow: var(--umbra);
+  font-size: 0.95rem;
+}
+
+th,
+td {
+  padding: 0.55rem 0.85rem;
+  border-bottom: 1px solid var(--linie);
+  text-align: left;
+  vertical-align: top;
+}
+
+th + th,
+td + td {
+  border-left: 1px solid var(--linie);
+}
+
+thead th {
+  background: var(--tabel-antet);
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.continut .scurt {
+  white-space: nowrap;
+}
+
+tbody tr:nth-child(even) {
+  background: var(--tabel-alternativ);
+}
+
+tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+/* Legături directe către secțiuni */
+
+.ancora {
+  margin-left: 0.4rem;
+  color: var(--text-secundar);
+  font-weight: 400;
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+h2:hover .ancora,
+h3:hover .ancora,
+h4:hover .ancora {
+  opacity: 1;
+}
+
+@media (hover: none) {
+  .ancora {
+    display: none;
+  }
+}
+
+/* Subsol */
+
+.subsol {
+  padding: 1.5rem 0 2rem;
+  border-top: 1px solid var(--linie);
+  color: var(--text-secundar);
+  font-size: 0.9rem;
+}
+
+.subsol p {
+  margin: 0.2rem 0;
+}
+
+/* Telefoane */
+
+@media (max-width: 40rem) {
+  body {
+    font-size: 1rem;
+  }
+
+  .cadru {
+    padding: 0 1rem;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+  }
+
+  th,
+  td {
+    padding: 0.5rem 0.65rem;
+  }
+}
+
+/* Tipărire */
+
+@media print {
+  :root {
+    color-scheme: light;
+    --fundal: #fff;
+    --suprafata: #fff;
+    --text: #000;
+    --text-secundar: #333;
+    --accent: #000;
+    --linie: #999;
+    --tabel-antet: #eee;
+    --tabel-alternativ: #fff;
+    --umbra: none;
+  }
+
+  body {
+    display: block;
+    font-size: 11pt;
+  }
+
+  .sari,
+  .antet__meniu,
+  .cale,
+  .ancora {
+    display: none;
+  }
+
+  .antet {
+    border-bottom: 1px solid #000;
+    background: none;
+    color: #000;
+  }
+
+  .continut a[target="_blank"]::after {
+    content: none;
+  }
+
+  table {
+    display: table;
+    width: 100%;
+  }
+
+  img,
+  tr {
+    break-inside: avoid;
+  }
+
+  h2,
+  h3,
+  h4 {
+    break-after: avoid;
+  }
+}

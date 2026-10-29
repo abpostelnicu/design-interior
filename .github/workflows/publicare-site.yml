@@ -1,0 +1,49 @@
+# Construiește site-ul cu Jekyll din fișierele Markdown ale depozitului și îl publică pe GitHub Pages.
+name: Publicare site
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# O singură publicare odată; o publicare începută nu se anulează.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  construire:
+    name: Construire site
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descarcă fișierele
+        uses: actions/checkout@v7
+
+      - name: Configurează GitHub Pages
+        uses: actions/configure-pages@v6
+
+      - name: Construiește site-ul cu Jekyll
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
+
+      - name: Pregătește site-ul pentru publicare
+        uses: actions/upload-pages-artifact@v5
+
+  publicare:
+    name: Publicare pe GitHub Pages
+    needs: construire
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.publicare.outputs.page_url }}
+    steps:
+      - name: Publică site-ul
+        id: publicare
+        uses: actions/deploy-pages@v5

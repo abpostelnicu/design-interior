@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+{%- comment -%}
+  Șablonul comun al paginilor. Conținutul vine din fișierele Markdown ale depozitului.
+  Proiectele (folderele care au README.md) apar automat în meniu.
+{%- endcomment -%}
+{%- assign acasa = "/" | relative_url -%}
+{%- assign url_pagina = page.url | relative_url -%}
+{%- assign dir_pagina = page.dir | relative_url -%}
+{%- assign proiecte = site.pages | where: "name", "README.md" | sort: "dir" -%}
+
+{%- comment -%}
+  jekyll-relative-links nu recunoaște linkurile cu spații codificate (de ex. „Cuier%20hol/README.md”).
+  Linkurile relative rămase către fișiere .md duc aici la paginile generate:
+  README.md → pagina folderului, iar orice alt fișier .md → fișierul .html cu același nume.
+{%- endcomment -%}
+{%- assign bucati = content | split: '<a href="' -%}
+{%- capture continut -%}
+  {%- for bucata in bucati -%}
+    {%- if forloop.first -%}
+      {{- bucata -}}
+    {%- else -%}
+      {%- assign adresa = bucata | split: '"' | first | default: "" -%}
+      {%- assign rest = bucata | slice: adresa.size, bucata.size -%}
+      {%- assign cale = adresa | split: "#" | first | default: "" -%}
+      {%- assign fragment = adresa | slice: cale.size, adresa.size -%}
+      {%- assign primul_caracter = cale | slice: 0, 1 -%}
+      {%- assign extensie = cale | slice: -3, 3 | downcase -%}
+      {%- if extensie == ".md" and primul_caracter != "/" -%}
+        {%- unless cale contains ":" -%}
+          {%- assign fisier = cale | split: "/" | last | downcase -%}
+          {%- if fisier == "readme.md" -%}
+            {%- assign lungime = cale.size | minus: 9 -%}
+            {%- assign cale = cale | slice: 0, lungime | default: "./" -%}
+          {%- else -%}
+            {%- assign lungime = cale.size | minus: 3 -%}
+            {%- assign cale = cale | slice: 0, lungime | append: ".html" -%}
+          {%- endif -%}
+          {%- assign adresa = cale | append: fragment -%}
+        {%- endunless -%}
+      {%- endif -%}
+      <a href="{{ adresa }}{{ rest }}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+
+{%- if page.title and page.title != site.title -%}
+  {%- capture titlu_document -%}{{ page.title }} · {{ site.title }}{%- endcapture -%}
+{%- else -%}
+  {%- assign titlu_document = site.title -%}
+{%- endif -%}
+
+{%- comment -%} Descrierea pentru motoarele de căutare și previzualizarea linkului: primul paragraf cu text. {%- endcomment -%}
+{%- assign descriere = page.description -%}
+{%- unless descriere -%}
+  {%- assign paragrafe = content | split: "<p>" -%}
+  {%- for paragraf in paragrafe offset: 1 -%}
+    {%- assign text = paragraf | split: "</p>" | first | strip -%}
+    {%- assign inceput = text | slice: 0, 3 -%}
+    {%- if text != "" and inceput != "<a " and inceput != "<im" -%}
+      {%- assign descriere = text | strip_html | normalize_whitespace | strip | truncate: 200, "…" -%}
+      {%- break -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endunless -%}
+{%- assign descriere = descriere | default: site.description -%}
+
+{%- comment -%} Imaginea pentru previzualizarea linkului: prima imagine din pagină sau imaginea implicită. {%- endcomment -%}
+{%- assign imagine = site.imagine_implicita | absolute_url -%}
+{%- if content contains '<img src="' -%}
+  {%- assign parti = content | split: '<img src="' -%}
+  {%- assign src = parti[1] | split: '"' | first -%}
+  {%- assign inceput_src = src | slice: 0, 4 -%}
+  {%- assign primul_caracter = src | slice: 0, 1 -%}
+  {%- if inceput_src == "http" -%}
+    {%- assign imagine = src -%}
+  {%- elsif primul_caracter == "/" -%}
+    {%- assign imagine = site.url | append: src -%}
+  {%- else -%}
+    {%- assign imagine = page.dir | absolute_url | append: src -%}
+  {%- endif -%}
+{%- endif %}
+<html lang="{{ site.lang | default: 'ro' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ titlu_document | escape }}</title>
+  <meta name="description" content="{{ descriere | escape_once }}">
+  {%- unless site.indexare %}
+  <meta name="robots" content="noindex">
+  {%- endunless %}
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ro_RO">
+  <meta property="og:site_name" content="{{ site.title | escape }}">
+  <meta property="og:title" content="{{ page.title | default: site.title | escape }}">
+  <meta property="og:description" content="{{ descriere | escape_once }}">
+  <meta property="og:url" content="{{ page.url | absolute_url }}">
+  <meta property="og:image" content="{{ imagine }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#2b2f31">
+  <link rel="icon" href="{{ '/assets/favicon.svg' | relative_url }}" type="image/svg+xml">
+  <link rel="stylesheet" href="{{ '/assets/css/stil.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+  <script src="{{ '/assets/js/site.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+</head>
+<body>
+  <a class="sari" href="#continut">Sari la conținut</a>
+
+  <header class="antet">
+    <div class="cadru antet__cadru">
+      <a class="antet__titlu" href="{{ acasa }}">{{ site.title }}</a>
+      <nav class="antet__meniu" aria-label="Proiecte">
+        <ul>
+          {%- for proiect in proiecte %}
+          {%- assign url_proiect = proiect.url | relative_url %}
+          {%- if url_proiect != acasa %}
+          <li><a href="{{ url_proiect }}"{% if url_pagina == url_proiect %} aria-current="page"{% elsif dir_pagina == url_proiect %} aria-current="true"{% endif %}>{{ proiect.title }}</a></li>
+          {%- endif %}
+          {%- endfor %}
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="continut" class="cadru continut" tabindex="-1">
+    {%- if url_pagina != acasa %}
+    <nav class="cale" aria-label="Cale de navigare">
+      <ol>
+        <li><a href="{{ acasa }}">Acasă</a></li>
+        {%- for proiect in proiecte %}
+        {%- assign url_proiect = proiect.url | relative_url %}
+        {%- if url_proiect != acasa and url_proiect == dir_pagina and url_proiect != url_pagina %}
+        <li><a href="{{ url_proiect }}">{{ proiect.title }}</a></li>
+        {%- endif %}
+        {%- endfor %}
+        <li aria-current="page">{{ page.title }}</li>
+      </ol>
+    </nav>
+    {%- endif %}
+
+    {{ continut }}
+  </main>
+
+  <footer class="subsol">
+    <div class="cadru">
+      <p>{{ site.description }}</p>
+      <p>Ultima actualizare: <time datetime="{{ site.time | date_to_xmlschema }}">{{ site.time | date: "%d.%m.%Y" }}</time></p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,36 @@
+# Setările site-ului publicat cu GitHub Pages.
+# Paginile se generează automat din fișierele Markdown ale depozitului:
+# README.md devine pagina principală a folderului său, iar celelalte fișiere .md devin pagini .html.
+
+title: Design Interior
+description: Proiecte de amenajare interioară.
+lang: ro
+timezone: Europe/Bucharest
+
+# Fără temă GitHub Pages: aspectul vine din _layouts/default.html și assets/css/stil.css.
+theme: null
+
+# Imaginea afișată la trimiterea linkului (WhatsApp, Facebook etc.) pentru paginile care nu au imagini proprii.
+imagine_implicita: /Cuier hol/comparatie_acum_vs_propuneri.jpg
+
+# false: motoarele de căutare sunt rugate să nu afișeze site-ul în rezultate.
+# Site-ul rămâne public: îl poate deschide oricine are linkul.
+indexare: false
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  # Ghilimele românești: „…” și ‚…’
+  smart_quotes: sbquo,rsquo,bdquo,rdquo
+
+# Fișierele .md se publică doar ca pagini HTML, nu și ca text brut.
+readme_index:
+  remove_originals: true
+optional_front_matter:
+  remove_originals: true
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
