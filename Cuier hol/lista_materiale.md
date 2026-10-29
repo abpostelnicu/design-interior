@@ -9,11 +9,11 @@ Proiectul se poate face în întregime cu materiale din comerț. Prețurile au f
 | 1 | Riflaj decorativ panou acustic MDF Unic Spot, stejar, 2400 × 600 × 21 mm | 1 | 299,00 lei/buc | 299,00 lei | [Dedeman](https://www.dedeman.ro/ro/riflaj-decorativ-tip-panou-acustic-mdf-unic-spot-stejar-2400-x-600-x-21-mm/p/4026476) |
 | 2 | Cuier cu 1 agățătoare, metal, negru mat, Calif (proiecție 79 mm, 20 kg) | 5 | 15,90 lei/buc | 79,50 lei | [Dedeman](https://www.dedeman.ro/ro/cuier-mobila-cu-1-agatatoare-metal-negru-mat-pentru-baie-dormitor-hol-bucatarie-prindere-pe-mobila-perete-calif/p/1095630) |
 | 3 | Adeziv Soudal Fix All High Tack, 290 ml | 1 | 44,00 lei/buc | 44,00 lei | [Dedeman](https://www.dedeman.ro/ro/adeziv-pentru-suprafete-multiple-soudal-fix-all-high-tack-alb-290-ml/p/5016978) |
-| 4 | Diblu Fischer DuoPower 6 × 30 mm cu șurub 4,5 × 40 mm (pentru panou) | 8 | 1,19 lei/buc | 9,52 lei | [Dedeman](https://www.dedeman.ro/ro/diblu-universal-din-nylon-6-x-30-mm-fischer-duopower-cu-surub-cap-inecat-amprenta-pozidriv-pz2-4-5-x-40-mm/p/1045162) |
-| 5 | Diblu Fischer DuoPower 6 × 50 mm cu șurub (pentru cârlige) | 5 | 1,65 lei/buc | 8,25 lei | [Dedeman](https://www.dedeman.ro/ro/diblu-universal-din-nylon-fischer-duopower-6-x-50-mm-cu-surub-cu-cap-inecat-pozidriv-pz2/p/1051245) |
+| 4 | Diblu Fischer DuoPower 6 × 30 mm cu șurub 4,5 × 40 mm (8 pentru panou, 5 pentru cârlige) | 13 | 1,19 lei/buc | 15,47 lei | [Dedeman](https://www.dedeman.ro/ro/diblu-universal-din-nylon-6-x-30-mm-fischer-duopower-cu-surub-cap-inecat-amprenta-pozidriv-pz2-4-5-x-40-mm/p/1045162) |
+| 5 | Șurub pentru lemn Spax 4,5 × 60 mm, cap înecat, T-STAR (pentru cârlige) | 5 | 0,45 lei/buc | 2,25 lei | [Dedeman](https://www.dedeman.ro/ro/surub-pentru-lemn-autofiletant-din-otel-cap-inecat-amprenta-t-star-spax-4-5-x-60-mm/p/1069030) |
 | | **Total estimativ** | | | **≈ 440 lei** | |
 
-La poziția 5 verifică șurubul inclus. Dacă e mai scurt de ~60 mm, ia separat 5 șuruburi de 4,5 × 60 mm. Șuruburile din cutia cârligelor sunt prea scurte ca să treacă prin panoul de ~2 cm până în perete.
+Șuruburile din cutia cârligelor sunt prea scurte ca să treacă prin panoul de ~2 cm până în perete. De aceea cârligele se prind cu șuruburile Spax de 60 mm, în diblurile de 6 × 30 mm; de la diblurile pentru cârlige nu folosești șurubul de 40 mm din kit. Dacă talpa cârligului are două găuri de prindere, ia 18 dibluri și 10 șuruburi Spax.
 
 ## Variante pentru panou
 
@@ -40,10 +40,6 @@ Nu am găsit panouri negre de 60 cm lățime. Cele de 40 cm se potrivesc bine: s
 | ÅRSJÖN cuier ușă/perete, negru (șuruburile se cumpără separat) | IKEA | 49,90 lei/buc | [IKEA](https://www.ikea.com/ro/ro/p/arsjoen-cuier-usa-perete-negru-30626699/) |
 | Soudal Fix All High Tack Clear, 290 ml | Hornbach | 52,00 lei | [Hornbach](https://www.hornbach.ro/p/adeziv-universal-soudal-fix-all-high-tack-clear-pentru-constructii-cu-putere-mare-de-lipire-290-ml-transparent/6488016/) |
 
-## Montaj, pe scurt
+## Montaj
 
-1. **Tăierea panoului.** Pe lățime, întorci panoul cu pâsla în sus și tai pâsla cu un cutter, prin rostul dintre lamela a 11-a și a 12-a. Rezultă ~43–44 cm, în funcție de panou. Pe lungime, tai la 231,5 cm (nivelul de sus al golului ferestrei) cu un fierăstrău cu dinți fini sau cu circularul. Dacă iei panoul de la panouri-riflate.ro, îl taie ei.
-2. **Plinta** se taie pe lățimea panoului.
-3. **Panoul** se centrează pe peretele de 55 cm, cu ~5,5 cm liberi de fiecare parte. Pui adeziv în cordoane verticale pe spatele panoului și îl lipești. Apoi dai 6–8 găuri de Ø6 prin pâslă, în rosturile dintre lamele, pui dibluri și înșurubezi. Capetele șuruburilor se înnegresc cu un marker.
-4. **Cârligele** se pun 3 la 178 cm și 2 la 150 cm, fiecare pe mijlocul unei lamele. Dai o gaură de Ø6 prin lamelă până în cărămidă, pui diblul și prinzi cârligul cu șurubul lung.
-5. **Unelte:** bormașină cu percuție, burghiu de zidărie Ø6, nivelă, cutter, fierăstrău. Înainte să găurești, verifică cu un detector să nu treacă cabluri sau țevi pe acolo.
+Pașii detaliați, cu cote, unelte și ordinea operațiilor, sunt în [README, secțiunea „Montaj pas cu pas”](../README.md#montaj-pas-cu-pas). Dacă iei panoul de la panouri-riflate.ro, ți-l taie ei la dimensiune.
