@@ -42,4 +42,4 @@ Nu am găsit panouri negre de 60 cm lățime. Cele de 40 cm se potrivesc bine: s
 
 ## Montaj
 
-Pașii detaliați, cu cote, unelte și ordinea operațiilor, sunt în [README, secțiunea „Montaj pas cu pas”](../README.md#montaj-pas-cu-pas). Plinta (8 × 1,6 cm) nu se taie: panoul stă pe ea, de la 8 cm până la 231,5 cm. Dacă iei panoul de la panouri-riflate.ro, ți-l taie ei la dimensiune; trimite-le înălțimea H măsurată pe perete (pasul 2 din montaj), nu doar valoarea orientativă de 223,5 cm.
+Pașii detaliați, cu cote, unelte și ordinea operațiilor, sunt în [README-ul proiectului, secțiunea „Montaj pas cu pas”](README.md#montaj-pas-cu-pas). Plinta (8 × 1,6 cm) nu se taie: panoul stă pe ea, de la 8 cm până la 231,5 cm. Dacă iei panoul de la panouri-riflate.ro, ți-l taie ei la dimensiune; trimite-le înălțimea H măsurată pe perete (pasul 2 din montaj), nu doar valoarea orientativă de 223,5 cm.
