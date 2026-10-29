@@ -36,7 +36,7 @@ Aici trec doar cotele măsurate și datele primite de la utilizator. Ce e estima
 - Pereții: cărămidă.
 - Ușa de intrare se deschide la 90° spre peretele cu fereastra. Deschisă, ajunge la ~34 cm de perete.
 - Tâmplăria și ușa de intrare: negre sau antracit.
-- Pe peretele din dreapta ferestrei, estimat din poză: un senzor la ~2,0 m, un termostat în colț la ~1,25 m, un întrerupător la ~0,8 m și o priză la ~0,25 m.
+- Peretele din dreapta ferestrei, estimat din poză: ~65 cm liberi între golul ferestrei și colț. Pe el sunt, cu marginea de jos și distanța de la colț până la centrul plăcii: senzorul ~2,03 m și ~22 cm, întrerupătorul ~0,86 m și ~15 cm, priza ~0,24 m și ~32 cm. Termostatul e chiar în colț, cu marginea de jos la ~1,28 m. Golul ușii din dreapta începe pe peretele lateral, la ~12 cm de colț, iar capul ei e la ~1,92 m.
 - Proiect: „Cuier hol”.
 
 ### Peretele cu televizorul
@@ -203,7 +203,7 @@ Mediul Python: `python3 -m venv .venv && .venv/bin/pip install pillow numpy matp
 
 - **2026-10-29 · Cuier hol:** prima propunere era pe partea greșită a ferestrei și avea o bancă necerută. Confirmă peretele și componentele înainte de randare.
 - **2026-10-29 · Cuier hol:** formularul pentru cote a rămas necompletat, așa că propunerea s-a făcut pe estimări și s-a refăcut după măsurători. Cere cotele devreme, dar nu bloca lucrul.
-- **2026-10-29 · Cuier hol:** cotele estimate din poza calibrată au ieșit la mai puțin de 2 cm de cele măsurate.
+- **2026-10-29 · Cuier hol:** cu tavanul măsurat (270 cm) ca scară, cotele estimate din poza calibrată au ieșit la mai puțin de 2 cm de cele măsurate. Cu tavanul presupus (280 cm), toate ieșeau cu ~4 % mai mari: partea de sus a golului ferestrei ~242 în loc de 231,5 cm. Prima cotă de cerut e înălțimea tavanului, pentru că dă scara întregii fotografii.
 - **2026-10-29 · Cuier hol:** panoul înalt de 2 m arăta tăiat scurt lângă fereastră. Aliniat cu partea de sus a golului ferestrei, arată bine.
 - **2026-10-29 · Cuier hol:** șuruburile din cutia cârligelor sunt prea scurte pentru panoul de ~2 cm. Cârligele se prind cu șuruburi Spax de 4,5 × 60 mm, în dibluri DuoPower de 6 × 30 mm. Socotește lungimea șurubului: talpa piesei, placarea și adâncimea în perete.
 - **2026-10-29 · Cuier hol:** panouri riflaj negre de 60 cm lățime nu s-au găsit, doar de 40 cm. Verifică devreme dimensiunile standard pentru varianta B.

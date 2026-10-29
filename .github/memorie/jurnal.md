@@ -18,7 +18,7 @@ Formatul unei intrări:
 - Cerere: un cuier lângă fereastra din hol, pornind de la o fotografie. Apoi lista de cumpărături cu prețuri și linkuri, depozitul pe GitHub, în română, și montajul pas cu pas, foarte detaliat.
 - Rezultat: panou riflaj din stejar pe pâslă neagră, cu 5 cârlige negre mat (3 la 178 cm și 2 la 150 cm); varianta B negru sau antracit; randări pe fotografie, comparație, plan tehnic A3 la 1:15 și listă de materiale de ~440 lei. Commit-urile „Adaugă proiectul cuierului din hol” și „Adaugă montajul pas cu pas pentru cuierul din hol”.
 - Corecturi: cuierul se mută în stânga ferestrei și nu are bancă.
-- Lecții: confirmi peretele și componentele înainte de randare. Cotele estimate din fotografia calibrată au ieșit la mai puțin de 2 cm de cele măsurate. Semnarea GPG nu merge din sesiunile agenților, așa că utilizatorul a acceptat commit-uri nesemnate.
+- Lecții: confirmi peretele și componentele înainte de randare. Cu tavanul măsurat ca scară, cotele estimate din fotografia calibrată au ieșit la mai puțin de 2 cm de cele măsurate; cu tavanul presupus (280 în loc de 270 cm), ieșeau cu ~4 % mai mari. Semnarea GPG nu merge din sesiunile agenților, așa că utilizatorul a acceptat commit-uri nesemnate.
 
 ### 2026-10-29 · Cuier hol · plinta
 - Cerere: plinta are 80 × 16 mm, iar panoul nu trebuie să coboare sub muchia ei de sus. Coordonare cu agentul cuierului.
@@ -40,7 +40,7 @@ Formatul unei intrări:
 
 ### 2026-10-29 · Cuier hol · tiparul de design și scripturile
 - Cerere: sincronizarea cu ceilalți agenți, ca toți să urmeze același tipar de design.
-- Rezultat: ghidul tiparului de design, trecut în [memorie.md](memorie.md). Scripturile cuierului sunt acum în `.github/surse/cuier-hol/`, cu README, și regenerează identic imaginile publicate.
+- Rezultat: ghidul tiparului de design, trimis celorlalte cinci sesiuni ale depozitului și trecut în [memorie.md](memorie.md). Scripturile cuierului sunt acum în `.github/surse/cuier-hol/`, cu README, și regenerează identic imaginile publicate; PDF-ul diferă doar prin data creării. Commit-ul „Salvează sursele care generează imaginile cuierului”.
 - Lecții: `sips` păstrează coordonatele GPS la conversie; fotografiile se salvează doar cu PIL.
 
 ### 2026-10-29 · Depozit · agentul Designer interior și memoria comună
