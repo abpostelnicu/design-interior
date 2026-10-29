@@ -1,0 +1,4 @@
+# Fișiere generate la rulare, nu se publică
+out/
+.venv/
+__pycache__/
