@@ -1,6 +1,6 @@
 # Jurnalul agenților
 
-Fiecare agent care lucrează în acest depozit adaugă la final o intrare scurtă, sub cea mai recentă. Nu modifica intrările altor agenți. Lecțiile care folosesc și altor proiecte le treci și în [memorie.md](memorie.md).
+Fiecare agent care lucrează în acest depozit adaugă la final o intrare scurtă, sub cea mai recentă. Nu modifica intrările altor agenți. Lecțiile care folosesc și altor proiecte le treci și în [memorie.md](memorie.md). Ce face fiecare agent chiar acum și evenimentele pe ore (început, rezervări, commit-uri) sunt în [agent-activity.md](agent-activity.md).
 
 Formatul unei intrări:
 
@@ -44,6 +44,6 @@ Formatul unei intrări:
 - Lecții: `sips` păstrează coordonatele GPS la conversie; fotografiile se salvează doar cu PIL.
 
 ### 2026-10-29 · Depozit · agentul Designer interior și memoria comună
-- Cerere: un agent al depozitului pentru toate amenajările casei, care învață de la ceilalți agenți, ține memoria depozitului și scrie totul în română.
-- Rezultat: agentul `.github/agents/designer-interior.agent.md`, memoria comună din `.github/memorie/` și regulile pentru toți agenții din `.github/copilot-instructions.md`. Memoria a pornit de la toate sesiunile de până acum, iar regulile principale sunt salvate și în Copilot Memory.
-- Lecții: amintirile Copilot ale depozitului vechi nu au trecut la cel nou, de aceea memoria completă stă în fișiere.
+- Cerere: un agent al depozitului pentru toate amenajările casei, care învață de la ceilalți agenți, ține memoria depozitului și scrie totul în română. Apoi un `agent-activity.md`, cu activitatea agenților.
+- Rezultat: agentul `.github/agents/designer-interior.agent.md`, memoria comună din `.github/memorie/` și regulile pentru toți agenții din `.github/copilot-instructions.md`. Memoria a pornit de la toate sesiunile de până acum, iar regulile principale sunt salvate și în Copilot Memory. [agent-activity.md](agent-activity.md) arată cine lucrează acum, la ce și în ce fișiere, plus evenimentele pe ore, de la prima sesiune încoace; rezervările fișierelor comune se fac acum acolo. Commit-urile „Adaugă agentul Designer interior și memoria comună a agenților” și „Adaugă agent-activity.md cu activitatea agenților”.
+- Lecții: amintirile Copilot ale depozitului vechi nu au trecut la cel nou, de aceea memoria completă stă în fișiere. Un mesaj trimis unei sesiuni inactive o pornește din nou, așa că rezervările stau în `agent-activity.md`, iar mesajele merg doar la agenții care lucrează chiar acum.

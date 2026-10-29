@@ -1,6 +1,6 @@
 # Memoria comună a agenților
 
-Aici agenții care lucrează în acest depozit păstrează ce au învățat, ca agentul următor să nu pornească de la zero. Orice agent citește acest fișier înainte de un proiect de amenajare și îl actualizează la final. Ce a făcut fiecare sesiune, pe scurt, e în [jurnal.md](jurnal.md). Proiectele noi le face agentul [Designer interior](../agents/designer-interior.agent.md).
+Aici agenții care lucrează în acest depozit păstrează ce au învățat, ca agentul următor să nu pornească de la zero. Orice agent citește acest fișier înainte de un proiect de amenajare și îl actualizează la final. Ce a făcut fiecare sesiune, pe scurt, e în [jurnal.md](jurnal.md), iar cine lucrează acum, la ce și în ce fișiere, în [agent-activity.md](agent-activity.md). Proiectele noi le face agentul [Designer interior](../agents/designer-interior.agent.md).
 
 Reguli pentru acest fișier:
 - Scrie în română, scurt, ca fapte verificabile. La lecții notezi data și proiectul.
@@ -20,7 +20,7 @@ Reguli pentru acest fișier:
 - **Stil și materiale:** stejar natur și negru mat. Tâmplăria și ușa de intrare sunt negre sau antracit. Polițele de pe peretele cu televizorul trebuie să fie din stejar, asortate cu finisajul comodei.
 - **Cote:** le dă ca listă numerotată, uneori doar cifre în mm. Scrie-i cum le-ai interpretat.
 - **Commit și push:** de obicei le cere explicit, la final. Fiecare push pe `master` republică site-ul public.
-- **Agenți în paralel:** lucrează des cu mai mulți agenți deodată și vrea ca ei să se coordoneze și să urmeze același tipar de design.
+- **Agenți în paralel:** lucrează des cu mai mulți agenți deodată și vrea ca ei să se coordoneze și să urmeze același tipar de design. Vrea să vadă într-un singur loc ce face fiecare agent: [agent-activity.md](agent-activity.md).
 - **Memorie:** vrea ca tot ce se lucrează să rămână salvat pentru agenții următori: în acest fișier, în jurnal și în Copilot Memory.
 
 ## Casa: cote și date pe încăperi
@@ -177,14 +177,16 @@ Mediul Python: `python3 -m venv .venv && .venv/bin/pip install pillow numpy matp
 
 ### Coordonarea între agenți
 
-- **Foldere proprii:** fiecare agent lucrează în folderul proiectului său. Un proiect aparține sesiunii care l-a început, până când utilizatorul spune altfel.
+- **Activitatea:** cine lucrează acum, la ce și în ce fișiere e în [agent-activity.md](agent-activity.md). Când începi să modifici fișiere, te treci acolo, îți ții rândul la zi și îl scoți la final. Regulile sunt în fișier.
+- **Foldere proprii:** fiecare agent lucrează în folderul proiectului său. Un proiect aparține sesiunii care l-a început, până când utilizatorul spune altfel; sesiunea fiecărui proiect e în tabelul „Proiecte”, mai jos.
 - **Fișiere comune:** `README.md` din rădăcină, `_config.yml`, `_layouts/`, `assets/` și `.github/`, inclusiv această memorie.
-  - Înainte să le modifici, anunți agenții activi cu `send_message` și ceri exclusivitate: „până îți confirm că am terminat, modific doar eu X”.
-  - Cel care primește anunțul nu editează acele fișiere, nu rulează scripturile care le regenerează și nu face commit până nu primește „Am terminat”.
-  - Când termini, trimiți „Am terminat” și spui pe scurt ce ai schimbat. Celălalt verifică modificările înainte de commit.
-  - Excepție: în jurnal și în memorie poți adăuga oricând o intrare scurtă, cu o editare mică, fără să rescrii textul altora.
+  - Înainte să le modifici, verifici în `agent-activity.md` că nu le-a rezervat alt agent, apoi le rezervi tu acolo, în rândul tău.
+  - Agenților care lucrează chiar acum și ar putea atinge aceleași fișiere le scrii și cu `send_message`, ca să ceri exclusivitate: „până îți confirm că am terminat, modific doar eu X”. Sesiunile inactive nu le trezești cu mesaje: un mesaj pornește din nou sesiunea, iar rezervarea o văd oricum în fișier.
+  - Cel care primește anunțul sau vede rezervarea nu editează acele fișiere, nu rulează scripturile care le regenerează și nu face commit până nu sunt eliberate.
+  - Când termini, eliberezi rezervarea în `agent-activity.md`. Dacă ai anunțat pe cineva, îi trimiți „Am terminat” și spui pe scurt ce ai schimbat. Celălalt verifică modificările înainte de commit.
+  - Excepție: în jurnal, în memorie și în `agent-activity.md` poți face oricând editări mici, fără rezervare și fără să rescrii textul altora.
 - **Commit-ul:** îl face un singur agent pentru un set de modificări, care îi spune celuilalt hash-ul, ca să nu-l facă și el.
-- **Înainte de commit:** rulezi `git fetch` și `git status` și adaugi doar fișierele tale: `git add -- <căile tale>`, apoi `git commit -- <căile tale>`, ca să nu prinzi în commit fișiere puse în index de alt agent. Niciodată `git add -A` sau `git add .`.
+- **Înainte de commit:** rulezi `git fetch` și `git status` și adaugi doar fișierele tale: `git add -- <căile tale>`, apoi `git commit -- <căile tale>`, ca să nu prinzi în commit fișiere puse în index de alt agent. Niciodată `git add -A` sau `git add .`. Fișierele din `.github/memorie/` le poți pune în commit chiar dacă au și intrări ale altor agenți.
 - **Scripturile altui agent:** dacă le modifici, îi spui exact ce ai schimbat.
 - **Fără bucle:** nu răspunzi la o confirmare cu altă confirmare.
 
@@ -212,10 +214,12 @@ Mediul Python: `python3 -m venv .venv && .venv/bin/pip install pillow numpy matp
 - **2026-10-29 · Depozit:** depozitul avea în nume adresa casei. A fost refăcut public, cu numele `design-interior`, cu istoricul rescris și cu emailul noreply.
 - **2026-10-29 · Depozit:** amintirile Copilot salvate când depozitul avea vechiul nume nu au mai apărut în depozitul nou. De aceea memoria completă stă în fișierele din `.github/memorie/`, iar în Copilot Memory intră doar regulile importante.
 - **2026-10-29 · Peretele cu televizorul:** agentul nu a găsit note de la proiectele anterioare și a dat de scripturile cuierului abia în folderul temporar al altei sesiuni. De aceea scripturile fiecărui proiect se păstrează în `.github/surse/<proiect>/`, iar tiparul de design, în această memorie.
+- **2026-10-29 · Depozit:** o informare trimisă cu `send_message` la trei sesiuni inactive le-a pornit pe toate trei din nou. Rezervările se țin de aceea în [agent-activity.md](agent-activity.md), unde le văd toți fără să fie deranjați; mesajele merg doar la agenții care lucrează chiar acum.
+- **2026-10-29 · Depozit:** utilizatorul vrea să vadă într-un singur loc ce face fiecare agent, așa că fiecare agent își trece activitatea în [agent-activity.md](agent-activity.md).
 
 ## Proiecte
 
-| Proiect | Folder | Stare | Surse |
-|---|---|---|---|
-| Cuier hol | [Cuier hol](../../Cuier%20hol/README.md) | Gata: panou riflaj din stejar de 44 × 223,5 cm, așezat pe plintă, cu 5 cârlige negre mat | [.github/surse/cuier-hol/](../surse/cuier-hol/README.md) |
-| Peretele cu televizorul | Folder nou, încă necreat | În lucru: polițe din stejar pentru viniluri | – |
+| Proiect | Folder | Stare | Surse | Sesiunea care îl lucrează |
+|---|---|---|---|---|
+| Cuier hol | [Cuier hol](../../Cuier%20hol/README.md) | Gata: panou riflaj din stejar de 44 × 223,5 cm, așezat pe plintă, cu 5 cârlige negre mat | [.github/surse/cuier-hol/](../surse/cuier-hol/README.md) | Propunere cuier pentru fereastră |
+| Peretele cu televizorul | Folder nou, încă necreat | În lucru: polițe din stejar pentru viniluri | – | amenajare perete TV cu polite |
