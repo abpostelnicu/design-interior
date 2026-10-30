@@ -106,7 +106,7 @@ La finalul fiecărui proiect, și ori de câte ori utilizatorul corectează ceva
 
 ## Coordonarea cu alți agenți
 
-Mai mulți agenți pot lucra deodată în același folder local, pe aceeași ramură. Protocolul complet e în `memorie.md`, la „Coordonarea între agenți”. Esențialul:
+Mai mulți agenți pot lucra deodată: în același folder local, pe aceeași ramură, sau în clone separate, în cloud. Protocolul complet e în `memorie.md`, la „Coordonarea între agenți”. Esențialul:
 1. Folderul proiectului tău e al tău. Fișierele comune sunt `README.md` din rădăcină, `_config.yml`, `_layouts/`, `assets/` și `.github/`. Înainte să le modifici, verifici în `agent-activity.md` că nu le-a rezervat alt agent și le rezervi în rândul tău. Agenților care lucrează chiar acum și ar putea atinge aceleași fișiere le scrii și cu `send_message`: „până îți confirm că am terminat, modific doar eu X”. Sesiunile inactive nu le trezești cu mesaje: un mesaj pornește din nou sesiunea, iar rezervarea o văd oricum în fișier.
 2. Dacă primești un astfel de anunț sau vezi fișierele în rândul altui agent, nu le editezi, nu rulezi scripturile care le regenerează și nu faci commit până nu sunt eliberate. Apoi verifici modificările.
 3. Un set de modificări îl pune în commit un singur agent, care le spune celorlalți hash-ul.
@@ -115,12 +115,13 @@ Mai mulți agenți pot lucra deodată în același folder local, pe aceeași ram
 
 ## Commit și push
 
-- Fiecare push pe `master` republică site-ul public. De aceea faci commit și push doar dacă utilizatorul ți-a cerut asta sau a fost de acord după ce i-ai arătat lista fișierelor și mesajul de commit. Dacă nu poate răspunde, lași modificările necomise și spui asta în raport. Push-ul pe altă ramură nu republică site-ul: site-ul se schimbă abia când ramura e unită în `master`, tot cu acordul utilizatorului.
+- Fiecare push pe `master` republică site-ul public. De aceea faci commit și push doar dacă utilizatorul ți-a cerut asta sau a fost de acord după ce i-ai arătat lista fișierelor și mesajul de commit. Dacă nu poate răspunde, lași modificările necomise și spui asta în raport. Push-ul pe altă ramură nu republică site-ul: site-ul se schimbă abia când utilizatorul îmbină ramura în `master`, printr-un pull request.
 - Verifici cu `git var GIT_AUTHOR_IDENT` că autorul are adresa „noreply” de la GitHub. Identitatea poate veni și din variabilele de mediu, nu doar din `git config user.email`.
 - Rulezi `git fetch` și `git status`, apoi pui în commit doar fișierele tale: `git add -- <căi>` și `git -c commit.gpgsign=false commit -- <căi>`. Niciodată `git add -A` sau `git add .`. Opțiunea `-c commit.gpgsign=false` e doar pe comandă: utilizatorul a acceptat commit-uri nesemnate în acest depozit, pentru că un agent nu poate introduce parola GPG.
 - Înainte de commit adaugi în „Istoric” din `agent-activity.md` evenimentul „commit”, cu titlul commit-ului. Fișierele din `.github/memorie/` le pui în commit chiar dacă au și intrări ale altor agenți.
 - Mesajul de commit e în română, la imperativ, ca în istoric („Adaugă…”, „Așază…”). Are un paragraf despre ce și de ce și se termină cu rândul `Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>`.
-- După `git push`, verifici publicarea cu `gh run list --workflow publicare-site.yml -L 1`, apoi deschizi pagina proiectului pe site.
+- Dacă ai lucrat pe o ramură sau în cloud, unde push-ul pe `master` e refuzat, aduci munca în `master` printr-un pull request, după „Aducerea în `master`” și „Fără suprascrieri la îmbinare” din `memorie.md`. Ramura doar adaugă: nu modifică, nu șterge și nu redenumește planurile și imaginile existente. O variantă nouă stă în folderul ei. Verificarea o scrii în descrierea pull request-ului, iar pull request-ul îl îmbină utilizatorul.
+- După `git push` pe `master` sau după ce utilizatorul îmbină pull request-ul, verifici publicarea cu `gh run list --workflow publicare-site.yml -L 1`, apoi deschizi pagina proiectului pe site.
 
 ## Răspunsul final
 

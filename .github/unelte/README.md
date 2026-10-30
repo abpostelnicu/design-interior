@@ -2,7 +2,7 @@
 
 Aici sunt uneltele comune ale agenților care lucrează în depozit, mai ales ale agentului [Designer interior](../agents/designer-interior.agent.md). Sunt scripturile Python pe care fiecare proiect de până acum și le-a scris singur, adunate, curățate și testate, plus felul în care agenții lucrează cu ele. Un proiect nou nu mai pornește de la zero și nu mai copiază fișiere din alt proiect. Își scrie doar ce e al lui: cotele, dreptele pentru calibrare, scena randată și planul. Restul îl ia de aici.
 
-Uneltele vin din sursele proiectelor publicate, [`cuier-hol/`](../surse/cuier-hol/README.md) și [`polite-viniluri/`](../surse/polite-viniluri/README.md), și din proiectul cu polițe din beton (ramura `polite-viniluri-beton`, încă neunită în `master`). Scripturile acelor proiecte rămân neschimbate, pentru că reproduc imaginile publicate. Testele de aici verifică faptul că uneltele dau aceleași rezultate ca ele.
+Uneltele vin din sursele proiectelor publicate, [`cuier-hol/`](../surse/cuier-hol/README.md) și [`polite-viniluri/`](../surse/polite-viniluri/README.md), și din proiectul cu polițe din beton, [`polite-viniluri-beton/`](../surse/polite-viniluri-beton/README.md). Scripturile acelor proiecte rămân neschimbate, pentru că reproduc imaginile publicate. Testele de aici verifică faptul că uneltele dau aceleași rezultate ca ele.
 
 Folderul începe cu punct, deci nu apare pe site, dar depozitul e public: fără căi absolute sau date personale în fișiere.
 
@@ -313,7 +313,7 @@ Sunt 56 de teste, care nu au nevoie de rețea. Ce verifică:
 - prețurile, pe un server local, și verificările, pe proiecte sintetice;
 - liniile de comandă ale modulelor.
 
-Trei teste compară uneltele cu sursele proiectului cu beton (`beton.py` și `verifica_plan.py`). Ele rulează când există `.github/surse/polite-viniluri-beton/`, adică după unirea ramurii, sau când variabila `UNELTE_BETON` arată spre o copie a folderului. Altfel se sar.
+Trei teste compară uneltele cu sursele proiectului cu beton (`beton.py` și `verifica_plan.py`). Ele rulează când există `.github/surse/polite-viniluri-beton/` sau când variabila `UNELTE_BETON` arată spre o copie a folderului. Pe o ramură fără acel folder, se sar.
 
 O unealtă nouă intră aici când a folosit la un proiect și poate folosi și la altele:
 1. O pui în modulul potrivit sau într-unul nou, cu nume în română, fără diacritice, și cu docstring în română.

@@ -13,8 +13,8 @@ merg de-a lungul lungimii piesei, coloanele pe lățime. Le citești în funcți
   (ΔE00 sub ~2 abia se vede; peste ~5 se vede clar).
 
 Rectificările folosesc modelul fără distorsiune (k1 = 0), ca randarea.
-Preluat din `.github/surse/polite-viniluri/materials.py` și din `beton.py` al proiectului cu polițe din beton
-(ramura `polite-viniluri-beton`); aleatorul vine doar din parametrul rng (np.random.RandomState sau Generator).
+Preluat din `.github/surse/polite-viniluri/materials.py` și din `.github/surse/polite-viniluri-beton/beton.py`;
+aleatorul vine doar din parametrul rng (np.random.RandomState sau Generator).
 """
 import cv2
 import numpy as np

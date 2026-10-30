@@ -6,8 +6,8 @@
 Unde se poate, compară uneltele cu scripturile proiectelor din `.github/surse/`, care au produs imaginile
 publicate: aceleași intrări trebuie să dea aceleași rezultate.
 
-Testele pentru proiectul cu polițe din beton rulează doar când folderul lui de surse există (după unirea ramurii
-`polite-viniluri-beton`) sau când variabila UNELTE_BETON arată spre o copie a lui.
+Testele pentru proiectul cu polițe din beton rulează când folderul lui de surse, `.github/surse/polite-viniluri-beton/`,
+există sau când variabila UNELTE_BETON arată spre o copie a lui. Pe o ramură fără acel folder, se sar.
 """
 import contextlib
 import http.server

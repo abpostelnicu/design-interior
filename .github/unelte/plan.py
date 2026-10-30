@@ -24,8 +24,8 @@ linie de indicație; iese cu codul 1 la probleme. Apoi te uiți pe PNG (unealta 
 
 Unitățile: pe pagină, mm de hârtie, cu originea în colțul din stânga jos (make_axes, text_block, legend); în
 desene, cm reali (MM15 = mm de hârtie pe cm, la 1:15). Cotele au virgulă zecimală (`fmt`).
-Preluat din `drawing.py` și `verifica_plan.py` ale proiectului cu polițe din beton (ramura
-`polite-viniluri-beton`) și din `.github/surse/polite-viniluri/drawing.py`.
+Preluat din `drawing.py` și `verifica_plan.py` din `.github/surse/polite-viniluri-beton/` și din
+`.github/surse/polite-viniluri/drawing.py`.
 """
 import itertools
 import os

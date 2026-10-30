@@ -19,15 +19,39 @@ Aici vezi dintr-o privire ce agenți lucrează acum în depozit, la ce și în c
 
 | Sesiune (agent) | Proiect | Ce face acum | Fișiere | Stare | Început | Actualizat |
 |---|---|---|---|---|---|---|
-| Salvarea uneltelor agenților | Depozit (uneltele comune) | uneltele, agentul, instrucțiunile, memoria și jurnalul sunt gata și verificate (56 de teste, 0 probleme); fac commit-ul și push-ul pe ramura `unelte-agenti` și deschid pull request-ul. Clona e pe ramura `unelte-agenti` până la final | `.github/unelte/` (nou), `.github/agents/designer-interior.agent.md`, `.github/copilot-instructions.md`, `.gitignore` | lucrează | 2026-10-30 17:21 | 2026-10-30 18:17 |
+| Salvarea uneltelor agenților | Depozit (uneltele comune) | după regula „Fără suprascrieri la îmbinare”, am adus în ramura `unelte-agenti` capătul PR #2, care conține și #1; testele (56, și cele din beton) și verificarea celor trei proiecte trec. Construiesc site-ul cu Docker și deschid pull request-ul. Lucrez într-un `git worktree`; clona comună e pe `master` | `.github/unelte/` (nou), `.github/agents/designer-interior.agent.md`, `.github/copilot-instructions.md`, `.gitignore` | lucrează | 2026-10-30 17:21 | 2026-10-30 18:23 |
 
 ## Istoric
 
 | Când | Sesiune (agent) | Eveniment | Detalii |
 |---|---|---|---|
+| 2026-10-30 18:23 | Salvarea uneltelor agenților | commit | „Îmbină în ramura uneltelor pull request-urile #1 și #2”: capătul PR #2, care conține și #1, intră în `unelte-agenti` cu `git merge`, fără rebazare; în jurnal și aici au rămas rândurile tuturor |
 | 2026-10-30 18:17 | Salvarea uneltelor agenților | commit | „Adaugă uneltele comune ale agenților în .github/unelte”, pe ramura `unelte-agenti`, cu pull request; `master` și site-ul nu se schimbă până la unire |
+| 2026-10-30 18:02 | Supraveghere agenți și aducere în master | terminat | [Pull request-ul #1](https://github.com/abpostelnicu/design-interior/pull/1) (polițele din beton) și [pull request-ul #2](https://github.com/abpostelnicu/design-interior/pull/2) (regulile de aducere în `master`) sunt verificate, `MERGEABLE` și `CLEAN`, și așteaptă îmbinarea de la utilizator, din GitHub: întâi #1, apoi #2. Niciunul nu modifică planurile sau imaginile existente. În 20 de minute de urmărire nu au apărut alte ramuri. Rezervările sunt eliberate |
+| 2026-10-30 18:02 | Supraveghere agenți și aducere în master | commit | „Încheie supravegherea agenților cu pull request-urile de îmbinat” |
+| 2026-10-30 17:44 | Supraveghere agenți și aducere în master | commit | „Adaugă regulile pentru aducerea ramurilor în master” |
+| 2026-10-30 17:41 | Polițe viniluri beton și stejar | terminat | lecțiile despre `git worktree` și `git ls-remote` sunt pe ramura `polite-viniluri-beton`, în [pull request-ul #1](https://github.com/abpostelnicu/design-interior/pull/1), care așteaptă îmbinarea de la utilizator. Clona comună a rămas tot timpul pe `master` |
+| 2026-10-30 17:41 | Polițe viniluri beton și stejar | commit | „Notează lucrul pe ramură într-un worktree și verificarea ei înainte de reset” |
+| 2026-10-30 17:40 | Polițe viniluri beton și stejar | început | reluare scurtă, într-un `git worktree` al ramurii `polite-viniluri-beton`: notez în memorie lecțiile de la readucerea clonei pe `master` |
+| 2026-10-30 17:39 | Polițe viniluri beton și stejar | terminat | [Pull request-ul #1](https://github.com/abpostelnicu/design-interior/pull/1), din `polite-viniluri-beton` spre `master`, e deschis și se poate îmbina fără conflicte. Îmbinarea cu `gh pr merge` a fost refuzată și ea („Cannot update this protected ref”), așa că o face utilizatorul, din GitHub. Clona comună revine pe `origin/master`, iar „Polite viniluri beton” apare în ea după îmbinare |
+| 2026-10-30 17:39 | Polițe viniluri beton și stejar | commit | „Notează că pull request-ul spre master îl îmbină utilizatorul” |
+| 2026-10-30 17:35 | Polițe viniluri beton și stejar | început | reluare: trimit commit-urile pe ramura `polite-viniluri-beton` și deschid pull request-ul spre `master` |
+| 2026-10-30 17:33 | Supraveghere agenți și aducere în master | rezervare | `.github/copilot-instructions.md` și `.github/agents/designer-interior.agent.md`, pentru regulile de aducere în `master` |
+| 2026-10-30 17:33 | Supraveghere agenți și aducere în master | început | supraveghez sesiunile și aduc totul în `master` fără să suprascriu planurile și imaginile existente. Pe GitHub e o singură ramură neîmbinată, `polite-viniluri-beton`, cu pull request-ul #1 deschis; sesiunea ei e terminată |
+| 2026-10-30 17:33 | Polițe viniluri beton și stejar | terminat | „Polite viniluri beton” intră în `master` printr-un pull request din ramura `polite-viniluri-beton`, ca variantă lângă „Polite viniluri”, ale cărui variante A și B rămân neschimbate. În `Polite viniluri/README.md` s-a adăugat doar un rând cu legătura spre varianta din beton. Push-ul direct pe `master` e refuzat de o regulă a depozitului. Rezervările sunt eliberate |
+| 2026-10-30 17:33 | Polițe viniluri beton și stejar | commit | „Notează că master se actualizează prin pull request” |
+| 2026-10-30 17:31 | Polițe viniluri beton și stejar | commit | „Leagă propunerea din beton de variantele din stejar ale polițelor pentru viniluri” |
+| 2026-10-30 17:28 | Polițe viniluri beton și stejar | rezervare | `README.md` din rădăcină și `Polite viniluri/README.md`, pentru legăturile dintre variante |
+| 2026-10-30 17:28 | Polițe viniluri beton și stejar | început | aduc propunerea din beton în `master`, ca variantă lângă cele existente (A stejar, B opritoare negre), fără să le înlocuiesc |
 | 2026-10-30 17:21 | Salvarea uneltelor agenților | rezervare | `.github/unelte/` (nou), `.github/agents/designer-interior.agent.md`, `.github/copilot-instructions.md`, `.gitignore` |
 | 2026-10-30 17:21 | Salvarea uneltelor agenților | început | uneltele și metodele de lucru ale agenților, adunate într-un set comun, pentru proiectele viitoare |
+| 2026-10-30 17:15 | Polițe viniluri beton și stejar | terminat | lecțiile sunt în memorie, pe ramura `polite-viniluri-beton`; clona revine pe `master` |
+| 2026-10-30 17:15 | Polițe viniluri beton și stejar | commit | „Completează lecțiile despre identitatea git și lucrul pe o ramură” |
+| 2026-10-30 17:15 | Polițe viniluri beton și stejar | început | reluare scurtă: completez în memorie lecțiile de la final, pe ramura `polite-viniluri-beton` |
+| 2026-10-30 17:10 | Polițe viniluri beton și stejar | terminat | propunerea „Polite viniluri beton” e în commit, pe ramura `polite-viniluri-beton`, publicată pe GitHub, dar neîmbinată în `master`, deci site-ul nu s-a schimbat; `README.md` din rădăcină e eliberat. Rămân de verificat prețurile noi, atelierul pentru microciment și cotele de la „Polite viniluri” |
+| 2026-10-30 17:10 | Polițe viniluri beton și stejar | commit | „Adaugă propunerea de polițe din beton decorativ și stejar pentru viniluri” |
+| 2026-10-30 15:27 | Polițe viniluri beton și stejar | rezervare | `Polite viniluri beton/` (nou), `.github/surse/polite-viniluri-beton/` (nou) și `README.md` din rădăcină (rândul proiectului), toate pe ramura `polite-viniluri-beton` |
+| 2026-10-30 15:15 | Polițe viniluri beton și stejar | început | propunere nouă, pe o ramură separată, pentru polițele de viniluri: beton decorativ și stejar natural, cu verticale între polițe |
 | 2026-10-30 06:53 | amenajare perete TV cu polite | terminat | proiectul „Polite viniluri” e în commit, fără push (utilizatorul a cerut doar commit-ul); `README.md` din rădăcină e eliberat. Înainte de comandă rămân de verificat tavanul, peretele, finisajul comodei, ușa din dreapta și cablurile |
 | 2026-10-30 06:53 | amenajare perete TV cu polite | commit | „Adaugă proiectul polițelor pentru viniluri de pe peretele cu televizorul” |
 | 2026-10-30 06:52 | amenajare perete TV cu polite | rezervare | `README.md` din rădăcină, pentru commit-ul proiectului; diff-ul are doar rândul „Polite viniluri” |
