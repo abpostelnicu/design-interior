@@ -2,7 +2,7 @@
 
 [Înapoi la prezentarea generală](../README.md)
 
-A doua propunere pentru polițele de viniluri de pe peretele cu televizorul: aceleași două polițe flotante de 80 × 33 × 4 cm, în dreapta televizorului, prinse ascuns în perete pe câte 4 tije, dar din beton decorativ (microciment) și legate printr-o verticală din stejar masiv. Materialele sunt cele ale comodei Cioata Veneto: stejarul face structura, iar betonul formează planurile. În propunerea A betonul e gri natural, iar în varianta B e antracit, ca fronturile comodei. Varianta numai din stejar e în proiectul [Polițe viniluri](../Polite%20viniluri/).
+A doua propunere pentru polițele de viniluri de pe peretele cu televizorul: aceleași două polițe flotante de 80 × 33 × 4 cm, în dreapta televizorului, prinse ascuns în perete pe câte 4 tije, dar din beton decorativ (microciment) și legate printr-o verticală din stejar masiv. Materialele sunt cele ale comodei Cioata Veneto: stejarul face structura, iar betonul formează planurile. În propunerea A betonul e gri natural, iar în varianta B e antracit, ca fronturile comodei. Variantele numai din stejar, A cu opritoare din stejar și B cu opritoare negre, sunt în proiectul [Polițe viniluri](../Polite%20viniluri/). Propunerea de aici e o variantă în plus și nu le înlocuiește.
 
 ![Situația actuală și cele două variante](comparatie_acum_vs_propuneri.jpg)
 
@@ -32,15 +32,15 @@ De ce așa:
   - Tijele și ancorele ar avea mai puțină rezervă, iar polița s-ar putea fisura.
   - Microcimentul e chiar materialul fronturilor comodei.
 - **O singură verticală, așezată asimetric.**
-  - Ansamblul rămâne deschis. O ramă cu verticale la ambele capete ar face din polițe o „cutie”, iar corpurile tip cutie le-ai respins la proiectul vechi.
+  - Ansamblul rămâne deschis. O ramă cu verticale la ambele capete ar face din polițe o „cutie”, iar corpurile tip cutie le-ai respins la proiectul cu stejar.
   - La vedere rămân cât mai puține elemente.
   - Fața din stânga a verticalei e în dreptul marginii din stânga a boxei de podea de dedesubt, așa că linia boxei urcă mai departe, până sub polița de sus.
 - **Verticala nu duce polița de sus.** E lipită din atelier doar de polița de jos și se oprește la 3 mm sub polița de sus: rostul de umbră. Fiecare poliță stă pe tijele ei.
-- **Polițele, ca în proiectul vechi.** Aceleași locuri, aceeași adâncime, aceeași grosime și aceeași prindere ascunsă: fiecare poliță stă pe 4 tije M12 care intră în perete și în poliță, fără console sau suporți la vedere. Coperta unui disc are 31,4 × 31,4 cm, iar polița are 33 cm adâncime: discul încape întreg, la ~7 mm de perete, și nu iese în față.
+- **Polițele, ca în proiectul cu stejar.** Aceleași locuri, aceeași adâncime, aceeași grosime și aceeași prindere ascunsă: fiecare poliță stă pe 4 tije M12 care intră în perete și în poliță, fără console sau suporți la vedere. Coperta unui disc are 31,4 × 31,4 cm, iar polița are 33 cm adâncime: discul încape întreg, la ~7 mm de perete, și nu iese în față.
 - **Discurile stau în picioare.**
   - Jos, rândul mare se sprijină în verticală, iar lângă televizor rămâne loc liber. Golul mic din dreapta verticalei, spre capătul peretelui, e plin.
   - Opritoarele stau doar la capetele libere ale rândurilor: câte 2 pe poliță, 4 în total. Capătul de rând sprijinit în verticală nu are opritor.
-  - Opritorul e ca în propunerea A din proiectul vechi: un L din oțel, cu talpa sub discuri, și o placă de stejar de 2 × 12 × 18 cm lipită pe fața exterioară. Greutatea discurilor îl ține pe loc, iar el se mută după cum crește colecția.
+  - Opritorul e ca în propunerea A din proiectul cu stejar: un L din oțel, cu talpa sub discuri, și o placă de stejar de 2 × 12 × 18 cm lipită pe fața exterioară. Greutatea discurilor îl ține pe loc, iar el se mută după cum crește colecția.
   - Sub talpa opritorului se lipește o folie transparentă autoadezivă, ca oțelul să nu zgârie lacul.
 - **Poziția.**
   - Discurile de sus se termină la nivelul marginii de sus a televizorului (~206,6 cm). Între rânduri rămân 8 cm, ca să scoți ușor un disc.
@@ -52,7 +52,7 @@ De ce așa:
 - **Rezistența.**
   - Cazul cel mai rău: polița de jos, cu discurile ticsite, stă doar în tije, fără să se sprijine pe perete. Tijele lucrează atunci la ~227 MPa.
   - Tijele sunt de clasa 8.8, care începe să se îndoaie la 640 MPa: rezerva e de ~2,8. Cu discurile așezate comod, efortul scade la ~178 MPa, iar rezerva crește la ~3,6.
-  - Tija zincată obișnuită, de clasa 4.8, din proiectul vechi, începe să se îndoaie la 320 MPa. Aici, cu discurile ticsite, ar avea o rezervă de numai ~1,4, așa că nu se folosește.
+  - Tija zincată obișnuită, de clasa 4.8, din proiectul cu stejar, începe să se îndoaie la 320 MPa. Aici, cu discurile ticsite, ar avea o rezervă de numai ~1,4, așa că nu se folosește.
   - În realitate, muchia de jos a poliței se sprijină pe perete. Atunci tijele se îndoaie mai puțin, dar trag de ancoră: când polița plină se sprijină pe perete, fiecare tijă duce la smulgere ~1,07 kN, cam cât greutatea a 109 kg (~0,83 kN cu discurile așezate comod).
   - Ancora trebuie să țină asta în peretele tău. Verifică în fișa tehnică a ancorei sarcina admisă pentru tipul tău de perete și fă proba de încărcare de la pasul 7 din montaj.
 - **Opțiune, doar în text: mai multe verticale.** Dacă vrei mai multe verticale, se poate adăuga una pe polița de jos, în stânga. Ca prima, stă între două tije, ca cepurile ei să nu întâlnească canalele tijelor. În sursele proiectului, în `design.py`, se adaugă poziția ei în `VERTS` și se împart rândurile de discuri din `ROWS`. Rândul mare de jos ar avea cu ~4 cm mai puțin, adică vreo 7 discuri: ~119 de discuri pe polița de jos, în loc de ~126, așezate comod.

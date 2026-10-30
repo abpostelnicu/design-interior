@@ -4,6 +4,8 @@
 
 Două polițe flotante din stejar pentru viniluri, pe peretele cu televizorul din living, în dreapta televizorului, deasupra boxei de podea. Fiecare poliță are 80 × 33 × 4 cm și e prinsă direct în perete, pe patru tije de oțel ascunse în lemn: nu are console, suporți, laterale sau spate, iar prinderea nu se vede. Discurile stau în picioare, între două opritoare; cele de pe polița de sus se termină la nivelul marginii de sus a televizorului. Stejarul are finisajul comodei Veneto. În propunerea A, opritoarele sunt îmbrăcate în stejar, așa că pe perete nu apare nimic negru. În varianta B, opritoarele rămân din oțel negru mat, ca picioarele comodei.
 
+Altă variantă, cu polițele din beton decorativ (microciment) legate de o verticală din stejar masiv, e în proiectul [Polițe viniluri beton](../Polite%20viniluri%20beton/).
+
 ![Situația actuală și cele două variante](comparatie_acum_vs_propuneri.jpg)
 
 ## Conținutul folderului

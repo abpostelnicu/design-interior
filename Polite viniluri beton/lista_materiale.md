@@ -46,7 +46,7 @@ Produsele de mai jos sunt noi în proiectul acesta, iar prețurile și linkurile
 | 5 | Placaj de mesteacăn de 18 mm | – | îl cumpără atelierul, pentru miezul polițelor și al șablonului |
 | 6 | Sistemul de microciment pentru mobilier (grund, plasă din fibră de sticlă, straturile de bază și de finisaj, lac poliuretanic bicomponent mat) | – | îl aplică atelierul; întreabă-l ce produs folosește și cum se reîmprospătează lacul |
 
-**Nepotrivită aici:** tija filetată din oțel zincat alb, DIN 975, clasa 4.8, M12, 1000 mm, de la [Dedeman](https://www.dedeman.ro/ro/tija-filetata-din-otel-zincat-alb-din-975-diametrul-m12-1000-mm/p/6000862), folosită în proiectul vechi. Cu discurile ticsite, aici ar avea o rezervă de numai ~1,4, așa că nu o folosi.
+**Nepotrivită aici:** tija filetată din oțel zincat alb, DIN 975, clasa 4.8, M12, 1000 mm, de la [Dedeman](https://www.dedeman.ro/ro/tija-filetata-din-otel-zincat-alb-din-975-diametrul-m12-1000-mm/p/6000862), folosită în proiectul cu stejar. Cu discurile ticsite, aici ar avea o rezervă de numai ~1,4, așa că nu o folosi.
 
 ## Opritoarele – eMAG
 
