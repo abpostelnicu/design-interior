@@ -24,6 +24,10 @@ Aici vezi dintr-o privire ce agenți lucrează acum în depozit, la ce și în c
 
 | Când | Sesiune (agent) | Eveniment | Detalii |
 |---|---|---|---|
+| 2026-10-30 18:21 | Polițe viniluri beton și stejar | eliberare | `Polite viniluri/`, `.github/surse/polite-viniluri/` și `README.md` din rădăcină; `README.md` din rădăcină a rămas ca pe `master` |
+| 2026-10-30 18:21 | Polițe viniluri beton și stejar | commit | „Mută variantele din beton în folderul polițelor din stejar, ca C și D”, pe ramura `polite-viniluri-beton`, în [pull request-ul #1](https://github.com/abpostelnicu/design-interior/pull/1) |
+| 2026-10-30 18:09 | Polițe viniluri beton și stejar | rezervare | `Polite viniluri/` (doar fișiere noi și rânduri adăugate), `.github/surse/polite-viniluri/` și `README.md` din rădăcină, pe ramura `polite-viniluri-beton` |
+| 2026-10-30 18:09 | Polițe viniluri beton și stejar | început | la cererea utilizatorului, mut varianta din beton din folderul „Polite viniluri beton” în „Polite viniluri”, lângă polițele din stejar, ca variantele C și D, fără să schimb fișierele existente |
 | 2026-10-30 17:41 | Polițe viniluri beton și stejar | terminat | lecțiile despre `git worktree` și `git ls-remote` sunt pe ramura `polite-viniluri-beton`, în [pull request-ul #1](https://github.com/abpostelnicu/design-interior/pull/1), care așteaptă îmbinarea de la utilizator. Clona comună a rămas tot timpul pe `master` |
 | 2026-10-30 17:41 | Polițe viniluri beton și stejar | commit | „Notează lucrul pe ramură într-un worktree și verificarea ei înainte de reset” |
 | 2026-10-30 17:40 | Polițe viniluri beton și stejar | început | reluare scurtă, într-un `git worktree` al ramurii `polite-viniluri-beton`: notez în memorie lecțiile de la readucerea clonei pe `master` |

@@ -1,7 +1,7 @@
-"""Sursa unică pentru cote (cm): polițele din beton decorativ și stejar pentru viniluri, de pe peretele cu
-televizorul (living).
+"""Sursa unică pentru cote (cm): polițele din beton decorativ și stejar pentru viniluri (variantele C și D),
+de pe peretele cu televizorul (living).
 
-Aceleași 2 polițe flotante ca în proiectul „Polite viniluri”, în aceleași locuri și pe tije ascunse, dar
+Aceleași 2 polițe flotante ca în variantele A și B, din stejar, în aceleași locuri și pe tije ascunse, dar
 orizontalele sunt din microciment pe miez de placaj de mesteacăn, iar între ele stă o verticală din stejar
 masiv, ca la comoda Cioata Veneto (rama din stejar, fronturile din microciment). Fiecare poliță se montează
 separat, pe tijele ei; verticala vine lipită din atelier de polița de jos și se oprește la 3 mm sub polița de

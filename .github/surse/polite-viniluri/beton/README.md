@@ -1,8 +1,8 @@
-# Sursele imaginilor din „Polițe viniluri beton”
+# Sursele imaginilor variantelor C și D din „Polițe viniluri”
 
-Scripturile din acest folder generează randările, imaginea de comparație și planul tehnic din [`Polite viniluri beton/`](../../../Polite%20viniluri%20beton/): polițe din microciment (beton decorativ) pe miez de placaj, legate printr-o verticală din stejar. Generatoarele aleatoare au semințe fixe, așa că o rulare nouă dă aceleași imagini. Folderele care încep cu punct nu apar pe site.
+Scripturile din acest folder generează randările, imaginea de comparație și planul tehnic ale variantelor C și D din [`Polite viniluri/`](../../../../Polite%20viniluri/): polițe din microciment (beton decorativ) pe miez de placaj, legate printr-o verticală din stejar. Generatoarele aleatoare au semințe fixe, așa că o rulare nouă dă aceleași imagini. Folderele care încep cu punct nu apar pe site.
 
-Tiparul general al proiectelor e în memoria comună: [`.github/memorie/memorie.md`](../../memorie/memorie.md). Aici sunt doar uneltele. Scripturile pornesc de la cele din [`polite-viniluri/`](../polite-viniluri/README.md), proiectul cu polițe din stejar, care la rândul lor pornesc de la [`cuier-hol/`](../cuier-hol/README.md). Ce s-a schimbat e în secțiunea „Ce e nou față de polite-viniluri”, la final.
+Tiparul general al proiectelor e în memoria comună: [`.github/memorie/memorie.md`](../../../memorie/memorie.md). Aici sunt doar uneltele. Scripturile pornesc de la cele din folderul de deasupra, [`polite-viniluri/`](../README.md), ale variantelor A și B, cu polițe din stejar, care la rândul lor pornesc de la [`cuier-hol/`](../../cuier-hol/README.md). Ce s-a schimbat e în secțiunea „Ce e nou față de sursele variantelor A și B”, la final.
 
 ## Fișiere
 
@@ -13,38 +13,38 @@ Tiparul general al proiectelor e în memoria comună: [`.github/memorie/memorie.
 | `segments.json` | Segmentele de dreaptă din fotografie, grupate pe muchii: tavanul, colțul din stânga, capătul peretelui din dreapta, pardoseala, plinta, marginile televizorului și ale comodei. Preluat neschimbat |
 | `camera.py` | Calibrează aparatul foto din aceste segmente și salvează `camera.json`. Preluat neschimbat, ca și `camera.json` |
 | `design.py` | Sursa unică pentru cote: `SITE` (peretele; estimările sunt marcate `# est.`), produsele existente (`TV`, `CABINET`, `CENTER`, `TOWER`, `LP`), `D` (polițele, miezul și microcimentul, verticala, cepurile, tijele, canalele, șablonul, proba de încărcare și opritoarele), `VERTS` (pozițiile verticalelor), `ROWS` (unde stau discurile în randări), `capacity()`, `loads()`, `rod_check()` (îndoirea tijelor) și `rod_pull()` (smulgerea din perete) |
-| `beton.py` | Tonurile microcimentului: gri natural pentru A și antracit pentru B, cu antracitul măsurat pe fronturile comodei din poză (`measure_fronts`). Rulat singur, scrie mostre în `out/` (`beton_gri.png`, `beton_antracit.png`, `beton_comparatie.png`) și afișează diferența de culoare față de fronturi și față de perete |
+| `beton.py` | Tonurile microcimentului: gri natural pentru C și antracit pentru D, cu antracitul măsurat pe fronturile comodei din poză (`measure_fronts`). Rulat singur, scrie mostre în `out/` (`beton_gri.png`, `beton_antracit.png`, `beton_comparatie.png`) și afișează diferența de culoare față de fronturi și față de perete |
 | `core.py` | Baza randării: camera la rezoluția de lucru, `Canvas.face` (fețe plane texturate, cu buffer de adâncime; cu `color=None` doar ascunde, de exemplu boxele din poză), `Canvas.multiply_wall` (umbre pe perete) și `wall_light_map` (lumina peretelui din poză). Preluat neschimbat |
 | `materials.py` | Texturile: stejarul (fibra luată din parchetul din poză, adus la tonul ramei comodei, lipit din lamele) și culorile cotoarelor de discuri. Preluat neschimbat |
-| `render.py` | Randează în fotografie propunerea A (beton gri și stejar) și varianta B (beton antracit și stejar), plus `out/acum.jpg`. Cu argumentul `A` sau `B`, randează doar varianta aceea |
-| `compare.py` | Face imaginea cu trei panouri: Acum, A, B (după `render.py`) |
-| `drawing.py` | Desenează planul tehnic A3 la 1:15, comun pentru A și B: vedere frontală, secțiune și plan, plus detaliile A (tija), B (opritorul) și C (îmbinarea verticalei), notele și cotele de măsurat. Calea de ieșire se poate da ca argument |
+| `render.py` | Randează în fotografie propunerea C (beton gri și stejar) și varianta D (beton antracit și stejar), plus `out/acum.jpg`. Cu argumentul `C` sau `D`, randează doar varianta aceea |
+| `compare.py` | Face imaginea cu trei panouri: Acum, C, D (după `render.py`) |
+| `drawing.py` | Desenează planul tehnic A3 la 1:15, comun pentru C și D: vedere frontală, secțiune și plan, plus detaliile A (tija), B (opritorul) și C (îmbinarea verticalei), notele și cotele de măsurat. Calea de ieșire se poate da ca argument |
 | `verifica_plan.py` | Verifică planul fără să scrie fișiere: texte ieșite din pagină, texte suprapuse, note sau legendă intrate în desene, indicații care trec prin texte. Iese cu codul 1 dacă găsește ceva |
 
 ## Cum regenerezi imaginile
 
 ```sh
-cd ".github/surse/polite-viniluri-beton"
+cd ".github/surse/polite-viniluri/beton"
 python3 -m venv .venv && .venv/bin/pip install pillow numpy matplotlib opencv-python-headless scipy
 .venv/bin/python design.py     # cotele derivate, în terminal; nu scrie fișiere
 .venv/bin/python beton.py      # opțional: mostrele de beton, în out/
-.venv/bin/python render.py     # out/propunere_A_beton_gri.jpg, out/varianta_B_beton_antracit.jpg și out/acum.jpg
-.venv/bin/python compare.py    # out/comparatie_acum_vs_propuneri.jpg (după render.py)
+.venv/bin/python render.py     # out/propunere_C_beton_gri.jpg, out/varianta_D_beton_antracit.jpg și out/acum.jpg
+.venv/bin/python compare.py    # out/comparatie_acum_vs_propuneri_beton.jpg (după render.py)
 .venv/bin/python drawing.py    # out/plan_tehnic_polite_viniluri_beton.pdf și .png
 .venv/bin/python verifica_plan.py   # textele planului: în pagină, fără suprapuneri
-cp out/propunere_A_beton_gri.jpg out/varianta_B_beton_antracit.jpg out/comparatie_acum_vs_propuneri.jpg \
-   out/plan_tehnic_polite_viniluri_beton.pdf out/plan_tehnic_polite_viniluri_beton.png "../../../Polite viniluri beton/"
+cp out/propunere_C_beton_gri.jpg out/varianta_D_beton_antracit.jpg out/comparatie_acum_vs_propuneri_beton.jpg \
+   out/plan_tehnic_polite_viniluri_beton.pdf out/plan_tehnic_polite_viniluri_beton.png "../../../../Polite viniluri/"
 ```
 
 `design.py` afișează cotele derivate: pozițiile polițelor, ale verticalei și ale tijelor, rândurile de discuri, distanțele până la boxă și până la dispozitivul alb, numărul de discuri, greutățile, efortul din tije și smulgerea.
 
-Toate fișierele ies în `out/`, care nu se publică. În `Polite viniluri beton/` se copiază, cu aceleași nume:
+Toate fișierele ies în `out/`, care nu se publică. În `Polite viniluri/` se copiază, cu aceleași nume, lângă fișierele variantelor A și B, pe care nu le înlocuiesc:
 
 | Din `out/` | Ce e |
 |---|---|
-| `propunere_A_beton_gri.jpg` | randarea propunerii A |
-| `varianta_B_beton_antracit.jpg` | randarea variantei B |
-| `comparatie_acum_vs_propuneri.jpg` | comparația Acum, A, B |
+| `propunere_C_beton_gri.jpg` | randarea propunerii C |
+| `varianta_D_beton_antracit.jpg` | randarea variantei D |
+| `comparatie_acum_vs_propuneri_beton.jpg` | comparația Acum, C, D |
 | `plan_tehnic_polite_viniluri_beton.pdf` și `.png` | planul tehnic |
 
 `acum.jpg` și mostrele `beton_*.png` rămân în `out/`: sunt doar pentru verificare.
@@ -72,7 +72,7 @@ Toate cotele sunt în cm:
 ## Ce e diferit față de cuier
 
 - **Bufferul de adâncime.** `Canvas.face` calculează fiecare față pixel cu pixel, cu raza din aparat. Polițele, verticala, discurile și opritoarele se acoperă unele pe altele, așa că ordinea de desenare nu mai contează. Boxele din fotografie se desenează doar în bufferul de adâncime (`Scene.occluders`), ca tot ce e în spatele lor să rămână ascuns.
-- **Rândurile de discuri** sunt generate cu un generator aleator fix (`seed`), separat de cel al texturilor de stejar: discurile sunt aceleași în A și în B, iar rezultatul e reproductibil. Copertele de la capetele rândurilor au doar culori care nu se confundă cu stejarul (fără maro și galben); altfel, o copertă maro lângă opritorul de stejar pare o bucată de lemn.
+- **Rândurile de discuri** sunt generate cu un generator aleator fix (`seed`), separat de cel al texturilor de stejar: discurile sunt aceleași în C și în D, iar rezultatul e reproductibil. Copertele de la capetele rândurilor au doar culori care nu se confundă cu stejarul (fără maro și galben); altfel, o copertă maro lângă opritorul de stejar pare o bucată de lemn.
 - **Lumina.** Polițele urmează lumina peretelui din poză doar în parte (`Scene.M`), pentru că ies 33 cm din perete. Umbrele de pe perete se sting înainte de capacul boxelor de podea, care stau în fața peretelui. În dreptul grosimii poliței, dincolo de capete, peretele primește și umbra de sub poliță, și pe cea de deasupra; altfel rămâne acolo o bandă luminoasă.
 - **Planul la 1:15.** Peretele de 419 cm încape pe A3 la 1:15, cu planul dedesubt; secțiunea, detaliile și notele stau în dreapta.
 - **Confidențialitatea.** `curata_foto.py` șterge din fotografie ecranul aprins și persoana din ușă. Verifică orice fotografie nouă: ecrane, documente, numere de înmatriculare, persoane.
@@ -84,7 +84,7 @@ Toate cotele sunt în cm:
 - **Notele planului** sunt paragrafe în `notes()`, din `drawing.py`. `text_block()` le rupe singur pe lățimea `NOTE_W` și ține cifrele lipite de unități. Dacă adaugi text, rulează `verifica_plan.py` și privește PNG-ul.
 - **Tonurile betonului** sunt în `TONES`, din `beton.py`, iar variantele randate (ton, nume de fișier) în `VARIANTS`, din `render.py`.
 
-## Ce e nou față de polite-viniluri
+## Ce e nou față de sursele variantelor A și B
 
 - `design.py`: polițele au miez de placaj și microciment (greutatea ține cont de amândouă), plus verticala, cepurile, șablonul, proba de încărcare, `capacity()` cu golurile dintre verticală și opritoare, tijele de clasa 8.8 și `rod_pull()`.
 - `beton.py` e nou: tonurile de beton și măsurarea fronturilor comodei.

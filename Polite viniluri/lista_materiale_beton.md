@@ -1,8 +1,8 @@
-# Listă materiale – polițe din beton decorativ și stejar pentru viniluri (peretele cu televizorul)
+# Listă materiale – variantele C și D: polițe din beton decorativ și stejar pentru viniluri (peretele cu televizorul)
 
-Polițele și verticala se fac la comandă: polițe de 80 × 33 × 4 cm din microciment, cu canale pentru tije și cu o verticală din stejar, nu există gata făcute. Prețurile și linkurile de mai jos sunt cele din [lista proiectului Polițe viniluri](../Polite%20viniluri/lista_materiale.md), verificate pe site-uri pe 29–30.10.2026. Nu includ transportul și se pot schimba (promoții, stoc pe localitate). La Dedeman, stocul apare abia după ce alegi localitatea. Ce e nou în proiectul acesta e trecut „de verificat”, fără preț și fără link.
+Polițele și verticala se fac la comandă: polițe de 80 × 33 × 4 cm din microciment, cu canale pentru tije și cu o verticală din stejar, nu există gata făcute. Prețurile și linkurile de mai jos sunt cele din [lista variantelor A și B](lista_materiale.md), verificate pe site-uri pe 29–30.10.2026. Nu includ transportul și se pot schimba (promoții, stoc pe localitate). La Dedeman, stocul apare abia după ce alegi localitatea. Ce e nou la C și D e trecut „de verificat”, fără preț și fără link.
 
-Lista e aceeași pentru propunerea A (beton gri) și pentru varianta B (beton antracit): se schimbă doar tonul microcimentului, pe care îl alegi pe mostră.
+Lista e aceeași pentru propunerea C (beton gri) și pentru varianta D (beton antracit): se schimbă doar tonul microcimentului, pe care îl alegi pe mostră.
 
 ## Polițele și verticala
 
@@ -35,7 +35,7 @@ Un cartuș de 280 ml ajunge pentru cele 8 găuri de Ø14 × 140 mm. Ancora trebu
 
 ## De verificat
 
-Produsele de mai jos sunt noi în proiectul acesta, iar prețurile și linkurile nu au fost verificate:
+Produsele de mai jos sunt noi la C și D, iar prețurile și linkurile nu au fost verificate:
 
 | # | Produs | Cant. | Observații |
 |---|---|---|---|
@@ -46,7 +46,7 @@ Produsele de mai jos sunt noi în proiectul acesta, iar prețurile și linkurile
 | 5 | Placaj de mesteacăn de 18 mm | – | îl cumpără atelierul, pentru miezul polițelor și al șablonului |
 | 6 | Sistemul de microciment pentru mobilier (grund, plasă din fibră de sticlă, straturile de bază și de finisaj, lac poliuretanic bicomponent mat) | – | îl aplică atelierul; întreabă-l ce produs folosește și cum se reîmprospătează lacul |
 
-**Nepotrivită aici:** tija filetată din oțel zincat alb, DIN 975, clasa 4.8, M12, 1000 mm, de la [Dedeman](https://www.dedeman.ro/ro/tija-filetata-din-otel-zincat-alb-din-975-diametrul-m12-1000-mm/p/6000862), folosită în proiectul cu stejar. Cu discurile ticsite, aici ar avea o rezervă de numai ~1,4, așa că nu o folosi.
+**Nepotrivită aici:** tija filetată din oțel zincat alb, DIN 975, clasa 4.8, M12, 1000 mm, de la [Dedeman](https://www.dedeman.ro/ro/tija-filetata-din-otel-zincat-alb-din-975-diametrul-m12-1000-mm/p/6000862), folosită la A și B. Cu discurile ticsite, aici ar avea o rezervă de numai ~1,4, așa că nu o folosi.
 
 ## Opritoarele – eMAG
 
@@ -82,8 +82,8 @@ Același ulei îl folosești și la întreținere.
 |---|---|---|---|---|
 | Ancoră chimică fără stiren Den Braven, gri, 300 ml, cu două mixere | Dedeman | 53,00 lei | în loc de Soudafix | [Dedeman](https://www.dedeman.ro/ro/ancora-chimica-fara-stiren-den-braven-gri-interior/-exterior-300-ml-include-doua-mixere/p/5010706) |
 
-Dacă preferi polițele numai din stejar, vezi proiectul [Polițe viniluri](../Polite%20viniluri/).
+Dacă preferi polițele numai din stejar, vezi variantele A și B în [README](README.md), cu [lista lor de materiale](lista_materiale.md).
 
 ## Montaj
 
-Pașii detaliați, cu cote, unelte și ordinea operațiilor, sunt în [README-ul proiectului, secțiunea „Montaj pas cu pas”](README.md#montaj-pas-cu-pas).
+Pașii detaliați, cu cote, unelte și ordinea operațiilor, sunt în [README-ul proiectului, secțiunea „Montaj pas cu pas pentru C și D”](README.md#montaj-pas-cu-pas-pentru-c-și-d).

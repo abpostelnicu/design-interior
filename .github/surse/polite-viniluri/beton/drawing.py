@@ -514,7 +514,7 @@ def detail_joint(ax):
 
 # ------------------------------------------------------------------ legenda materialelor
 def legend(fig, x, y):
-    items = [(C["conc"], C["conc_e"], None, "microciment ~2 mm (A: beton gri; B: antracit)"),
+    items = [(C["conc"], C["conc_e"], None, "microciment ~2 mm (C: beton gri; D: antracit)"),
              (C["ply"], C["ply_e"], "....", "miez: 2 plăci de placaj de mesteacăn, 18 mm"),
              (C["oak"], C["oak_e"], None, "stejar masiv: verticala, plăcile opritoarelor"),
              (C["beech"], C["glue"], None, "cep din fag, lipit cu adeziv epoxidic"),
@@ -665,7 +665,7 @@ def build():
     fig.text(8 / PAGE[0], 1 - 15 / PAGE[1],
              f"2 polițe din microciment pe placaj, {dims(D['L'], D['P'], D['T'])} cm, în dreapta televizorului, la "
              f"{fmt(D['bot_lo'])} și {fmt(D['bot_up'])} cm, prinse ascuns în perete, și o verticală din stejar lipită "
-             "de cea de jos  ·  A: beton gri și stejar; B: beton antracit și stejar (planul e comun)",
+             "de cea de jos  ·  varianta C: beton gri și stejar; varianta D: beton antracit și stejar (planul e comun)",
              fontsize=7, color=C["note"], ha="left", va="top")
     fig.text(8 / PAGE[0], 1 - 19.5 / PAGE[1],
              "cote în cm  ·  scara 1:15 (A3), detalii 1:5  ·  cotele cu „~” sunt din fotografie, de verificat",
