@@ -24,6 +24,12 @@ Aici vezi dintr-o privire ce agenți lucrează acum în depozit, la ce și în c
 
 | Când | Sesiune (agent) | Eveniment | Detalii |
 |---|---|---|---|
+| 2026-10-30 18:27 | Polițe viniluri beton și stejar | commit | „Îmbină mutarea variantelor din beton în regulile pentru aducerea în master”, pe ramura `reguli-aducere-in-master` |
+| 2026-10-30 18:27 | Polițe viniluri beton și stejar | început | reluare pe ramura `reguli-aducere-in-master`, din [pull request-ul #2](https://github.com/abpostelnicu/design-interior/pull/2), al sesiunii de supraveghere, care s-a încheiat: aduc în ea mutarea variantelor din beton, ca #1 și #2 să se poată îmbina în orice ordine, și corectez regula „o variantă nouă stă în folderul ei”, după cererea utilizatorului |
+| 2026-10-30 18:21 | Polițe viniluri beton și stejar | eliberare | `Polite viniluri/`, `.github/surse/polite-viniluri/` și `README.md` din rădăcină; `README.md` din rădăcină a rămas ca pe `master` |
+| 2026-10-30 18:21 | Polițe viniluri beton și stejar | commit | „Mută variantele din beton în folderul polițelor din stejar, ca C și D”, pe ramura `polite-viniluri-beton`, în [pull request-ul #1](https://github.com/abpostelnicu/design-interior/pull/1) |
+| 2026-10-30 18:09 | Polițe viniluri beton și stejar | rezervare | `Polite viniluri/` (doar fișiere noi și rânduri adăugate), `.github/surse/polite-viniluri/` și `README.md` din rădăcină, pe ramura `polite-viniluri-beton` |
+| 2026-10-30 18:09 | Polițe viniluri beton și stejar | început | la cererea utilizatorului, mut varianta din beton din folderul „Polite viniluri beton” în „Polite viniluri”, lângă polițele din stejar, ca variantele C și D, fără să schimb fișierele existente |
 | 2026-10-30 18:02 | Supraveghere agenți și aducere în master | terminat | [Pull request-ul #1](https://github.com/abpostelnicu/design-interior/pull/1) (polițele din beton) și [pull request-ul #2](https://github.com/abpostelnicu/design-interior/pull/2) (regulile de aducere în `master`) sunt verificate, `MERGEABLE` și `CLEAN`, și așteaptă îmbinarea de la utilizator, din GitHub: întâi #1, apoi #2. Niciunul nu modifică planurile sau imaginile existente. În 20 de minute de urmărire nu au apărut alte ramuri. Rezervările sunt eliberate |
 | 2026-10-30 18:02 | Supraveghere agenți și aducere în master | commit | „Încheie supravegherea agenților cu pull request-urile de îmbinat” |
 | 2026-10-30 17:44 | Supraveghere agenți și aducere în master | commit | „Adaugă regulile pentru aducerea ramurilor în master” |

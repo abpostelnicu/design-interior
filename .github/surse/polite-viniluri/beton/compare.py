@@ -24,9 +24,9 @@ def main():
     vert = "o verticală" if nv == 1 else f"{nv} verticale"
     panels = [
         (Image.open(os.path.join(HERE, "out", "acum.jpg")), "Acum", "televizorul apare stins în toate imaginile"),
-        (Image.open(os.path.join(HERE, "out", "propunere_A_beton_gri.jpg")), "Propunerea A: beton gri și stejar",
+        (Image.open(os.path.join(HERE, "out", "propunere_C_beton_gri.jpg")), "Propunerea C: beton gri și stejar",
          f"2 polițe de {size} din microciment gri; {vert} și opritoare din stejar"),
-        (Image.open(os.path.join(HERE, "out", "varianta_B_beton_antracit.jpg")), "Varianta B: beton antracit și stejar",
+        (Image.open(os.path.join(HERE, "out", "varianta_D_beton_antracit.jpg")), "Varianta D: beton antracit și stejar",
          "aceleași polițe, din microciment antracit, ca fronturile comodei"),
     ]
     gap, bar = 16, 78
@@ -37,7 +37,7 @@ def main():
         out.paste(im.convert("RGB").resize((W, H), Image.LANCZOS), (x, bar + gap))
         d.text((x + 4, gap - 2), title, font=font, fill=(25, 25, 25))
         d.text((x + 4, gap + 38), sub, font=small, fill=(110, 110, 110))
-    path = os.path.join(HERE, "out", "comparatie_acum_vs_propuneri.jpg")
+    path = os.path.join(HERE, "out", "comparatie_acum_vs_propuneri_beton.jpg")
     out.save(path, quality=88)
     print("salvat", path, out.size)
 
