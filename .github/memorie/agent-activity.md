@@ -19,12 +19,21 @@ Aici vezi dintr-o privire ce agenți lucrează acum în depozit, la ce și în c
 
 | Sesiune (agent) | Proiect | Ce face acum | Fișiere | Stare | Început | Actualizat |
 |---|---|---|---|---|---|---|
-| amenajare perete TV cu polite | Peretele cu televizorul | pregătește propunerea: calibrarea fotografiei și feroneria pentru polițe | folderul proiectului, încă necreat | lucrează | 2026-10-29 22:16 | 2026-10-29 23:00 |
 
 ## Istoric
 
 | Când | Sesiune (agent) | Eveniment | Detalii |
 |---|---|---|---|
+| 2026-10-30 06:53 | amenajare perete TV cu polite | terminat | proiectul „Polite viniluri” e în commit, fără push (utilizatorul a cerut doar commit-ul); `README.md` din rădăcină e eliberat. Înainte de comandă rămân de verificat tavanul, peretele, finisajul comodei, ușa din dreapta și cablurile |
+| 2026-10-30 06:53 | amenajare perete TV cu polite | commit | „Adaugă proiectul polițelor pentru viniluri de pe peretele cu televizorul” |
+| 2026-10-30 06:52 | amenajare perete TV cu polite | rezervare | `README.md` din rădăcină, pentru commit-ul proiectului; diff-ul are doar rândul „Polite viniluri” |
+| 2026-10-30 01:11 | amenajare perete TV cu polite | gata (necomis) | 2 polițe flotante din stejar, 80 × 33 × 4 cm, doar în dreapta televizorului, pe câte 4 tije M12 ascunse, fără console; A cu opritoare îmbrăcate în stejar, B cu opritoare negre; plan A3 la 1:15 și lista refăcute; așteaptă acordul pentru commit |
+| 2026-10-30 00:50 | amenajare perete TV cu polite | corectură | utilizatorul nu vrea console sau suporți vizibili, ci polițe prinse direct în perete, doar în dreapta televizorului și mai subțiri: refac cu 2 polițe de 80 × 33 × 4 cm, pe tije ascunse |
+| 2026-10-30 00:42 | amenajare perete TV cu polite | gata (necomis) | polițe flotante din stejar, 80 × 33 × 6 cm, câte două de fiecare parte a televizorului; varianta B pe console L negre; plan A3 la 1:15; așteaptă acordul pentru commit |
+| 2026-10-30 00:11 | amenajare perete TV cu polite | corectură | utilizatorul nu vrea polițe care arată ca niște cutii, ci mai moderne și mai minimaliste: refac propunerea cu polițe flotante din stejar |
+| 2026-10-30 00:11 | amenajare perete TV cu polite | confirmare | pentru „Propunere cuier pentru fereastră”: am citit ghidul tiparului de design și îl aplic; sursele sunt în `.github/surse/polite-viniluri/`, iar `Cuier hol/` nu îl ating. Confirmarea e aici, nu prin mesaj, pentru că sesiunea e inactivă |
+| 2026-10-29 23:58 | amenajare perete TV cu polite | eliberare | `README.md` din rădăcină, cu rândul proiectului „Polite viniluri” adăugat și necomis; propunerea e gata și așteaptă acordul utilizatorului pentru commit |
+| 2026-10-29 23:21 | amenajare perete TV cu polite | rezervare | `README.md` din rădăcină (rândul proiectului) și `.github/surse/polite-viniluri/` (nou); proiectul e în folderul `Polite viniluri/` |
 | 2026-10-29 23:09 | Repository agent for home design | terminat | `agent-activity.md` e gata și legat de agent, de reguli, de memorie și de jurnal; fișierele din `.github/` sunt eliberate |
 | 2026-10-29 23:09 | Repository agent for home design | commit | „Adaugă agent-activity.md cu activitatea agenților” |
 | 2026-10-29 23:00 | Repository agent for home design | rezervare | `.github/memorie/agent-activity.md` (nou), `.github/agents/designer-interior.agent.md`, `.github/copilot-instructions.md` |

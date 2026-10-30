@@ -18,6 +18,7 @@ Reguli pentru acest fișier:
 - **Montaj pas cu pas foarte detaliat.**
 - **Fără elemente adăugate din proprie inițiativă.** A respins banca de la cuier. Extra-urile apar doar ca opțiuni în text.
 - **Stil și materiale:** stejar natur și negru mat. Tâmplăria și ușa de intrare sunt negre sau antracit. Polițele de pe peretele cu televizorul trebuie să fie din stejar, asortate cu finisajul comodei.
+- **Modern și minimalist, nu cutii:** a respins corpurile închise tip cutie pentru viniluri („nu doresc să arate ca niște cutii”, „mai moderne și mai minimaliste”), apoi și consolele la vedere („polițele doresc să fie direct prinse în perete, fără ca prinderile să fie vizibile”, „să nu aibă suporții negri”). Preferă polițe flotante, subțiri, prinse ascuns direct în perete, și cât mai puține elemente la vedere.
 - **Cote:** le dă ca listă numerotată, uneori doar cifre în mm. Scrie-i cum le-ai interpretat.
 - **Commit și push:** de obicei le cere explicit, la final. Fiecare push pe `master` republică site-ul public.
 - **Agenți în paralel:** lucrează des cu mai mulți agenți deodată și vrea ca ei să se coordoneze și să urmeze același tipar de design. Vrea să vadă într-un singur loc ce face fiecare agent: [agent-activity.md](agent-activity.md).
@@ -41,12 +42,13 @@ Aici trec doar cotele măsurate și datele primite de la utilizator. Ce e estima
 
 ### Peretele cu televizorul
 
-- Peretele: 419 cm lățime și 250 cm înălțime.
-- Televizorul: TCL 98C8L, 98".
-- Comoda TV: Cioată Veneto, 242 cm lățime și 67 cm înălțime ([pagina produsului](https://www.cioata.eu/comoda-tv-veneto-242cm.html)).
-- Boxele: centru Klipsch RP-504C II; de podea Klipsch RP-8000F II.
-- Cerința: polițe integrate în perete pentru viniluri, din stejar, asortate cu comoda.
-- Proiect: în lucru, în folder separat.
+- Peretele: 419 cm lățime; înălțimea dată de utilizator e 250 cm, dar fotografia calibrată pe televizor și comodă dă ~262 cm (cu 250, eroarea calibrării crește de la 0,6 la 4,6 px). De remăsurat.
+- Televizorul: TCL 98C8L, 98", 216,6 × 123,6 × 5,4 cm, 57,5 kg, VESA 600 × 500. Din poză: de la ~83 la ~206,6 cm, cu axul la ~210,7 cm de colțul din stânga (practic la mijlocul peretelui).
+- Comoda TV: Cioată Veneto, 242 × 48 × 67 cm, pe picioare de 14 cm ([pagina produsului](https://www.cioata.eu/comoda-tv-veneto-242cm.html)): stejar masiv, fronturi din microciment antracit. Din poză: de la ~84,8 la ~326,8 cm de colț, la ~8,7 cm de perete. Finisajul (CS, NO, FE sau SO) nu e confirmat; în poză seamănă cu Natural Oak.
+- Boxele: centru Klipsch RP-504C II (81,4 × 17,4 × 38,3 cm), pe comodă; de podea Klipsch RP-8000F II (27,5 × 109,5 × 46,3 cm cu picioare, port de bas în spate), din poză la ~14–43 și ~388–415 cm de colț, la ~8 cm de perete.
+- Sus, în dreapta televizorului, e un dispozitiv alb, de la ~222,7 la ~248,5 cm înălțime, la ~348,5–373,7 cm de colț. Nu se acoperă.
+- Plinta: ~7,5 cm, din poză. Peretele: presupus din cărămidă, neconfirmat.
+- Proiect: „Polite viniluri”: 2 polițe flotante din stejar, de 80 × 33 × 4 cm, doar în dreapta televizorului (cerut de utilizator), de la ~329 la ~409 cm de colț, prinse pe tije ascunse. Peretele se termină la 419 cm într-o trecere; nu se știe dacă are ușă.
 
 ## Tiparul de design
 
@@ -216,10 +218,21 @@ Mediul Python: `python3 -m venv .venv && .venv/bin/pip install pillow numpy matp
 - **2026-10-29 · Peretele cu televizorul:** agentul nu a găsit note de la proiectele anterioare și a dat de scripturile cuierului abia în folderul temporar al altei sesiuni. De aceea scripturile fiecărui proiect se păstrează în `.github/surse/<proiect>/`, iar tiparul de design, în această memorie.
 - **2026-10-29 · Depozit:** o informare trimisă cu `send_message` la trei sesiuni inactive le-a pornit pe toate trei din nou. Rezervările se țin de aceea în [agent-activity.md](agent-activity.md), unde le văd toți fără să fie deranjați; mesajele merg doar la agenții care lucrează chiar acum.
 - **2026-10-29 · Depozit:** utilizatorul vrea să vadă într-un singur loc ce face fiecare agent, așa că fiecare agent își trece activitatea în [agent-activity.md](agent-activity.md).
+- **2026-10-29 · Polițe viniluri:** fără tavan măsurat, camera s-a calibrat pe obiecte cu dimensiuni din fișele producătorilor (televizorul, comoda) și pe lățimea peretelui, cu tavanul lăsat necunoscut. Așa s-a văzut că înălțimea dată (250 cm) nu se potrivește cu poza (~262 cm). Poziționează obiectele noi față de obiecte cunoscute (aici, televizorul), nu față de tavan.
+- **2026-10-29 · Polițe viniluri:** ecranul aprins al televizorului arăta numele rețelelor Wi-Fi din jur, iar prin ușă se vedea o persoană. Înainte de publicare stingi ecranele și scoți persoanele, documentele și orice text din fotografie; vezi `curata_foto.py` din [.github/surse/polite-viniluri/](../surse/polite-viniluri/README.md).
+- **2026-10-29 · Polițe viniluri:** un disc de vinil are 31,4 × 31,4 cm. Polițele pentru viniluri au ≥ 33 cm adâncime și ≥ 8 cm liberi deasupra discurilor. Polițele de perete obișnuite (Cioata Wally: 23 cm) sunt prea înguste, iar pe o poliță deschisă discurile au nevoie de opritoare la capete.
+- **2026-10-30 · Polițe viniluri:** prima propunere avea corpuri închise de 80 × 79 × 38 cm, cu compartimente; utilizatorul le-a respins ca fiind „cutii”. Când cere polițe, propune întâi polițe flotante (linii orizontale de stejar), nu corpuri.
+- **2026-10-30 · Polițe viniluri:** un perete de ~4,2 m încape pe A3 la 1:15 (~316 mm), cu planul dedesubt, dacă secțiunea, detaliile și notele stau într-o coloană de ~88 mm în dreapta. Detaliile pot fi la 1:3 sau 1:5.
+- **2026-10-30 · Polițe viniluri:** utilizatorul a respins orice consolă la vedere, chiar și cele simple, negre, din varianta B: vrea polițele prinse direct în perete. Prinderea ascunsă pe tije M12 în ancoră chimică încape într-o poliță de 4 cm, dar verifică tijele în cazul cel mai rău (polița stă doar în tije): la 33 cm adâncime și ~38 kg, 3 tije M12 de clasa 4.8 lasă o rezervă de numai ~1,45, iar 4 tije, ~1,9 (`rod_check()` din `polite-viniluri/design.py`).
+- **2026-10-30 · Polițe viniluri:** „suport” e ambiguu: opritoarele de cărți se vând ca „suport de carte”, iar consolele, ca „suport pentru raft”. La „să nu aibă suporții negri” am scos consolele, dar am îmbrăcat în stejar și opritoarele din propunerea principală, ca să nu rămână nimic negru; opritoarele negre au trecut în varianta B. Când cuvântul poate însemna două piese, acoperă ambele sensuri și spune-i utilizatorului cum l-ai înțeles.
+- **2026-10-30 · Polițe viniluri:** în randări, copertele maro sau galbene de la capătul rândului de discuri par opritoare de stejar: dă-le culori neutre sau reci. Discurile și texturile de lemn folosesc generatoare aleatoare separate, ca discurile să rămână identice în A și B.
+- **2026-10-29 · Polițe viniluri:** randarea pieselor cu multe fețe care se acoperă (polițe, discuri, opritoare) merge mai sigur cu buffer de adâncime (`Canvas.face` din `polite-viniluri/core.py`) decât cu ordine de desenare. Obiectele din poză care stau în fața celor noi (de exemplu boxele) se desenează doar în bufferul de adâncime.
+- **2026-10-29 · Polițe viniluri:** prețuri: Hornbach blochează și el descărcarea automată („Client Challenge”). La Dedeman, `curl` pe pagina produsului merge; prețul din `itemprop="price"` poate fi pe cutie, iar ambalajul apare la „Se livrează la: cutie (50 buc)”. Un subagent de cercetare cu 11 cerințe a rulat peste o oră fără rezultat: verifică direct prețurile esențiale și dă-i subagentului cerințe puține și precise.
+- **2026-10-29 · Polițe viniluri:** Cioata face mobilier la comandă: personalizează dimensiunea și finisajul lemnului, cu livrare în 2–8 săptămâni, dar nu montează pe perete. Mobilierul asortat cu o piesă Cioata se cere întâi de la ei.
 
 ## Proiecte
 
 | Proiect | Folder | Stare | Surse | Sesiunea care îl lucrează |
 |---|---|---|---|---|
 | Cuier hol | [Cuier hol](../../Cuier%20hol/README.md) | Gata: panou riflaj din stejar de 44 × 223,5 cm, așezat pe plintă, cu 5 cârlige negre mat | [.github/surse/cuier-hol/](../surse/cuier-hol/README.md) | Propunere cuier pentru fereastră |
-| Peretele cu televizorul | Folder nou, încă necreat | În lucru: polițe din stejar pentru viniluri | – | amenajare perete TV cu polite |
+| Polițe viniluri (peretele cu televizorul) | [Polite viniluri](../../Polite%20viniluri/README.md) | Gata: 2 polițe flotante din stejar de 80 × 33 × 4 cm, doar în dreapta televizorului, prinse direct în perete pe câte 4 tije M12 ascunse, fără console; A cu opritoare îmbrăcate în stejar, B cu opritoare negre. Înainte de comandă rămân de verificat: tavanul, peretele, finisajul comodei, ușa din dreapta și cablurile | [.github/surse/polite-viniluri/](../surse/polite-viniluri/README.md) | amenajare perete TV cu polite |

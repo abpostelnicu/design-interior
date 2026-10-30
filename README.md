@@ -9,6 +9,7 @@ Fiecare proiect are un folder propriu, cu documentația și fișierele aferente.
 | Folder | Conținutul folderului | README specific |
 |---|---|---|
 | [Cuier hol](Cuier%20hol/) | Comparație între situația actuală și propuneri, randări, plan tehnic în PDF și PNG, listă de materiale cu prețuri și linkuri | [Prezentare, cote, montaj pas cu pas și întreținere](Cuier%20hol/README.md) |
+| [Polite viniluri](Polite%20viniluri/) | Peretele cu televizorul: comparație între situația actuală și propuneri, randări, plan tehnic în PDF și PNG, listă de materiale cu prețuri și linkuri | [Prezentare, cote, cum e gândit, execuție, montaj pas cu pas și întreținere](Polite%20viniluri/README.md) |
 
 ## Organizarea documentației
 
