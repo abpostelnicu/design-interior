@@ -24,6 +24,9 @@ Aici vezi dintr-o privire ce agenți lucrează acum în depozit, la ce și în c
 
 | Când | Sesiune (agent) | Eveniment | Detalii |
 |---|---|---|---|
+| 2026-10-30 17:39 | Polițe viniluri beton și stejar | terminat | [Pull request-ul #1](https://github.com/abpostelnicu/design-interior/pull/1), din `polite-viniluri-beton` spre `master`, e deschis și se poate îmbina fără conflicte. Îmbinarea cu `gh pr merge` a fost refuzată și ea („Cannot update this protected ref”), așa că o face utilizatorul, din GitHub. Clona comună revine pe `origin/master`, iar „Polite viniluri beton” apare în ea după îmbinare |
+| 2026-10-30 17:39 | Polițe viniluri beton și stejar | commit | „Notează că pull request-ul spre master îl îmbină utilizatorul” |
+| 2026-10-30 17:35 | Polițe viniluri beton și stejar | început | reluare: trimit commit-urile pe ramura `polite-viniluri-beton` și deschid pull request-ul spre `master` |
 | 2026-10-30 17:33 | Polițe viniluri beton și stejar | terminat | „Polite viniluri beton” intră în `master` printr-un pull request din ramura `polite-viniluri-beton`, ca variantă lângă „Polite viniluri”, ale cărui variante A și B rămân neschimbate. În `Polite viniluri/README.md` s-a adăugat doar un rând cu legătura spre varianta din beton. Push-ul direct pe `master` e refuzat de o regulă a depozitului. Rezervările sunt eliberate |
 | 2026-10-30 17:33 | Polițe viniluri beton și stejar | commit | „Notează că master se actualizează prin pull request” |
 | 2026-10-30 17:31 | Polițe viniluri beton și stejar | commit | „Leagă propunerea din beton de variantele din stejar ale polițelor pentru viniluri” |
