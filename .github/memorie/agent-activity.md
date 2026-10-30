@@ -24,6 +24,9 @@ Aici vezi dintr-o privire ce agenți lucrează acum în depozit, la ce și în c
 
 | Când | Sesiune (agent) | Eveniment | Detalii |
 |---|---|---|---|
+| 2026-10-30 18:31 | Supraveghere agenți și aducere în master | terminat | pasul 2 din „Fără suprascrieri la îmbinare” spune acum, ca regula „Variantele noi se adaugă”, că o variantă nouă intră în folderul proiectului existent; pasul 5 cere actualizarea căilor după o mutare în ramura de dedesubt. [Pull request-ul #2](https://github.com/abpostelnicu/design-interior/pull/2) conține capătul nou al lui #1 (`83e164b`). [Pull request-ul #3](https://github.com/abpostelnicu/design-interior/pull/3), al uneltelor, are de adus capătul nou al lui #2 și calea nouă a surselor din beton, `.github/surse/polite-viniluri/beton/` |
+| 2026-10-30 18:31 | Supraveghere agenți și aducere în master | commit | „Aliniază pasul despre variantele noi cu regula folderului comun” |
+| 2026-10-30 18:31 | Supraveghere agenți și aducere în master | început | reluare, la cererea utilizatorului de a urmări sesiunile până termină toți agenții: în PR #2, pasul 2 din „Fără suprascrieri la îmbinare” rămăsese cu regula veche a folderului separat |
 | 2026-10-30 18:27 | Polițe viniluri beton și stejar | commit | „Îmbină mutarea variantelor din beton în regulile pentru aducerea în master”, pe ramura `reguli-aducere-in-master` |
 | 2026-10-30 18:27 | Polițe viniluri beton și stejar | început | reluare pe ramura `reguli-aducere-in-master`, din [pull request-ul #2](https://github.com/abpostelnicu/design-interior/pull/2), al sesiunii de supraveghere, care s-a încheiat: aduc în ea mutarea variantelor din beton, ca #1 și #2 să se poată îmbina în orice ordine, și corectez regula „o variantă nouă stă în folderul ei”, după cererea utilizatorului |
 | 2026-10-30 18:21 | Polițe viniluri beton și stejar | eliberare | `Polite viniluri/`, `.github/surse/polite-viniluri/` și `README.md` din rădăcină; `README.md` din rădăcină a rămas ca pe `master` |
