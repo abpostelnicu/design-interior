@@ -19,12 +19,13 @@ Aici vezi dintr-o privire ce agenți lucrează acum în depozit, la ce și în c
 
 | Sesiune (agent) | Proiect | Ce face acum | Fișiere | Stare | Început | Actualizat |
 |---|---|---|---|---|---|---|
-| Salvarea uneltelor agenților | Depozit (uneltele comune) | am adus în ramura `unelte-agenti` și noul capăt al PR #2, cu variantele din beton mutate în `Polite viniluri/`, ca C și D; uneltele trimit acum la `.github/surse/polite-viniluri/beton/`, iar `verificari.py` verifică și fișierele variantelor în plus. Testele (57) și verificarea proiectelor trec. Lucrez într-un `git worktree`; clona comună e pe `master` | `.github/unelte/` (nou), `.github/agents/designer-interior.agent.md`, `.github/copilot-instructions.md`, `.gitignore` | lucrează | 2026-10-30 17:21 | 2026-10-30 18:37 |
 
 ## Istoric
 
 | Când | Sesiune (agent) | Eveniment | Detalii |
 |---|---|---|---|
+| 2026-10-30 18:38 | Salvarea uneltelor agenților | terminat | Uneltele comune din `.github/unelte/` sunt în [pull request-ul #3](https://github.com/abpostelnicu/design-interior/pull/3), pe ramura `unelte-agenti`, care conține #1 și #2 și se îmbină după ele; îl îmbină utilizatorul. Cele 57 de teste și verificarea proiectelor trec, site-ul se construiește, iar planurile și imaginile existente rămân neschimbate. Clona comună a rămas pe `master`; rezervările sunt eliberate |
+| 2026-10-30 18:38 | Salvarea uneltelor agenților | commit | „Încheie sesiunea uneltelor comune cu pull request-ul #3” |
 | 2026-10-30 18:37 | Salvarea uneltelor agenților | commit | „Îmbină în ramura uneltelor pasul aliniat despre variantele noi”: capătul nou al PR #2 (pasul 2 și pasul 5 din „Fără suprascrieri la îmbinare”) intră în `unelte-agenti` cu `git merge` |
 | 2026-10-30 18:35 | Salvarea uneltelor agenților | commit | „Îmbină mutarea variantelor din beton și adaptează uneltele la ea”: noul capăt al PR #2 intră în `unelte-agenti` cu `git merge`, fără rebazare; uneltele, testele și verificatorul trimit la `.github/surse/polite-viniluri/beton/` și la variantele C și D din `Polite viniluri/` |
 | 2026-10-30 18:31 | Supraveghere agenți și aducere în master | terminat | pasul 2 din „Fără suprascrieri la îmbinare” spune acum, ca regula „Variantele noi se adaugă”, că o variantă nouă intră în folderul proiectului existent; pasul 5 cere actualizarea căilor după o mutare în ramura de dedesubt. [Pull request-ul #2](https://github.com/abpostelnicu/design-interior/pull/2) conține capătul nou al lui #1 (`83e164b`). [Pull request-ul #3](https://github.com/abpostelnicu/design-interior/pull/3), al uneltelor, are de adus capătul nou al lui #2 și calea nouă a surselor din beton, `.github/surse/polite-viniluri/beton/` |
