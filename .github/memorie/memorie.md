@@ -169,11 +169,11 @@ Mediul Python: `python3 -m venv .venv && .venv/bin/pip install pillow numpy matp
   - Fotografia de pe telefon nu intră în depozit. Pozele de pe telefon au de obicei coordonate GPS, iar `sips` le păstrează la conversie (verificat).
   - În depozit pui doar imagini generate sau salvate din nou cu OpenCV sau PIL, care nu păstrează metadatele EXIF. Fotografia de lucru din `.github/surse/<proiect>/original.jpg` se salvează așa: `ImageOps.exif_transpose(Image.open(sursa)).convert("RGB").resize((768, 1024)).save("original.jpg", quality=95)`.
 - **Căile absolute** de pe calculator nu apar în fișiere: numele folderului local conține date personale.
-- **Adresa de email:** commit-urile se fac cu adresa „noreply” de la GitHub, care e setată local în depozitul de pe calculatorul utilizatorului. Verifici cu `git config user.email`. Într-o clonă nouă, de exemplu în cloud, numele și adresa pot lipsi: le iei din `git log` și le pui doar pe comandă, cu `git -c user.name=… -c user.email=… commit …`.
+- **Adresa de email:** commit-urile se fac cu adresa „noreply” de la GitHub, care e setată local în depozitul de pe calculatorul utilizatorului. Identitatea folosită efectiv o verifici cu `git var GIT_AUTHOR_IDENT`. Comanda ține cont și de variabilele de mediu `GIT_AUTHOR_*` și `GIT_COMMITTER_*`, care au prioritate față de `git config` și de `-c user.…`. În clona din cloud, variabilele erau deja setate, cu numele de utilizator de pe GitHub și adresa „noreply”. Dacă într-o clonă nouă numele și adresa lipsesc, le iei din `git log` și le pui doar pe comandă, cu `git -c user.name=… -c user.email=… commit …`.
 - **Mesajele de commit:** în română, la imperativ, de exemplu „Adaugă…” sau „Așază…”. La final pui rândul `Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>`.
 - **Semnătura GPG.** Configurația globală cere commit-uri semnate, dar parola se introduce într-o fereastră pinentry pe care un agent nu o poate completa. Utilizatorul a aprobat commit-uri nesemnate pentru acest depozit, așa că folosești `git -c commit.gpgsign=false commit …`. Opțiunea se pune doar pe comandă; configurația nu se modifică.
 - **Fără arhive:** în depozit nu se păstrează variante vechi; utilizatorul a cerut ștergerea arhivei. `.DS_Store` e ignorat.
-- **Site-ul:** <https://abpostelnicu.github.io/design-interior/> se publică automat la fiecare push pe `master`.
+- **Site-ul:** <https://abpostelnicu.github.io/design-interior/> se publică automat la fiecare push pe `master`. Push-ul altor ramuri nu-l republică: `.github/workflows/publicare-site.yml` pornește doar la `master` sau manual.
   - Linkurile rămân relative; spațiile din numele folderelor se scriu `%20`.
   - Orice folder cu `README.md` apare singur în meniul site-ului. Folderele care încep cu punct, ca `.github/`, nu se publică.
   - Imaginea afișată când se trimite linkul este `imagine_implicita` din `_config.yml`.
@@ -190,6 +190,9 @@ Mediul Python: `python3 -m venv .venv && .venv/bin/pip install pillow numpy matp
   - Excepție: în jurnal, în memorie și în `agent-activity.md` poți face oricând editări mici, fără rezervare și fără să rescrii textul altora.
 - **Commit-ul:** îl face un singur agent pentru un set de modificări, care îi spune celuilalt hash-ul, ca să nu-l facă și el.
 - **Înainte de commit:** rulezi `git fetch` și `git status` și adaugi doar fișierele tale: `git add -- <căile tale>`, apoi `git commit -- <căile tale>`, ca să nu prinzi în commit fișiere puse în index de alt agent. Niciodată `git add -A` sau `git add .`. Fișierele din `.github/memorie/` le poți pune în commit chiar dacă au și intrări ale altor agenți.
+- **Lucrul pe o ramură:** clona e comună, așa că după commit o readuci pe `master`, ca alt agent să nu facă commit pe ramura ta fără să știe. Cât timp clona e pe ramură, scrii asta în rândul tău din `agent-activity.md`.
+  - Înainte de `git checkout master`, muți în afara depozitului sau ștergi folderele ignorate din `.github/surse/<proiect>/` (`.venv/`, `out/`, `__pycache__/`). `.gitignore`-ul care le ascunde există doar pe ramură, iar pe `master` ar apărea ca fișiere netrasate.
+  - Memoria și jurnalul scrise pe ramură ajung pe `master` abia la îmbinare.
 - **Scripturile altui agent:** dacă le modifici, îi spui exact ce ai schimbat.
 - **Fără bucle:** nu răspunzi la o confirmare cu altă confirmare.
 
