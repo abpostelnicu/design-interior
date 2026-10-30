@@ -95,9 +95,22 @@ Formatul unei intrări:
   - PR #1 e verificat și doar adaugă: proiectul „Polite viniluri beton” și sursele lui, plus legăturile dintre variante și rândurile din memorie. Cele 12 planuri și imagini existente din `master` au în PR #1 același hash git, deci același conținut; cele 6 noi nu au EXIF sau coordonate GPS. Linkurile duc la fișiere existente, iar site-ul se construiește cu imaginea Jekyll folosită de GitHub Pages. Verificarea e scrisă în PR #1.
   - Îmbinarea lui PR #1 cu `gh pr merge` a fost refuzată, ca și push-ul direct („Repository rule violations found”): din cloud, agenții nu pot actualiza `master`. Pull request-urile le îmbină utilizatorul.
   - Regulile pentru aducerea în `master` fără suprascrieri sunt în [memorie.md](memorie.md), la „Coordonarea între agenți”, în `.github/copilot-instructions.md` și în agentul Designer interior. Sesiunea din beton a ajuns în paralel la aceeași concluzie și a scris-o ea în memorie: pull request-ul îl îmbină utilizatorul. Regulile sunt în [pull request-ul #2](https://github.com/abpostelnicu/design-interior/pull/2), din ramura `reguli-aducere-in-master`, pornită din capătul PR #1 (`63aa2a7`), ca să se îmbine după #1, fără conflicte. Commit-urile „Adaugă regulile pentru aducerea ramurilor în master” și „Încheie supravegherea agenților cu pull request-urile de îmbinat”.
-  - La final, PR #1 și PR #2 sunt `MERGEABLE` și `CLEAN` și așteaptă îmbinarea de la utilizator, din GitHub, cu „Create a merge commit”: întâi #1, apoi #2. Site-ul se republică automat după fiecare îmbinare. În 20 de minute de urmărire nu au apărut alte ramuri sau pull request-uri.
+  - După primele 20 de minute de urmărire, PR #1 și PR #2 erau `MERGEABLE` și `CLEAN`, de îmbinat în ordinea #1, #2.
+  - **Reluare**, la cererea „Urmărește în continuare până toți agenții termină”. Au mai lucrat două sesiuni:
+    - Sesiunea „Salvarea uneltelor agenților” a pus uneltele comune în `.github/unelte/`, în [pull request-ul #3](https://github.com/abpostelnicu/design-interior/pull/3). L-a pornit din `master`, apoi a adus în el #2.
+    - Sesiunea din beton a mutat, la cererea utilizatorului, variantele ei în „Polite viniluri/”, ca C și D (PR #1). Apoi a adus mutarea în #2.
+  - În #2, pasul 2 din „Fără suprascrieri la îmbinare” rămăsese cu regula veche a folderului separat. L-am aliniat la regula nouă, iar pasul 5 cere acum actualizarea căilor după o mutare în ramura de dedesubt. Aceeași frază veche era și în `.github/copilot-instructions.md` și în agent, unde a corectat-o sesiunea din beton.
+  - După mutare, uneltele din #3 căutau încă `.github/surse/polite-viniluri-beton/`. Cele 3 teste de paritate s-ar fi sărit fără niciun mesaj, iar un link ar fi fost rupt. Am încercat local îmbinarea și corectarea căilor (56 de teste trecute, niciunul sărit) și am scris pașii în #3. Sesiunea uneltelor i-a urmat.
+  - Construirea site-ului cu Docker pica în cloud, chiar și pe `master`, cu „401 Bad credentials”: `api.github.com` refuza și cererile fără token. Rețeta fără token din pasul 6 („Site-ul se construiește”) e a sesiunii uneltelor.
+  - La final, toate cele trei sesiuni au trecut „terminat” și nu mai are nimeni rând în „Acum”. Fiecare pull request îl conține pe cel dinainte. Ultimul capăt al lui #3 a trecut toate verificările:
+    - nicio imagine și niciun plan modificat, șters sau redenumit față de `master`;
+    - 57 de teste trecute, iar `verificari.py --toate` dă 0 probleme;
+    - linkurile locale duc la fișiere existente;
+    - site-ul se construiește.
+
+    Utilizatorul îmbină din GitHub, cu „Create a merge commit”: fie #1, #2 și #3, în ordine, fie direct #3, care le conține pe toate. Site-ul se republică după fiecare îmbinare.
 - Corecturi: niciuna de la utilizator.
-- Lecții: în [memorie.md](memorie.md), la „Coordonarea între agenți”: lista „Fără suprascrieri la îmbinare”, cu comanda care găsește planurile și imaginile modificate, și sesiunile din clone diferite, care se văd doar după push. La „Lecții învățate”: `git fetch` din nou, cu ramurile aduse explicit, chiar înainte de a modifica fișierele comune.
+- Lecții: în [memorie.md](memorie.md), la „Coordonarea între agenți”: lista „Fără suprascrieri la îmbinare”, cu comanda care găsește planurile și imaginile modificate, și sesiunile din clone diferite, care se văd doar după push. La „Lecții învățate”: `git fetch` din nou, cu ramurile aduse explicit, chiar înainte de a modifica fișierele comune, și căutarea unei reguli schimbate în toate fișierele care o repetă.
 
 ### 2026-10-30 · Depozit · uneltele agenților
 - Cerere: să fie salvat ce fac acum agenții în depozit, adică uneltele și felul în care lucrează, ca să poată fi folosite și pe viitor.
