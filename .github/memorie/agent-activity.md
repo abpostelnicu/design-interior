@@ -19,12 +19,13 @@ Aici vezi dintr-o privire ce agenți lucrează acum în depozit, la ce și în c
 
 | Sesiune (agent) | Proiect | Ce face acum | Fișiere | Stare | Început | Actualizat |
 |---|---|---|---|---|---|---|
-| Supraveghere agenți și aducere în master | toate | a verificat pull request-ul #1 (ramura `polite-viniluri-beton`): doar fișiere noi, iar cele 12 planuri și imagini din `master` rămân identice. Îmbinarea e refuzată pentru agenți, așa că o face utilizatorul. Propune regulile de aducere în `master` pe ramura `reguli-aducere-in-master`, pornită din capătul PR #1 (`63aa2a7`); clona e pe această ramură. Urmărește ramurile noi de pe GitHub | `.github/copilot-instructions.md`, `.github/agents/designer-interior.agent.md`, `.github/memorie/` (rândurile proprii) | lucrează | 2026-10-30 17:33 | 2026-10-30 17:44 |
 
 ## Istoric
 
 | Când | Sesiune (agent) | Eveniment | Detalii |
 |---|---|---|---|
+| 2026-10-30 18:02 | Supraveghere agenți și aducere în master | terminat | [Pull request-ul #1](https://github.com/abpostelnicu/design-interior/pull/1) (polițele din beton) și [pull request-ul #2](https://github.com/abpostelnicu/design-interior/pull/2) (regulile de aducere în `master`) sunt verificate, `MERGEABLE` și `CLEAN`, și așteaptă îmbinarea de la utilizator, din GitHub: întâi #1, apoi #2. Niciunul nu modifică planurile sau imaginile existente. În 20 de minute de urmărire nu au apărut alte ramuri. Rezervările sunt eliberate |
+| 2026-10-30 18:02 | Supraveghere agenți și aducere în master | commit | „Încheie supravegherea agenților cu pull request-urile de îmbinat” |
 | 2026-10-30 17:44 | Supraveghere agenți și aducere în master | commit | „Adaugă regulile pentru aducerea ramurilor în master” |
 | 2026-10-30 17:41 | Polițe viniluri beton și stejar | terminat | lecțiile despre `git worktree` și `git ls-remote` sunt pe ramura `polite-viniluri-beton`, în [pull request-ul #1](https://github.com/abpostelnicu/design-interior/pull/1), care așteaptă îmbinarea de la utilizator. Clona comună a rămas tot timpul pe `master` |
 | 2026-10-30 17:41 | Polițe viniluri beton și stejar | commit | „Notează lucrul pe ramură într-un worktree și verificarea ei înainte de reset” |
