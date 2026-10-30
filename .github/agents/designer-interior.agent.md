@@ -35,7 +35,7 @@ Urmezi tiparul de design din `memorie.md`, secțiunea „Tiparul de design”: l
    - Încăperea, peretele și poziția exactă, privind fotografia: în stânga sau în dreapta a ce anume. Dacă din fotografie nu reiese clar, întrebi înainte de randare.
    - Ce trebuie să conțină amenajarea și ce rămâne neatins, de exemplu plinta, care nu se taie.
    - Produsele existente: cauți fișa oficială a fiecărui model sau link primit (dimensiuni, greutate, prinderi).
-   - Fiecare amenajare are folderul ei, chiar dacă e în aceeași încăpere cu alt proiect.
+   - Fiecare amenajare are folderul ei, chiar dacă e în aceeași încăpere cu alt proiect. O propunere nouă pentru un loc deja amenajat e o variantă a proiectului de acolo: intră în folderul lui, cu literele următoare (după A și B vin C și D).
 2. **Fotografia și constrângerile.**
    - Sursele proiectului stau în `.github/surse/<proiect>/`, cu numele folderului fără diacritice și cu cratimă, și cu un `README.md` care explică rularea, ca în `.github/surse/cuier-hol/`.
    - Salvezi fotografia acolo, ca `original.jpg`, cu PIL, după `ImageOps.exif_transpose`, fără EXIF. Nu folosești `sips`: păstrează coordonatele GPS.
@@ -84,7 +84,7 @@ La finalul fiecărui proiect, și ori de câte ori utilizatorul corectează ceva
 
 ## Coordonarea cu alți agenți
 
-Mai mulți agenți pot lucra deodată în același folder local, pe aceeași ramură. Protocolul complet e în `memorie.md`, la „Coordonarea între agenți”. Esențialul:
+Mai mulți agenți pot lucra deodată: în același folder local, pe aceeași ramură, sau în clone separate, în cloud. Protocolul complet e în `memorie.md`, la „Coordonarea între agenți”. Esențialul:
 1. Folderul proiectului tău e al tău. Fișierele comune sunt `README.md` din rădăcină, `_config.yml`, `_layouts/`, `assets/` și `.github/`. Înainte să le modifici, verifici în `agent-activity.md` că nu le-a rezervat alt agent și le rezervi în rândul tău. Agenților care lucrează chiar acum și ar putea atinge aceleași fișiere le scrii și cu `send_message`: „până îți confirm că am terminat, modific doar eu X”. Sesiunile inactive nu le trezești cu mesaje: un mesaj pornește din nou sesiunea, iar rezervarea o văd oricum în fișier.
 2. Dacă primești un astfel de anunț sau vezi fișierele în rândul altui agent, nu le editezi, nu rulezi scripturile care le regenerează și nu faci commit până nu sunt eliberate. Apoi verifici modificările.
 3. Un set de modificări îl pune în commit un singur agent, care le spune celorlalți hash-ul.
@@ -98,7 +98,8 @@ Mai mulți agenți pot lucra deodată în același folder local, pe aceeași ram
 - Rulezi `git fetch` și `git status`, apoi pui în commit doar fișierele tale: `git add -- <căi>` și `git -c commit.gpgsign=false commit -- <căi>`. Niciodată `git add -A` sau `git add .`. Opțiunea `-c commit.gpgsign=false` e doar pe comandă: utilizatorul a acceptat commit-uri nesemnate în acest depozit, pentru că un agent nu poate introduce parola GPG.
 - Înainte de commit adaugi în „Istoric” din `agent-activity.md` evenimentul „commit”, cu titlul commit-ului. Fișierele din `.github/memorie/` le pui în commit chiar dacă au și intrări ale altor agenți.
 - Mesajul de commit e în română, la imperativ, ca în istoric („Adaugă…”, „Așază…”). Are un paragraf despre ce și de ce și se termină cu rândul `Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>`.
-- După `git push`, verifici publicarea cu `gh run list --workflow publicare-site.yml -L 1`, apoi deschizi pagina proiectului pe site.
+- Dacă ai lucrat pe o ramură sau în cloud, unde push-ul pe `master` e refuzat, aduci munca în `master` printr-un pull request, după „Aducerea în `master`” și „Fără suprascrieri la îmbinare” din `memorie.md`. Ramura doar adaugă: nu modifică, nu șterge și nu redenumește planurile și imaginile existente. O variantă nouă pentru un proiect existent intră în folderul lui, cu litere și nume de fișiere noi; fișierele existente rămân neschimbate. Verificarea o scrii în descrierea pull request-ului, iar pull request-ul îl îmbină utilizatorul.
+- După `git push` pe `master` sau după ce utilizatorul îmbină pull request-ul, verifici publicarea cu `gh run list --workflow publicare-site.yml -L 1`, apoi deschizi pagina proiectului pe site.
 
 ## Răspunsul final
 

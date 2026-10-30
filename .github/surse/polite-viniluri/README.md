@@ -4,6 +4,8 @@ Scripturile din acest folder generează randările, imaginea de comparație și 
 
 Tiparul general al proiectelor e în memoria comună: [`.github/memorie/memorie.md`](../../memorie/memorie.md). Aici sunt doar uneltele. Scripturile pornesc de la cele din [`cuier-hol/`](../cuier-hol/README.md), cu trei diferențe: camera e calibrată pe obiecte cu dimensiuni cunoscute (nu pe tavan), randarea folosește un buffer de adâncime și texturile vin din fotografie.
 
+Sursele variantelor C și D, cu polițele din beton decorativ și stejar, sunt în subfolderul [`beton/`](beton/README.md). Au același tipar și scriu în `Polite viniluri/` fișiere cu nume noi, fără să le atingă pe cele de aici.
+
 ## Fișiere
 
 | Fișier | Rol |
