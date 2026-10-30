@@ -2,7 +2,7 @@
 
 Aici sunt uneltele comune ale agenților care lucrează în depozit, mai ales ale agentului [Designer interior](../agents/designer-interior.agent.md). Sunt scripturile Python pe care fiecare proiect de până acum și le-a scris singur, adunate, curățate și testate, plus felul în care agenții lucrează cu ele. Un proiect nou nu mai pornește de la zero și nu mai copiază fișiere din alt proiect. Își scrie doar ce e al lui: cotele, dreptele pentru calibrare, scena randată și planul. Restul îl ia de aici.
 
-Uneltele vin din sursele proiectelor publicate, [`cuier-hol/`](../surse/cuier-hol/README.md) și [`polite-viniluri/`](../surse/polite-viniluri/README.md), și din proiectul cu polițe din beton, [`polite-viniluri-beton/`](../surse/polite-viniluri-beton/README.md). Scripturile acelor proiecte rămân neschimbate, pentru că reproduc imaginile publicate. Testele de aici verifică faptul că uneltele dau aceleași rezultate ca ele.
+Uneltele vin din sursele celor două proiecte, [`cuier-hol/`](../surse/cuier-hol/README.md) și [`polite-viniluri/`](../surse/polite-viniluri/README.md), inclusiv din subfolderul variantelor C și D ale polițelor, din beton decorativ, [`polite-viniluri/beton/`](../surse/polite-viniluri/beton/README.md). Scripturile acelor proiecte rămân neschimbate, pentru că reproduc imaginile publicate. Testele de aici verifică faptul că uneltele dau aceleași rezultate ca ele.
 
 Folderul începe cu punct, deci nu apare pe site, dar depozitul e public: fără căi absolute sau date personale în fișiere.
 
@@ -52,17 +52,19 @@ Le imporți ca `unelte.<modul>` și nu pui `.github/unelte` direct în `sys.path
 | [`segmente.py`](segmente.py) | Segmentele de dreaptă din fotografie (LSD), numerotate, ca să le alegi pe grupuri | `detecteaza`, `deseneaza`, `alege` | metoda din [README-ul cuierului](../surse/cuier-hol/README.md) |
 | [`camera.py`](camera.py) | Aparatul foto: proiecții, raze, trecerea din pixeli în cm și calibrarea | `Camera` (`project`, `backproject`, `scaled`, `fara_distorsiune`), `calibreaza`, `incarca`, `salveaza`, `citeste_segmente`, `puncte`, `rezumat` | `camera.py` din ambele proiecte |
 | [`randare.py`](randare.py) | Piesele noi, desenate în fotografie cu buffer de adâncime, în lumina peretelui și cu umbre | `Canvas` (`din_foto`, `face`, `multiply_wall`, `multiply_floor`), `box`, `solid`, `wall_light_map`, `finish`, `current_photo`, `save_jpg` | `polite-viniluri/core.py` și `render.py` |
-| [`materiale.py`](materiale.py) | Texturile: stejar luat din parchetul din poză sau procedural și microciment. Măsoară culorile din poză și diferența dintre ele (Lab, ΔE00) | `oak_source`, `glued_panel`, `end_grain`, `oak_procedural`, `concrete_panel`, `concrete_edge`, `concrete_end`, `sample`, `masoara`, `diferenta` | `polite-viniluri/materials.py` și `beton.py` |
-| [`comparatie.py`](comparatie.py) | Imaginea de comparație: Acum, A și B, cu titluri și subtitluri | `compune` | `compare.py` din ambele proiecte |
-| [`plan.py`](plan.py) | Planul tehnic A3 la 1:15: pagina, cotele și notele, plus verificarea automată a textelor și a formatului PDF | `pagina`, `make_axes`, `rect`, `dim_h`, `dim_v`, `label`, `text_block`, `legend`, `save`, `verifica_figura`, `e_a3` | `drawing.py` și `verifica_plan.py` din proiectul cu beton, `polite-viniluri/drawing.py` |
-| [`rezistenta.py`](rezistenta.py) | Verificări de ordinul de mărime: tije în consolă, smulgerea din ancoră, greutăți | `rod_check`, `rod_pull`, `kg_placa`, `greutate`, `RHO`, `FY` | `design.py` din proiectele cu polițe |
+| [`materiale.py`](materiale.py) | Texturile: stejar luat din parchetul din poză sau procedural și microciment. Măsoară culorile din poză și diferența dintre ele (Lab, ΔE00) | `oak_source`, `glued_panel`, `end_grain`, `oak_procedural`, `concrete_panel`, `concrete_edge`, `concrete_end`, `sample`, `masoara`, `diferenta` | `polite-viniluri/materials.py` și `polite-viniluri/beton/beton.py` |
+| [`comparatie.py`](comparatie.py) | Imaginea de comparație: Acum și propunerile (A și B sau, la variantele în plus, C și D), cu titluri și subtitluri | `compune` | `compare.py` din ambele proiecte |
+| [`plan.py`](plan.py) | Planul tehnic A3 la 1:15: pagina, cotele și notele, plus verificarea automată a textelor și a formatului PDF | `pagina`, `make_axes`, `rect`, `dim_h`, `dim_v`, `label`, `text_block`, `legend`, `save`, `verifica_figura`, `e_a3` | `drawing.py` și `verifica_plan.py` din `polite-viniluri/beton/`, `polite-viniluri/drawing.py` |
+| [`rezistenta.py`](rezistenta.py) | Verificări de ordinul de mărime: tije în consolă, smulgerea din ancoră, greutăți | `rod_check`, `rod_pull`, `kg_placa`, `greutate`, `RHO`, `FY` | `design.py` din `polite-viniluri/` și `polite-viniluri/beton/` |
 | [`preturi.py`](preturi.py) | Prețul, titlul și ambalajul din pagina produsului, pentru un link sau pentru toate linkurile unei liste de materiale | `citeste`, `analizeaza`, `linkuri_din_lista` | nou, după lecțiile din memorie |
-| [`verificari.py`](verificari.py) | Verificarea unui proiect înainte de commit: livrabile, metadate, linkuri, diacritice, date personale, calculele din lista de materiale | `verifica`, `verifica_texte`, `verifica_linkuri` | nou, după regulile din memorie |
+| [`verificari.py`](verificari.py) | Verificarea unui proiect înainte de commit, cu variantele lui în plus: livrabile, metadate, linkuri, diacritice, date personale, calculele din listele de materiale | `verifica`, `verifica_texte`, `verifica_linkuri` | nou, după regulile din memorie |
 | [`teste/test_unelte.py`](teste/test_unelte.py) | Testele tuturor uneltelor, inclusiv paritatea cu scripturile proiectelor | – | – |
 
 ## Un proiect nou, pas cu pas
 
 Pașii urmează „Pașii de lucru” din [memorie](../memorie/memorie.md); aici sunt doar comenzile. Exemplele pornesc din rădăcina depozitului, cu mediul `.venv` de la „Pregătirea”, iar `S` e folderul cu sursele proiectului.
+
+O variantă în plus pentru un proiect existent nu e un proiect nou: intră în folderul lui, după regula „Variantele noi se adaugă, nu înlocuiesc” din memorie. Literele continuă (C și D după A și B), fișierele au nume noi, cu sufix (`propunere_C_<material>.jpg`, `varianta_D_<material>.jpg`, `comparatie_acum_vs_propuneri_<sufix>.jpg`, `lista_materiale_<sufix>.md`, `plan_tehnic_<proiect>_<sufix>.pdf` și `.png`), iar fișierele existente rămân neschimbate. Sursele ei stau într-un subfolder, de exemplu `S=".github/surse/polite-viniluri/beton"`; pașii sunt aceiași.
 
 ### 1. Fotografia
 
@@ -257,7 +259,7 @@ Rulezi întâi pe un singur link, ca să afli ce merge din mediul de lucru. Star
 .venv/bin/python -B .github/unelte/verificari.py --toate
 ```
 
-Scriptul iese cu codul 1 la probleme: livrabile lipsă, imagini cu metadate, un PDF care nu e A3, linkuri relative rupte, ș sau ț cu sedilă, căi absolute sau coordonate GPS, calcule greșite în lista de materiale. Avertismentele le citești și decizi. Abia apoi faci commit-ul, după regulile din [`copilot-instructions.md`](../copilot-instructions.md).
+Scriptul iese cu codul 1 la probleme: livrabile lipsă, un plan fără perechea lui PDF sau PNG, imagini cu metadate, un PDF care nu e A3, linkuri relative rupte, ș sau ț cu sedilă, căi absolute sau coordonate GPS, calcule greșite într-o listă de materiale. Variantele în plus se verifică odată cu proiectul: toate listele `lista_materiale*.md`, toate planurile și sursele din subfoldere. Avertismentele le citești și decizi; unul dintre ele apare pentru fiecare fișier din folder fără link în README. Abia apoi faci commit-ul, după regulile din [`copilot-instructions.md`](../copilot-instructions.md).
 
 ## Uneltele agentului
 
@@ -276,7 +278,7 @@ Uneltele lui Copilot pe care le-au folosit agenții și la ce:
 
 ## Lucrul în paralel, cu subagenți
 
-Proiectul cu polițe din beton a lucrat cu 10 subagenți în paralel: idei, tehnică, prețurile vechi, prețurile noi, textura, testul mediului, revizuirea conceptului, randările, planul și documentația. Ce a mers:
+Variantele din beton ale polițelor (C și D) s-au lucrat cu 10 subagenți în paralel: idei, tehnică, prețurile vechi, prețurile noi, textura, testul mediului, revizuirea conceptului, randările, planul și documentația. Ce a mers:
 
 - **Coordonatorul**, adică agentul principal, păstrează `design.py`, memoria și commit-ul. Subagenții scriu doar în fișierele primite. Dacă unul se oprește la jumătate, coordonatorul îi termină treaba.
 - **Mediul îl testezi o singură dată**, înainte să trimiți cercetarea: `preturi.py` pe un link și o căutare. Dacă rețeaua e blocată, nu trimiți zece agenți să afle același lucru.
@@ -306,14 +308,14 @@ Te oprești când: <criteriul>.
 .venv/bin/python -B -m unittest discover -s .github/unelte/teste -v -k Camera       # doar o parte
 ```
 
-Sunt 56 de teste, care nu au nevoie de rețea. Ce verifică:
+Sunt 57 de teste, care nu au nevoie de rețea. Ce verifică:
 - paritatea cu scripturile proiectelor: aceleași proiecții ca `camera.py` de la cuier și de la polițe, aceeași calibrare (rms 0,5956 px la polițe și 0,5961 px la cuier) și aceleași calcule de rezistență;
 - fotografiile: `pregateste` scoate EXIF-ul, GPS-ul și comentariul JPEG, rotește după EXIF și trece culorile în sRGB;
 - randarea, texturile, culorile (ΔE00 pe perechile de referință publicate), comparația și planul A3;
-- prețurile, pe un server local, și verificările, pe proiecte sintetice;
+- prețurile, pe un server local, și verificările, pe proiecte sintetice, inclusiv cu variante în plus în același folder;
 - liniile de comandă ale modulelor.
 
-Trei teste compară uneltele cu sursele proiectului cu beton (`beton.py` și `verifica_plan.py`). Ele rulează când există `.github/surse/polite-viniluri-beton/` sau când variabila `UNELTE_BETON` arată spre o copie a folderului. Pe o ramură fără acel folder, se sar.
+Trei teste compară uneltele cu sursele variantelor din beton (`beton.py`, `design.py` și `verifica_plan.py`). Ele rulează când există `.github/surse/polite-viniluri/beton/` sau când variabila `UNELTE_BETON` arată spre o copie a folderului. Pe o ramură fără acel folder, se sar.
 
 O unealtă nouă intră aici când a folosit la un proiect și poate folosi și la altele:
 1. O pui în modulul potrivit sau într-unul nou, cu nume în română, fără diacritice, și cu docstring în română.

@@ -2,6 +2,8 @@
 
 Polițele se fac la comandă: polițe de 80 × 33 × 4 cm din stejar masiv, cu găuri pentru tije, nu există gata făcute. Prețurile de mai jos au fost verificate pe site-uri pe 29–30.10.2026 și nu includ transportul. Se pot schimba (promoții, stoc pe localitate). La Dedeman, stocul apare abia după ce alegi localitatea.
 
+Lista variantelor C și D, cu polițele din beton decorativ și stejar, e separată: [lista_materiale_beton.md](lista_materiale_beton.md).
+
 ## Polițele (2 bucăți, 80 × 33 × 4 cm)
 
 | Execuție | Preț | Observații |

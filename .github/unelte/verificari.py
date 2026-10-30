@@ -6,19 +6,26 @@
 
 Iese cu codul 1 la PROBLEME. AVERTISMENTELE doar le afișează: te uiți la fiecare și decizi.
 
+Variantele în plus pentru același proiect (C și D după A și B) stau în folderul lui, cu fișiere noi, cu sufix:
+`propunere_C_beton_gri.jpg`, `comparatie_acum_vs_propuneri_beton.jpg`, `lista_materiale_beton.md`,
+`plan_tehnic_polite_viniluri_beton.pdf`. Verificarea le ia și pe ele. Sursele lor stau într-un subfolder al surselor
+proiectului (`.github/surse/polite-viniluri/beton/`) și se verifică odată cu restul surselor.
+
 PROBLEME:
 - lipsește un livrabil: README.md, lista_materiale.md, comparatie_acum_vs_propuneri.jpg, propunere_A_*.jpg,
-  varianta_B_*.jpg, plan_tehnic_*.pdf și plan_tehnic_*.png;
-- o imagine din proiect sau din surse are metadate (EXIF, mai ales GPS), ori planul PDF nu e A3;
+  varianta_B_*.jpg, plan_tehnic_*.pdf și plan_tehnic_*.png, sau un plan are doar PDF ori doar PNG;
+- o imagine din proiect sau din surse are metadate (EXIF, mai ales GPS), ori un plan PDF nu e A3;
 - un link relativ din Markdown duce la un fișier sau la o ancoră (#titlu) care nu există;
 - litere cu sedilă (ş, ţ) în loc de virgulă (ș, ț);
 - căi absolute de pe calculator (/Users/…, /home/…, C:\\Users\\…) sau coordonate GPS, în texte și în surse;
-- în lista de materiale: Cant. × Preț ≠ Subtotal, un total care nu se adună, lipsa datei verificării;
+- în fiecare listă de materiale (`lista_materiale*.md`): Cant. × Preț ≠ Subtotal, un total care nu se adună,
+  lipsa datei verificării;
 - README-ul din rădăcină nu are link spre proiect.
 
 AVERTISMENTE: pașii de montaj nenumerotați la rând („### 1.”, „### 2.”…), punct zecimal înaintea unei unități
 („2.5 cm”), adrese de email care nu sunt „noreply”, numere de telefon sau de înmatriculare, secțiuni lipsă din
-README, valori din tabelul final care nu apar ca total, lipsa surselor din `.github/surse/<proiect>/`.
+README, un fișier din folderul proiectului fără link în README, valori din tabelul final care nu apar ca total,
+lipsa surselor din `.github/surse/<proiect>/`.
 """
 import os
 import re
@@ -113,6 +120,11 @@ def verifica_livrabile(folder, rap):
         else:
             rap.problema(rel(folder), f"lipsește {eticheta}")
     rap.ok.append(f"{gasite} din {len(cerute)} livrabile")
+    planuri = sorted({n[:-4] for n in nume if re.fullmatch(r"plan_tehnic_\w+\.(?:pdf|png)", n)})
+    for plan in planuri:
+        for ext in (".pdf", ".png"):
+            if plan + ext not in nume:
+                rap.problema(rel(folder), f"lipsește {plan}{ext}: fiecare plan se publică în PDF și în PNG")
 
 
 def metadate(path):
@@ -287,11 +299,9 @@ def verifica_readme(folder, proiect, rap):
         if not any(t.lower().startswith(s.lower()) for t in titluri):
             rap.avertisment(rel(md), f"lipsește secțiunea „{s}” (tiparul de README din memorie)")
     tinte = {unquote(t.partition("#")[0]) for _, t in linkuri(text)}
-    for f in ("comparatie_acum_vs_propuneri.jpg", "lista_materiale.md"):
-        if f not in tinte:
-            rap.avertisment(rel(md), f"nu are link spre {f}")
-    if not any(re.fullmatch(r"plan_tehnic_\w+\.pdf", t) for t in tinte):
-        rap.avertisment(rel(md), "nu are link spre planul tehnic PDF")
+    for n in sorted(os.listdir(folder)):
+        if n != "README.md" and n[0] not in "._" and os.path.isfile(os.path.join(folder, n)) and n not in tinte:
+            rap.avertisment(rel(md), f"nu are link spre {n}: fiecare fișier din folder apare în README")
     prev = 0
     for i, ln in enumerate(linii, 1):
         m = re.match(r"###\s+(\d+)\.", ln)
@@ -359,13 +369,21 @@ def _col(cap, *prefixe, exact=False):
     return next((k for k, c in enumerate(cap) if any(ok(c, p) for p in prefixe)), None)
 
 
+def liste_materiale(folder):
+    """`lista_materiale.md` și listele variantelor în plus (`lista_materiale_<sufix>.md`) din folderul proiectului."""
+    return sorted(n for n in os.listdir(folder) if re.fullmatch(r"lista_materiale(?:_\w+)?\.md", n))
+
+
 def verifica_lista(folder, rap):
-    md = os.path.join(folder, "lista_materiale.md")
-    if not os.path.isfile(md):
-        return
+    for nume in liste_materiale(folder):
+        verifica_o_lista(os.path.join(folder, nume), rap)
+
+
+def verifica_o_lista(md, rap):
     with open(md, encoding="utf-8") as f:
         text = f.read()
     r = rel(md)
+    eticheta = "lista de materiale" if os.path.basename(md) == "lista_materiale.md" else os.path.basename(md)
     if not re.search(r"verificat\w*[^\n]{0,80}?\d{1,2}(?:\s*[–-]\s*\d{1,2})?\.\d{1,2}\.\d{4}", text, re.I):
         rap.problema(r, "nu scrie când au fost verificate prețurile (de exemplu „verificate pe 30.10.2026”)")
     randuri = totaluri = 0
@@ -426,7 +444,7 @@ def verifica_lista(folder, rap):
             acc += s[0]
             if valori_total and not any(abs(s[0] - v) < 0.011 for v in valori_total):
                 rap.avertisment(f"{r}:{i}", f"{_lei(s[0])} lei nu apare ca total în tabelele de mai sus")
-    rap.ok.append(f"lista de materiale: {numar_de(randuri, 'rând', 'rânduri')} și "
+    rap.ok.append(f"{eticheta}: {numar_de(randuri, 'rând', 'rânduri')} și "
                   f"{numar_de(totaluri, 'total', 'totaluri')} verificate")
 
 

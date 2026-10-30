@@ -74,7 +74,7 @@ Dintre uneltele lui Copilot, deschizi cu `view` orice imagine înainte s-o decla
 
 ## Lucrul în paralel, cu subagenți
 
-La un proiect mare poți lucra cu subagenți în paralel (`task`), cum a făcut proiectul cu polițe din beton cu 10 subagenți: idei, tehnică, prețuri, textură, test de mediu, revizuirea conceptului, randări, plan și documentație.
+La un proiect mare poți lucra cu subagenți în paralel (`task`), cum s-au lucrat variantele din beton ale polițelor (C și D), cu 10 subagenți: idei, tehnică, prețuri, textură, test de mediu, revizuirea conceptului, randări, plan și documentație.
 1. Tu rămâi coordonatorul: păstrezi `design.py`, memoria și commit-ul. Subagenții scriu doar în fișierele primite, iar ce rămâne neterminat termini tu.
 2. Testezi mediul o singură dată înainte de cercetare: `preturi.py` pe un link și o căutare. Dacă rețeaua e blocată, nu trimiți mai mulți agenți să afle asta.
 3. Dai cerințe puține și precise, cu tot contextul: ce citește subagentul, ce scrie, cum arată rezultatul, când se oprește. Tiparul de cerere e în `.github/unelte/README.md`.

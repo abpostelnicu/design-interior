@@ -6,8 +6,8 @@
 Unde se poate, compară uneltele cu scripturile proiectelor din `.github/surse/`, care au produs imaginile
 publicate: aceleași intrări trebuie să dea aceleași rezultate.
 
-Testele pentru proiectul cu polițe din beton rulează când folderul lui de surse, `.github/surse/polite-viniluri-beton/`,
-există sau când variabila UNELTE_BETON arată spre o copie a lui. Pe o ramură fără acel folder, se sar.
+Testele pentru variantele din beton ale polițelor (C și D) rulează când sursele lor, `.github/surse/polite-viniluri/beton/`,
+există sau când variabila UNELTE_BETON arată spre o copie a lor. Pe o ramură fără acel folder, se sar.
 """
 import contextlib
 import http.server
@@ -33,7 +33,7 @@ RADACINA = os.path.dirname(GITHUB)
 SURSE = os.path.join(GITHUB, "surse")
 POLITE = os.path.join(SURSE, "polite-viniluri")
 CUIER = os.path.join(SURSE, "cuier-hol")
-BETON = os.environ.get("UNELTE_BETON", os.path.join(SURSE, "polite-viniluri-beton"))
+BETON = os.environ.get("UNELTE_BETON", os.path.join(POLITE, "beton"))
 if GITHUB not in sys.path:
     sys.path.insert(0, GITHUB)
 
@@ -461,7 +461,7 @@ class TestMateriale(unittest.TestCase):
         with self.assertRaises(ValueError):
             materiale.concrete_panel(5, 5, np.random.RandomState(0), "gri", gain={"nu_exista": 2})
 
-    @unittest.skipUnless(os.path.isdir(BETON), "sursele proiectului cu polițe din beton nu sunt în această copie")
+    @unittest.skipUnless(os.path.isdir(BETON), "sursele variantelor din beton nu sunt în această copie")
     def test_microciment_si_culoarea_ca_beton(self):
         with scripturi(BETON) as imp:
             b, core = imp("beton"), imp("core")
@@ -601,7 +601,7 @@ class TestPlan(unittest.TestCase):
         with liniste():
             self.assertEqual(plan.main(["a3"] + pdfs), 0)
 
-    @unittest.skipUnless(os.path.isdir(BETON), "sursele proiectului cu polițe din beton nu sunt în această copie")
+    @unittest.skipUnless(os.path.isdir(BETON), "sursele variantelor din beton nu sunt în această copie")
     def test_planul_beton_trece_verificarea(self):
         with scripturi(BETON) as imp:
             bad, look, info = plan.verifica_figura(imp("drawing").build())
@@ -644,7 +644,7 @@ class TestRezistenta(unittest.TestCase):
             d = imp("design")
             self.assertEqual(rezistenta.rod_check(d.loads()[2], d.D["P"], d.D["rods"]), d.rod_check())
 
-    @unittest.skipUnless(os.path.isdir(BETON), "sursele proiectului cu polițe din beton nu sunt în această copie")
+    @unittest.skipUnless(os.path.isdir(BETON), "sursele variantelor din beton nu sunt în această copie")
     def test_tijele_ca_beton(self):
         with scripturi(BETON) as imp:
             d = imp("design")
@@ -770,7 +770,8 @@ README_CURAT = """# Proiect de probă
 
 ## Conținutul folderului
 
-- [Lista de materiale](lista_materiale.md) și [planul tehnic](plan_tehnic_proba.pdf); [montajul](#montaj-pas-cu-pas).
+- [Lista de materiale](lista_materiale.md) și [planul tehnic](plan_tehnic_proba.pdf) ([PNG](plan_tehnic_proba.png)); [montajul](#montaj-pas-cu-pas).
+- Randările: [propunerea A](propunere_A_stejar.jpg) și [varianta B](varianta_B_negru.jpg).
 
 ## Cote măsurate
 
@@ -863,6 +864,7 @@ class TestVerificari(unittest.TestCase):
         asteptate = ["lipsește varianta_B_<material>.jpg", "are coordonate GPS", "nu A3",
                      "nu scrie când au fost verificate", "2 × 10,00 = 20,00 lei, dar subtotalul e 25,00 lei",
                      "totalul e 65,50 lei, dar subtotalurile dau 70,50 lei", "ancora #montaj nu există",
+                     "linkul 'varianta_B_negru.jpg' duce la un fișier care nu există",
                      "linkul 'nu-exista.md' duce la un fișier care nu există", "litere cu sedilă",
                      "cale absolută de pe calculator: /Users/", "pare o coordonată GPS",
                      "note.md:3: cale absolută de pe calculator: /home/"]
@@ -884,6 +886,40 @@ class TestVerificari(unittest.TestCase):
             f.write("# Proiecte\n")
         rap, _ = verificari.verifica("Proiect proba")
         self.assertEqual(rap.probleme, ["README.md: nu are link spre proiectul „Proiect proba” (tabelul de proiecte)"])
+
+    def test_variantele_in_acelasi_folder(self):
+        # C și D intră lângă A și B, cu fișiere cu sufix; listele și planurile lor se verifică la fel
+        folder, surse = proiect_de_proba(self.tmp)
+        for n in ("propunere_C_beton.jpg", "varianta_D_beton.jpg", "comparatie_acum_vs_propuneri_beton.jpg"):
+            Image.new("RGB", (32, 24), (90, 90, 90)).save(os.path.join(folder, n))
+        shutil.copy(os.path.join(folder, "plan_tehnic_proba.pdf"), os.path.join(folder, "plan_tehnic_proba_beton.pdf"))
+        with open(os.path.join(folder, "lista_materiale_beton.md"), "w", encoding="utf-8") as f:
+            f.write(LISTA_CURATA.replace("| 1 | 45,50 lei | 45,50 lei |", "| 2 | 45,50 lei | 45,50 lei |"))
+        os.makedirs(os.path.join(surse, "beton"))
+        jpg_cu_gps(os.path.join(surse, "beton", "original.jpg"))
+        rap, _ = verificari.verifica("Proiect proba")
+        asteptate = ["lipsește plan_tehnic_proba_beton.png: fiecare plan se publică în PDF și în PNG",
+                     "lista_materiale_beton.md:", "2 × 45,50 = 91,00 lei, dar subtotalul e 45,50 lei",
+                     "beton/original.jpg: are coordonate GPS"]
+        for a in asteptate:
+            self.assertTrue(any(a in p for p in rap.probleme), f"{a!r} lipsește din {rap.probleme}")
+        self.assertEqual(len(rap.probleme), 3, rap.probleme)
+        fara_link = sorted(a.rsplit("nu are link spre ", 1)[1].split(":")[0] for a in rap.avertismente)
+        self.assertEqual(fara_link, ["comparatie_acum_vs_propuneri_beton.jpg", "lista_materiale_beton.md",
+                                     "plan_tehnic_proba_beton.pdf", "propunere_C_beton.jpg", "varianta_D_beton.jpg"])
+        self.assertIn("plan_tehnic_proba_beton.pdf e A3", rap.ok)
+
+        Image.new("RGB", (32, 24), (90, 90, 90)).save(os.path.join(folder, "plan_tehnic_proba_beton.png"))
+        foto.pregateste(os.path.join(surse, "beton", "original.jpg"), os.path.join(surse, "beton", "original.jpg"))
+        with open(os.path.join(folder, "lista_materiale_beton.md"), "w", encoding="utf-8") as f:
+            f.write(LISTA_CURATA)
+        with open(os.path.join(folder, "README.md"), "a", encoding="utf-8") as f:
+            f.write("\n## Variantele C și D\n\n[C](propunere_C_beton.jpg), [D](varianta_D_beton.jpg), "
+                    "[comparația](comparatie_acum_vs_propuneri_beton.jpg), [lista](lista_materiale_beton.md), "
+                    "[planul](plan_tehnic_proba_beton.pdf) ([PNG](plan_tehnic_proba_beton.png)).\n")
+        rap, _ = verificari.verifica("Proiect proba")
+        self.assertEqual((rap.probleme, rap.avertismente), ([], []))
+        self.assertIn("lista_materiale_beton.md: 2 rânduri și 1 total verificate", rap.ok)
 
     def test_avertismentele_si_strict(self):
         proiect_de_proba(self.tmp, readme=README_CURAT.replace("## Întreținere", "## Altceva"))

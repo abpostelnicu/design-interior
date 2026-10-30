@@ -19,14 +19,21 @@ Aici vezi dintr-o privire ce agenți lucrează acum în depozit, la ce și în c
 
 | Sesiune (agent) | Proiect | Ce face acum | Fișiere | Stare | Început | Actualizat |
 |---|---|---|---|---|---|---|
-| Salvarea uneltelor agenților | Depozit (uneltele comune) | după regula „Fără suprascrieri la îmbinare”, am adus în ramura `unelte-agenti` capătul PR #2, care conține și #1; testele (56, și cele din beton) și verificarea celor trei proiecte trec. Construiesc site-ul cu Docker și deschid pull request-ul. Lucrez într-un `git worktree`; clona comună e pe `master` | `.github/unelte/` (nou), `.github/agents/designer-interior.agent.md`, `.github/copilot-instructions.md`, `.gitignore` | lucrează | 2026-10-30 17:21 | 2026-10-30 18:23 |
+| Salvarea uneltelor agenților | Depozit (uneltele comune) | am adus în ramura `unelte-agenti` și noul capăt al PR #2, cu variantele din beton mutate în `Polite viniluri/`, ca C și D; uneltele trimit acum la `.github/surse/polite-viniluri/beton/`, iar `verificari.py` verifică și fișierele variantelor în plus. Testele (57) și verificarea proiectelor trec. Lucrez într-un `git worktree`; clona comună e pe `master` | `.github/unelte/` (nou), `.github/agents/designer-interior.agent.md`, `.github/copilot-instructions.md`, `.gitignore` | lucrează | 2026-10-30 17:21 | 2026-10-30 18:35 |
 
 ## Istoric
 
 | Când | Sesiune (agent) | Eveniment | Detalii |
 |---|---|---|---|
+| 2026-10-30 18:35 | Salvarea uneltelor agenților | commit | „Îmbină mutarea variantelor din beton și adaptează uneltele la ea”: noul capăt al PR #2 intră în `unelte-agenti` cu `git merge`, fără rebazare; uneltele, testele și verificatorul trimit la `.github/surse/polite-viniluri/beton/` și la variantele C și D din `Polite viniluri/` |
+| 2026-10-30 18:27 | Polițe viniluri beton și stejar | commit | „Îmbină mutarea variantelor din beton în regulile pentru aducerea în master”, pe ramura `reguli-aducere-in-master` |
+| 2026-10-30 18:27 | Polițe viniluri beton și stejar | început | reluare pe ramura `reguli-aducere-in-master`, din [pull request-ul #2](https://github.com/abpostelnicu/design-interior/pull/2), al sesiunii de supraveghere, care s-a încheiat: aduc în ea mutarea variantelor din beton, ca #1 și #2 să se poată îmbina în orice ordine, și corectez regula „o variantă nouă stă în folderul ei”, după cererea utilizatorului |
 | 2026-10-30 18:23 | Salvarea uneltelor agenților | commit | „Îmbină în ramura uneltelor pull request-urile #1 și #2”: capătul PR #2, care conține și #1, intră în `unelte-agenti` cu `git merge`, fără rebazare; în jurnal și aici au rămas rândurile tuturor |
+| 2026-10-30 18:21 | Polițe viniluri beton și stejar | eliberare | `Polite viniluri/`, `.github/surse/polite-viniluri/` și `README.md` din rădăcină; `README.md` din rădăcină a rămas ca pe `master` |
+| 2026-10-30 18:21 | Polițe viniluri beton și stejar | commit | „Mută variantele din beton în folderul polițelor din stejar, ca C și D”, pe ramura `polite-viniluri-beton`, în [pull request-ul #1](https://github.com/abpostelnicu/design-interior/pull/1) |
 | 2026-10-30 18:17 | Salvarea uneltelor agenților | commit | „Adaugă uneltele comune ale agenților în .github/unelte”, pe ramura `unelte-agenti`, cu pull request; `master` și site-ul nu se schimbă până la unire |
+| 2026-10-30 18:09 | Polițe viniluri beton și stejar | rezervare | `Polite viniluri/` (doar fișiere noi și rânduri adăugate), `.github/surse/polite-viniluri/` și `README.md` din rădăcină, pe ramura `polite-viniluri-beton` |
+| 2026-10-30 18:09 | Polițe viniluri beton și stejar | început | la cererea utilizatorului, mut varianta din beton din folderul „Polite viniluri beton” în „Polite viniluri”, lângă polițele din stejar, ca variantele C și D, fără să schimb fișierele existente |
 | 2026-10-30 18:02 | Supraveghere agenți și aducere în master | terminat | [Pull request-ul #1](https://github.com/abpostelnicu/design-interior/pull/1) (polițele din beton) și [pull request-ul #2](https://github.com/abpostelnicu/design-interior/pull/2) (regulile de aducere în `master`) sunt verificate, `MERGEABLE` și `CLEAN`, și așteaptă îmbinarea de la utilizator, din GitHub: întâi #1, apoi #2. Niciunul nu modifică planurile sau imaginile existente. În 20 de minute de urmărire nu au apărut alte ramuri. Rezervările sunt eliberate |
 | 2026-10-30 18:02 | Supraveghere agenți și aducere în master | commit | „Încheie supravegherea agenților cu pull request-urile de îmbinat” |
 | 2026-10-30 17:44 | Supraveghere agenți și aducere în master | commit | „Adaugă regulile pentru aducerea ramurilor în master” |

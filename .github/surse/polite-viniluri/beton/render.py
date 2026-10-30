@@ -1,12 +1,12 @@
 """Randează polițele pentru viniluri din microciment și stejar în fotografia din living, în dreapta televizorului.
 
-Aceleași 2 polițe flotante ca în „Polite viniluri”, prinse direct în perete pe tije ascunse, dar orizontalele
+Aceleași 2 polițe flotante ca în variantele A și B, prinse direct în perete pe tije ascunse, dar orizontalele
 sunt din microciment (beton decorativ) pe miez de placaj de mesteacăn, iar între ele stă verticala din stejar
 masiv din design.verticals(). Discurile stau în picioare, pe rândurile din design.row_extents(): la capetele libere au
 opritoare L îmbrăcate în stejar, iar capătul sprijinit într-o verticală nu are opritor. Muchiile microcimentului
 sunt rotunjite cu raza D["edge_r"]; verticala stă pe polița de jos și se oprește sub cea de sus, la rostul de
 umbră D["vert_gap"] (capătul ei de sus vine din design.verticals()).
-A: microciment gri. B: microciment antracit, ca fronturile comodei. Stejarul și discurile sunt aceleași în A și B.
+C: microciment gri. D: microciment antracit, ca fronturile comodei. Stejarul și discurile sunt aceleași în C și D.
 """
 import os
 import sys
@@ -20,12 +20,12 @@ from design import CABINET, D, LP, SITE, TOWER, row_extents, shelves, verticals
 from materials import R_OAK, SPINE_COLORS, SPINE_P, end_grain, glued_panel, sample
 
 VARIANTS = {
-    "A": dict(ton="gri", file="propunere_A_beton_gri.jpg"),
-    "B": dict(ton="antracit", file="varianta_B_beton_antracit.jpg"),
+    "C": dict(ton="gri", file="propunere_C_beton_gri.jpg"),
+    "D": dict(ton="antracit", file="varianta_D_beton_antracit.jpg"),
 }
 # La scara randării, estomparea din finish() stinge urmele fine și norii slabi ai microcimentului, iar cantul
 # arăta vopsit. Pe fețele care se văd se întărește doar variația de luminanță; media tonului rămâne aceeași, și pe
-# porțiunea care se vede (fit_mean). B urmează fronturile comodei, A rămâne discretă. Cantul și capetele sunt fâșii
+# porțiunea care se vede (fit_mean). D urmează fronturile comodei, C rămâne discretă. Cantul și capetele sunt fâșii
 # tăiate dintr-un panou lat, ca urmele de gletieră să le traverseze curbe.
 CONCRETE_GAIN = {
     "antracit": dict(cloud=1.5, trowel=1.5, vein=3.0, vein_w=1.4, vein_p=2.2, pass_area=0.35),
@@ -84,8 +84,8 @@ class Scene:
         # polițele ies 33 cm din perete: urmează lumina peretelui doar în parte
         self.M = (1 + 0.45 * (M - 1)).astype(np.float32)
         self.rng = np.random.RandomState(seed)          # texturile de microciment
-        self.rng_oak = np.random.RandomState(seed + 1)  # stejarul verticalelor și al opritoarelor (același în A și B)
-        self.rng_rec = np.random.RandomState(seed + 2)  # discurile (aceleași în A și B)
+        self.rng_oak = np.random.RandomState(seed + 1)  # stejarul verticalelor și al opritoarelor (același în C și D)
+        self.rng_rec = np.random.RandomState(seed + 2)  # discurile (aceleași în C și D)
         self.verts = verticals()
 
     def tex_color(self, tex, grain_u, n, off, ao=None, dims=None, edge=0.10):
