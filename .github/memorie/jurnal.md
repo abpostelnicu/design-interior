@@ -58,3 +58,16 @@ Formatul unei intrări:
   Versiunile vechi au rămas doar în istoricul sesiunii, nu în depozit.
 - Întrebări fără răspuns: din ce e peretele și cât e de gros, codul de finisaj al comodei, înălțimea camerei (poza dă ~262 cm, nu 250), dacă trecerea din dreapta are ușă, pe unde trec cablurile sub dispozitivul alb.
 - Lecții: în [memorie.md](memorie.md), la „Polițe viniluri”: calibrarea pe obiecte cunoscute, curățarea ecranelor și a persoanelor din poze, dimensiunile pentru viniluri, polițe flotante în loc de corpuri, planul la 1:15 pentru un perete de 4 m, fără console și cu tijele verificate în cazul cel mai rău, ambiguitatea cuvântului „suport”, copertele care nu trebuie să semene cu stejarul, bufferul de adâncime, verificarea prețurilor și Cioata la comandă.
+
+### 2026-10-30 · Depozit · uneltele agenților
+- Cerere: să fie salvat ce fac acum agenții în depozit, adică uneltele și felul în care lucrează, ca să poată fi folosite și pe viitor.
+- Rezultat: uneltele comune din [.github/unelte/](../unelte/README.md), pe ramura `unelte-agenti`, cu pull request; site-ul nu se schimbă până la unirea în `master`.
+  - 10 module Python: fotografia fără metadate, segmentele și calibrarea camerei, randarea, materialele, comparația, planul A3 cu verificarea textelor, rezistența, prețurile și verificarea unui proiect înainte de commit. Sunt preluate din sursele cuierului, ale polițelor și ale proiectului cu beton.
+  - 56 de teste, fără rețea. Ele verifică și că uneltele dau aceleași rezultate ca scripturile proiectelor, de exemplu aceeași calibrare: rms 0,5956 px la polițe și 0,5961 px la cuier.
+  - README-ul are catalogul, pașii unui proiect nou cu comenzile lor, uneltele lui Copilot, lucrul cu subagenți și capcanele. Exemplele din el au fost rulate pe fotografia polițelor, iar `preturi.py`, pe un server local.
+  - Agentul Designer interior, `copilot-instructions.md` și memoria trimit acum la unelte. `.gitignore`-ul din rădăcină ignoră `.venv/`, `out/` și `__pycache__/`.
+  - Scripturile proiectelor publicate au rămas neschimbate.
+  - Commit-ul „Adaugă uneltele comune ale agenților în .github/unelte”.
+- Cum s-a lucrat: s-au citit sursele celor trei proiecte, inclusiv ramura cu beton, memoria, jurnalul și istoricul git. Funcțiile comune au intrat în module cu nume în română, iar testele de paritate rulează fiecare unealtă alături de scriptul din care vine.
+- Corecturi: niciuna de la utilizator. Rularea exemplelor din README a arătat că primele exemple de calibrare erau greșite: cu 4 grupuri de muchii, poziția televizorului fugea la 803 cm, iar cu muchii doar din planul peretelui, distanța focală ajungea la 7 px. Exemplul are acum 12 grupuri, cu muchiile comodei.
+- Lecții: în [memorie.md](memorie.md), la „2026-10-30 · Depozit”: scripturile copiate între proiecte duceau greșelile mai departe, iar o calibrare cu eroare mică poate fi totuși greșită. Celelalte capcane sunt în README-ul uneltelor: `scaled(k)` e relativ la fotografie, harta de lumină are un singur canal, Pillow copiază comentariul JPEG, iar randarea cere k1 = 0 (`fara_distorsiune()`).

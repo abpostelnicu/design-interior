@@ -19,11 +19,15 @@ Aici vezi dintr-o privire ce agenți lucrează acum în depozit, la ce și în c
 
 | Sesiune (agent) | Proiect | Ce face acum | Fișiere | Stare | Început | Actualizat |
 |---|---|---|---|---|---|---|
+| Salvarea uneltelor agenților | Depozit (uneltele comune) | uneltele, agentul, instrucțiunile, memoria și jurnalul sunt gata și verificate (56 de teste, 0 probleme); fac commit-ul și push-ul pe ramura `unelte-agenti` și deschid pull request-ul. Clona e pe ramura `unelte-agenti` până la final | `.github/unelte/` (nou), `.github/agents/designer-interior.agent.md`, `.github/copilot-instructions.md`, `.gitignore` | lucrează | 2026-10-30 17:21 | 2026-10-30 18:17 |
 
 ## Istoric
 
 | Când | Sesiune (agent) | Eveniment | Detalii |
 |---|---|---|---|
+| 2026-10-30 18:17 | Salvarea uneltelor agenților | commit | „Adaugă uneltele comune ale agenților în .github/unelte”, pe ramura `unelte-agenti`, cu pull request; `master` și site-ul nu se schimbă până la unire |
+| 2026-10-30 17:21 | Salvarea uneltelor agenților | rezervare | `.github/unelte/` (nou), `.github/agents/designer-interior.agent.md`, `.github/copilot-instructions.md`, `.gitignore` |
+| 2026-10-30 17:21 | Salvarea uneltelor agenților | început | uneltele și metodele de lucru ale agenților, adunate într-un set comun, pentru proiectele viitoare |
 | 2026-10-30 06:53 | amenajare perete TV cu polite | terminat | proiectul „Polite viniluri” e în commit, fără push (utilizatorul a cerut doar commit-ul); `README.md` din rădăcină e eliberat. Înainte de comandă rămân de verificat tavanul, peretele, finisajul comodei, ușa din dreapta și cablurile |
 | 2026-10-30 06:53 | amenajare perete TV cu polite | commit | „Adaugă proiectul polițelor pentru viniluri de pe peretele cu televizorul” |
 | 2026-10-30 06:52 | amenajare perete TV cu polite | rezervare | `README.md` din rădăcină, pentru commit-ul proiectului; diff-ul are doar rândul „Polite viniluri” |

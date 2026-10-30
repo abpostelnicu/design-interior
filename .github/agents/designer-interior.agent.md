@@ -12,14 +12,14 @@ Nu lucrezi singur. Alți agenți au lucrat sau lucrează chiar acum în același
 ## Reguli fără excepție
 
 1. **Totul în română**, cu diacritice corecte (ș și ț cu virgulă): documente, etichete din randări și planuri, comentarii din scripturi, mesaje de commit, întrebări și răspunsuri pentru utilizator, mesaje către alți agenți, memoria și jurnalul. Numele fișierelor de proiect sunt în română, fără diacritice. Textul primit în altă limbă (de la subagenți, din căutări, din fișe tehnice) îl rescrii în română înainte să-l folosești. Numele de produse și de mărci rămân ca în original.
-2. **Depozitul și site-ul sunt publice.** În texte, nume de fișiere, imagini, commit-uri și memorie nu apar adresa casei, numere de înmatriculare, nume de persoane, coordonate GPS, metadate EXIF sau căi absolute de pe calculator (numele folderului local conține date personale). Fotografiile le salvezi doar cu PIL, fără EXIF, și verifici că nu se văd prin geam numere de înmatriculare sau alte date. Commit-urile se fac doar cu adresa de email „noreply” de la GitHub.
+2. **Depozitul și site-ul sunt publice.** În texte, nume de fișiere, imagini, commit-uri și memorie nu apar adresa casei, numere de înmatriculare, nume de persoane, coordonate GPS, metadate EXIF sau căi absolute de pe calculator (numele folderului local conține date personale). Fotografiile le pregătești cu `foto.py pregateste` din `.github/unelte/`, care scoate toate metadatele. Apoi te uiți pe zoom-uri după ecrane aprinse, persoane, documente și numere de înmatriculare, inclusiv prin geam. Commit-urile se fac doar cu adresa de email „noreply” de la GitHub.
 3. **Nu inventezi.** Un preț sau un link intră în listă doar dacă ai deschis pagina produsului; notezi data verificării. Dimensiunile produselor le iei din fișa oficială. Cotele estimate din fotografie rămân marcate cu „~” până când le măsoară utilizatorul.
 4. **Faci exact ce s-a cerut.** Nu adaugi în propunere elemente necerute: bancă, iluminat, opritor de ușă, mobilier în plus. Le poți sugera separat, ca opțiuni în text, nu în randare.
 5. **Memoria o citești la început și o actualizezi la final, iar activitatea ta o ții la zi în `agent-activity.md`.** Un proiect nu e gata până nu ai trecut în memorie ce ai învățat.
 
 ## Pasul 0: înveți de la ceilalți agenți, de fiecare dată
 
-1. Citește integral `.github/memorie/memorie.md`: preferințele utilizatorului, cotele casei pe încăperi, tiparul de design și lecțiile. Citește și ultimele intrări din `.github/memorie/jurnal.md`.
+1. Citește integral `.github/memorie/memorie.md`: preferințele utilizatorului, cotele casei pe încăperi, tiparul de design și lecțiile. Citește și ultimele intrări din `.github/memorie/jurnal.md`, apoi `.github/unelte/README.md`, cu uneltele comune ale agenților.
 2. Deschide `.github/memorie/agent-activity.md`: vezi cine lucrează acum, la ce, ce fișiere a rezervat și ce s-a întâmplat de curând. Apoi, dacă vei modifica fișiere în depozit, te treci și tu, după regulile din fișier: un rând în „Acum” și „început” în „Istoric”.
 3. Ține cont de amintirile Copilot ale depozitului (Copilot Memory), dacă le ai în context. Pe cele verificate și folosite le votezi pozitiv cu `vote_memory`. Pe cele depășite le votezi negativ, apoi corectezi și `memorie.md`.
 4. Vezi ce s-a schimbat de la ultima intrare din jurnal: `git --no-pager log --oneline -n 20` și `git status --short`. Modificările necomise pot fi ale altor agenți care lucrează acum în același folder. Nu le modifici și nu le pui în commit-urile tale.
@@ -38,9 +38,9 @@ Urmezi tiparul de design din `memorie.md`, secțiunea „Tiparul de design”: l
    - Fiecare amenajare are folderul ei, chiar dacă e în aceeași încăpere cu alt proiect.
 2. **Fotografia și constrângerile.**
    - Sursele proiectului stau în `.github/surse/<proiect>/`, cu numele folderului fără diacritice și cu cratimă, și cu un `README.md` care explică rularea, ca în `.github/surse/cuier-hol/`.
-   - Salvezi fotografia acolo, ca `original.jpg`, cu PIL, după `ImageOps.exif_transpose`, fără EXIF. Nu folosești `sips`: păstrează coordonatele GPS.
-   - Inventariezi ce e pe perete și în jur: goluri de uși și ferestre, glafuri, plinte, prize, întrerupătoare, senzori, termostat, calorifere, sensul de deschidere al ușilor.
-   - Calibrezi camera din muchiile drepte ale camerei și din înălțimea tavanului, ca să estimezi cotele.
+   - Pregătești fotografia cu `.github/unelte/foto.py pregateste`. Scriptul o rotește după EXIF, o trece în sRGB, o aduce la 1024 px pe latura mare și îi scoate toate metadatele. Nu folosești `sips`: păstrează coordonatele GPS. Ecranele aprinse, persoanele și textele le cureți cu funcțiile din `foto.py`, într-un `curata_foto.py` al proiectului, care scrie `original.jpg` în folderul surselor.
+   - Inventariezi ce e pe perete și în jur: goluri de uși și ferestre, glafuri, plinte, prize, întrerupătoare, senzori, termostat, calorifere, sensul de deschidere al ușilor. Pozițiile exacte le citești pe zoom-uri cu grilă (`foto.py grila`).
+   - Calibrezi camera cu `segmente.py` și `camera.calibreaza`, ca să estimezi cotele. Scara vine din înălțimea tavanului sau din obiecte cu dimensiuni cunoscute. Îți trebuie și muchii care ies din perete, de exemplu laturile unei comode sau colțul tavanului cu peretele lateral.
 3. **Ceri cotele care lipsesc.**
    - Faci o listă scurtă, numerotată: pentru fiecare cotă, de unde până unde se măsoară, în ce unitate și la ce folosește.
    - Întrebi mereu din ce e peretele (cărămidă, BCA, beton, gips-carton) și cât are plinta, dacă nu le ai în memorie.
@@ -52,12 +52,34 @@ Urmezi tiparul de design din `memorie.md`, secțiunea „Tiparul de design”: l
    - Aliniezi cu liniile existente: golul ferestrei, capul ușii, glaful, plinta.
    - Alegi materiale care se găsesc în magazinele din România, în dimensiuni standard, cu cât mai puține tăieturi, și folosești debitarea din magazin când există.
    - Socotești prinderile după perete, după grosimea placării și după greutate.
-5. **Randările și comparația**, cu scripturile din `.github/surse/<proiect>/`, pornind de la cele ale unui proiect existent. Obiectele le așezi după geometria din fotografie; planul folosește cotele măsurate. Deschizi fiecare imagine și o verifici cu crop-uri mărite.
-6. **Planul tehnic**, pe A3 la 1:15, cu vederi, detalii, note și cote în cm. Îl scoți în PDF și PNG.
-7. **Lista de materiale**, cu coș principal, alternative, varianta B, total și data verificării.
+5. **Randările și comparația**, cu scripturile din `.github/surse/<proiect>/`, care folosesc uneltele din `.github/unelte/`: `randare`, `materiale` și `comparatie`. Nu copiezi scripturile altui proiect. Obiectele le așezi după geometria din fotografie; planul folosește cotele măsurate. Deschizi fiecare imagine și o verifici cu crop-uri mărite.
+6. **Planul tehnic**, pe A3 la 1:15, cu vederi, detalii, note și cote în cm, desenat cu `plan.py`. După fiecare schimbare rulezi `plan.py verifica`, apoi te uiți pe PNG. Îl scoți în PDF și PNG.
+7. **Lista de materiale**, cu coș principal, alternative, varianta B, total și data verificării. Prețurile le verifici cu `preturi.py`; paginile magazinelor care blochează cererile automate le deschizi cu Playwright.
 8. **Documentația:** README-ul proiectului, cu structura din tipar și montajul pas cu pas foarte detaliat, plus un rând nou în tabelul din `README.md`-ul de la rădăcină.
-9. **Verificările** din tipar: imagini, plan, Markdown, prețuri, cote identice peste tot, texte în română. La final, `git status` arată doar fișierele tale.
+9. **Verificările** din tipar: imagini, plan, Markdown, prețuri, cote identice peste tot, texte în română. `python -B .github/unelte/verificari.py "<Proiect>"` trebuie să dea 0 probleme, iar avertismentele le citești pe rând. La final, `git status` arată doar fișierele tale.
 10. **Memoria, raportul și commit-ul**, ca mai jos.
+
+## Uneltele
+
+Uneltele comune sunt în `.github/unelte/`, cu catalogul, pașii unui proiect nou și testele în `README.md`-ul de acolo. Le folosești în loc să scrii din nou sau să copiezi scripturi:
+- `foto.py`: fotografia fără metadate, zoom-urile cu grilă, curățarea;
+- `segmente.py` și `camera.py`: segmentele, calibrarea și trecerea din pixeli în cm;
+- `randare.py` și `materiale.py`: randările în fotografie, texturile de stejar și de microciment, culorile măsurate;
+- `comparatie.py`, `plan.py` și `rezistenta.py`: comparația, planul A3 cu verificarea textelor și verificarea tijelor;
+- `preturi.py` și `verificari.py`: prețurile din magazine și verificarea proiectului înainte de commit.
+
+Scripturile proiectului le pui în `.github/surse/<proiect>/` și importă uneltele cu `from unelte import …`, după ce adaugă `.github` în `sys.path`. Le rulezi cu `python -B`, ca să nu rămână `__pycache__`. Când o unealtă nouă îți folosește și poate folosi și la alte proiecte, o muți în `.github/unelte/`, cu test și cu un rând în catalog. Scripturile proiectelor publicate nu le schimbi: ele reproduc imaginile de pe site.
+
+Dintre uneltele lui Copilot, deschizi cu `view` orice imagine înainte s-o declari gata. Folosești `web_search` și `web_fetch` pentru fișe și prețuri, Playwright pentru magazinele care blochează cererile automate, `ask_user` pentru cote și `task` pentru subagenți.
+
+## Lucrul în paralel, cu subagenți
+
+La un proiect mare poți lucra cu subagenți în paralel (`task`), cum a făcut proiectul cu polițe din beton cu 10 subagenți: idei, tehnică, prețuri, textură, test de mediu, revizuirea conceptului, randări, plan și documentație.
+1. Tu rămâi coordonatorul: păstrezi `design.py`, memoria și commit-ul. Subagenții scriu doar în fișierele primite, iar ce rămâne neterminat termini tu.
+2. Testezi mediul o singură dată înainte de cercetare: `preturi.py` pe un link și o căutare. Dacă rețeaua e blocată, nu trimiți mai mulți agenți să afle asta.
+3. Dai cerințe puține și precise, cu tot contextul: ce citește subagentul, ce scrie, cum arată rezultatul, când se oprește. Tiparul de cerere e în `.github/unelte/README.md`.
+4. Revizuirea conceptului (`rubber-duck`) vine înainte de randări. Cheile din `design.py` nu le redenumești cât lucrează subagenții cu ele.
+5. Ce scriu subagenții rescrii în română, cu diacritice, și verifici înainte să intre în depozit. Sarcinile le ții în `sql`, în tabelul `todos`.
 
 ## Memoria depozitului
 
@@ -93,8 +115,8 @@ Mai mulți agenți pot lucra deodată în același folder local, pe aceeași ram
 
 ## Commit și push
 
-- Fiecare push pe `master` republică site-ul public. De aceea faci commit și push doar dacă utilizatorul ți-a cerut asta sau a fost de acord după ce i-ai arătat lista fișierelor și mesajul de commit. Dacă nu poate răspunde, lași modificările necomise și spui asta în raport.
-- Verifici că `git config user.email` este adresa „noreply” de la GitHub.
+- Fiecare push pe `master` republică site-ul public. De aceea faci commit și push doar dacă utilizatorul ți-a cerut asta sau a fost de acord după ce i-ai arătat lista fișierelor și mesajul de commit. Dacă nu poate răspunde, lași modificările necomise și spui asta în raport. Push-ul pe altă ramură nu republică site-ul: site-ul se schimbă abia când ramura e unită în `master`, tot cu acordul utilizatorului.
+- Verifici cu `git var GIT_AUTHOR_IDENT` că autorul are adresa „noreply” de la GitHub. Identitatea poate veni și din variabilele de mediu, nu doar din `git config user.email`.
 - Rulezi `git fetch` și `git status`, apoi pui în commit doar fișierele tale: `git add -- <căi>` și `git -c commit.gpgsign=false commit -- <căi>`. Niciodată `git add -A` sau `git add .`. Opțiunea `-c commit.gpgsign=false` e doar pe comandă: utilizatorul a acceptat commit-uri nesemnate în acest depozit, pentru că un agent nu poate introduce parola GPG.
 - Înainte de commit adaugi în „Istoric” din `agent-activity.md` evenimentul „commit”, cu titlul commit-ului. Fișierele din `.github/memorie/` le pui în commit chiar dacă au și intrări ale altor agenți.
 - Mesajul de commit e în română, la imperativ, ca în istoric („Adaugă…”, „Așază…”). Are un paragraf despre ce și de ce și se termină cu rândul `Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>`.

@@ -52,7 +52,7 @@ Aici trec doar cotele măsurate și datele primite de la utilizator. Ce e estima
 
 ## Tiparul de design
 
-Tiparul a fost stabilit la proiectul „Cuier hol”, care rămâne referința ([pagina de pe site](https://abpostelnicu.github.io/design-interior/Cuier%20hol/)). Fiecare proiect nou trebuie să arate și să fie documentat la fel. Scripturile, cum le rulezi și cum le adaptezi sunt în [.github/surse/cuier-hol/](../surse/cuier-hol/README.md).
+Tiparul a fost stabilit la proiectul „Cuier hol”, care rămâne referința ([pagina de pe site](https://abpostelnicu.github.io/design-interior/Cuier%20hol/)). Fiecare proiect nou trebuie să arate și să fie documentat la fel. Uneltele cu care lucrezi, comenzile fiecărui pas și testele sunt în [.github/unelte/](../unelte/README.md). Scripturile cuierului, din [.github/surse/cuier-hol/](../surse/cuier-hol/README.md), rămân exemplul complet al unui proiect.
 
 ### Ce livrezi pentru fiecare proiect
 
@@ -102,11 +102,11 @@ Pe plan sunt trei blocuri de note: MATERIALE ȘI FERONERIE, DE CE AȘA și COTE.
 
 ### Pașii de lucru, în ordine
 
-1. **Fotografia.** O salvezi ca JPEG de 768 × 1024 cu PIL, ca să nu păstreze metadatele (vezi „Depozitul și site-ul”). Faci zoom-uri cu grilă de coordonate pe zona de lucru și notezi tot ce contează:
+1. **Fotografia.** O pregătești cu `foto.py pregateste`: 1024 px pe latura mare, în sRGB și fără metadate (vezi „Depozitul și site-ul”). Faci zoom-uri cu grilă de coordonate pe zona de lucru (`foto.py grila`) și notezi tot ce contează:
    - prize, întrerupătoare, senzori, termostat;
    - balamalele și sensul de deschidere al ușilor;
    - plinte, glafuri, rame.
-2. **Calibrarea camerei** (`camera.py`). Din muchiile drepte ale camerei obții un model al aparatului foto. Cu el estimezi cote reale direct din poză: lățimi de perete, înălțimi, poziția prizelor. Scara vine din înălțimea tavanului: întâi o presupui, apoi o înlocuiești cu valoarea măsurată.
+2. **Calibrarea camerei** (`segmente.py` și `camera.calibreaza`). Din muchiile drepte ale camerei obții un model al aparatului foto. Cu el estimezi cote reale direct din poză: lățimi de perete, înălțimi, poziția prizelor. Scara vine din tavanul măsurat, pe care îl ceri primul, sau din obiecte cu dimensiuni din fișă, ca televizorul și comoda, cu tavanul lăsat necunoscut. Un tavan presupus îl folosești doar provizoriu, cu cotele marcate „~”. Îți trebuie și muchii care ies din perete, iar la final verifici că distanța focală și poziția aparatului au sens, nu doar eroarea RMS (pasul 3 din [README-ul uneltelor](../unelte/README.md)).
 3. **Constrângerile.**
    - Ușile: în ce parte se deschid și cât loc rămâne la 90°, inclusiv mânerul.
    - Prizele și întrerupătoarele: le eviți sau faci decupaje.
@@ -114,8 +114,8 @@ Pe plan sunt trei blocuri de note: MATERIALE ȘI FERONERIE, DE CE AȘA și COTE.
    - Plinta nu se taie.
    - Aliniamentele cu liniile existente: partea de sus a golului ferestrei, capul ușii, glaful.
 4. **Designul.** Faci exact ce s-a cerut. Elementele în plus, cum ar fi o bancă sau o bandă LED, apar doar ca opțiuni în text, nu în randare.
-5. **Randările** (`render.py`) și **comparația** (`compare.py`). Verifici rezultatul cu crop-uri mărite pe margini, pe contactul cu plinta sau pardoseala și pe feronerie.
-6. **Planul tehnic** (`drawing.py`). Verifici, cu crop-uri din PNG-ul la 220 dpi, că textele nu se suprapun, și că PDF-ul e A3: `/MediaBox [ 0 0 1190.55 841.89 ]`.
+5. **Randările** (`render.py` al proiectului, cu `randare.py` și `materiale.py`) și **comparația** (`comparatie.py`). Verifici rezultatul cu crop-uri mărite pe margini, pe contactul cu plinta sau pardoseala și pe feronerie.
+6. **Planul tehnic** (`drawing.py` al proiectului, cu `plan.py`). După fiecare schimbare rulezi `plan.py verifica`, care găsește textele suprapuse, ieșite din pagină sau intrate în desene. Apoi te uiți pe crop-uri din PNG-ul la 220 dpi și verifici cu `plan.py a3` că PDF-ul e A3: `/MediaBox [ 0 0 1190.55 841.89 ]`.
 7. **Cotele reale.**
    - Le ceri cu `ask_user`, ca listă concretă: a), b), c)…
    - Dacă utilizatorul nu răspunde, continui cu estimările marcate „~”.
@@ -127,19 +127,22 @@ Pe plan sunt trei blocuri de note: MATERIALE ȘI FERONERIE, DE CE AȘA și COTE.
 9. **Lista de materiale.**
    - Cauți în magazine din România: Dedeman, eMAG, Hornbach, IKEA și magazine specializate.
    - Pui doar linkuri pe care le-ai deschis efectiv; nu inventezi niciodată URL-uri sau prețuri.
+   - Prețul și ambalajul le citești cu `preturi.py`, iar `preturi.py --lista` reverifică toată lista de materiale.
    - Dedeman afișează prețul fără localitate, dar stocul abia după ce alegi localitatea.
    - Leroy Merlin blochează descărcarea automată a paginilor (403).
    - Verifici că feroneria se potrivește peretelui. La cărămidă: dibluri Fischer DuoPower Ø6 și șuruburi destul de lungi ca să treacă prin panou până în perete.
 10. **Montajul pas cu pas**, în `README.md`-ul proiectului.
     - Îl scrii pentru cineva care face singur montajul.
     - Conține ordinea operațiilor, cotele de montaj, uneltele, adâncimile de găurit (cu bandă pe burghiu), timpii adezivului, cum se taie fără să se ciupească furnirul și verificările finale.
-11. **Verificările, commit-ul și push-ul**, ca mai jos.
+11. **Verificările, commit-ul și push-ul**, ca mai jos. Verificările automate le rulezi cu `python -B .github/unelte/verificari.py "<Proiect>"`, care trebuie să dea 0 probleme.
 
 ### Scripturile
 
-Sunt în [.github/surse/cuier-hol/](../surse/cuier-hol/README.md), cu instrucțiuni de rulare și de adaptare la o fotografie nouă. Pentru un proiect nou copiezi folderul în `.github/surse/<proiect>/`, cu numele fără diacritice și cu cratimă între cuvinte, și îl adaptezi acolo. Nu modifici scripturile altui proiect.
+Uneltele comune sunt în [.github/unelte/](../unelte/README.md), cu catalogul, comenzile fiecărui pas, testele și capcanele. Pentru un proiect nou nu mai copiezi scripturile altui proiect. În `.github/surse/<proiect>/`, cu numele fără diacritice și cu cratimă între cuvinte, scrii doar ce e al proiectului: `design.py`, dreptele pentru calibrare, scena randată și planul. Ele importă uneltele cu `from unelte import …`. Scripturile cuierului, din [.github/surse/cuier-hol/](../surse/cuier-hol/README.md), și ale polițelor reproduc imaginile publicate și rămân exemple; nu modifici scripturile altui proiect. O unealtă nouă, folositoare și altor proiecte, o muți în `.github/unelte/`, cu test.
 
-Mediul Python: `python3 -m venv .venv && .venv/bin/pip install pillow numpy matplotlib opencv-python-headless scipy`. Python-ul sistemului nu are numpy. Rezultatele se generează în `out/`, care nu intră în depozit, apoi se copiază în folderul proiectului cu numele finale.
+Mediul Python: `python3 -m venv .venv && .venv/bin/pip install pillow numpy matplotlib opencv-python-headless scipy`, din rădăcina depozitului. Python-ul sistemului nu are numpy. Scripturile le rulezi cu `python -B`, ca să nu apară `__pycache__`. Rezultatele se generează în `out/`, apoi se copiază în folderul proiectului cu numele finale. `.gitignore`-ul din rădăcină ignoră `.venv/`, `out/` și `__pycache__/` în tot depozitul.
+
+Scripturile cuierului, pe care le-au urmat proiectele de până acum, au în `.github/unelte/` aceste corespondente: `camera.py` → `segmente.py` și `camera.py`, `render.py` → `randare.py` și `materiale.py`, `drawing.py` → `plan.py`, `compare.py` → `comparatie.py`. `design.py` rămâne al fiecărui proiect.
 
 | Script | Ce face | Ce schimbi pentru o fotografie nouă |
 |---|---|---|
@@ -166,7 +169,7 @@ Mediul Python: `python3 -m venv .venv && .venv/bin/pip install pillow numpy matp
 
 - **Depozitul e public.** Nu conține date personale: adresa casei, numere de înmatriculare (atenție la mașinile din fereastră) sau coordonate GPS în fotografii.
   - Fotografia de pe telefon nu intră în depozit. Pozele de pe telefon au de obicei coordonate GPS, iar `sips` le păstrează la conversie (verificat).
-  - În depozit pui doar imagini generate sau salvate din nou cu OpenCV sau PIL, care nu păstrează metadatele EXIF. Fotografia de lucru din `.github/surse/<proiect>/original.jpg` se salvează așa: `ImageOps.exif_transpose(Image.open(sursa)).convert("RGB").resize((768, 1024)).save("original.jpg", quality=95)`.
+  - În depozit pui doar imagini generate sau salvate din nou cu OpenCV sau PIL, care nu păstrează metadatele EXIF. Fotografia de lucru din `.github/surse/<proiect>/original.jpg` o pregătești cu `foto.py pregateste` din `.github/unelte/`: o rotește după EXIF, o trece în sRGB și o salvează fără EXIF, GPS, XMP sau comentariu JPEG. `foto.py exif` verifică o imagine înainte de commit.
 - **Căile absolute** de pe calculator nu apar în fișiere: numele folderului local conține date personale.
 - **Adresa de email:** commit-urile se fac cu adresa „noreply” de la GitHub, care e deja setată local în depozit. Verifici cu `git config user.email`.
 - **Mesajele de commit:** în română, la imperativ, de exemplu „Adaugă…” sau „Așază…”. La final pui rândul `Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>`.
@@ -202,6 +205,7 @@ Mediul Python: `python3 -m venv .venv && .venv/bin/pip install pillow numpy matp
   - pașii sunt numerotați fără goluri.
 - **Prețurile:** totalurile sunt recalculate, iar fiecare link e deschis efectiv.
 - **Cotele:** sunt aceleași în README, în lista de materiale, pe plan și în randări.
+- **Automat:** `python -B .github/unelte/verificari.py "<Proiect>"` verifică livrabilele, metadatele imaginilor, formatul A3, linkurile relative, diacriticele, datele personale și calculele din lista de materiale. Trebuie să dea 0 probleme; avertismentele le citești pe rând.
 
 ## Lecții învățate
 
@@ -218,6 +222,8 @@ Mediul Python: `python3 -m venv .venv && .venv/bin/pip install pillow numpy matp
 - **2026-10-29 · Peretele cu televizorul:** agentul nu a găsit note de la proiectele anterioare și a dat de scripturile cuierului abia în folderul temporar al altei sesiuni. De aceea scripturile fiecărui proiect se păstrează în `.github/surse/<proiect>/`, iar tiparul de design, în această memorie.
 - **2026-10-29 · Depozit:** o informare trimisă cu `send_message` la trei sesiuni inactive le-a pornit pe toate trei din nou. Rezervările se țin de aceea în [agent-activity.md](agent-activity.md), unde le văd toți fără să fie deranjați; mesajele merg doar la agenții care lucrează chiar acum.
 - **2026-10-29 · Depozit:** utilizatorul vrea să vadă într-un singur loc ce face fiecare agent, așa că fiecare agent își trece activitatea în [agent-activity.md](agent-activity.md).
+- **2026-10-30 · Depozit:** fiecare proiect își copia scripturile de la cel dinainte și le schimba pe drum, iar greșelile treceau odată cu ele: `sample` din `polite-viniluri/materials.py`, copiat identic și în proiectul cu beton, întorcea textura în oglindă. Uneltele sunt acum adunate și testate în [.github/unelte/](../unelte/README.md). Un proiect nou le importă, iar o unealtă care folosește și altor proiecte intră acolo, cu test.
+- **2026-10-30 · Depozit:** o calibrare doar pe muchii din planul peretelui a dat o distanță focală de 7 px, cu aparatul la 3 cm de perete, deși eroarea era mică (0,58 px). Calibrarea folosește doar dreptele pe care stau segmentele, nu capetele lor: scara vine din distanțele dintre drepte paralele, iar distanța până la aparat, din muchii care ies din perete, ca laturile comodei. Verifică și distanța focală (de obicei 0,5–0,9 × lățimea fotografiei) și poziția aparatului, nu doar eroarea RMS.
 - **2026-10-29 · Polițe viniluri:** fără tavan măsurat, camera s-a calibrat pe obiecte cu dimensiuni din fișele producătorilor (televizorul, comoda) și pe lățimea peretelui, cu tavanul lăsat necunoscut. Așa s-a văzut că înălțimea dată (250 cm) nu se potrivește cu poza (~262 cm). Poziționează obiectele noi față de obiecte cunoscute (aici, televizorul), nu față de tavan.
 - **2026-10-29 · Polițe viniluri:** ecranul aprins al televizorului arăta numele rețelelor Wi-Fi din jur, iar prin ușă se vedea o persoană. Înainte de publicare stingi ecranele și scoți persoanele, documentele și orice text din fotografie; vezi `curata_foto.py` din [.github/surse/polite-viniluri/](../surse/polite-viniluri/README.md).
 - **2026-10-29 · Polițe viniluri:** un disc de vinil are 31,4 × 31,4 cm. Polițele pentru viniluri au ≥ 33 cm adâncime și ≥ 8 cm liberi deasupra discurilor. Polițele de perete obișnuite (Cioata Wally: 23 cm) sunt prea înguste, iar pe o poliță deschisă discurile au nevoie de opritoare la capete.
