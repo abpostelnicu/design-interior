@@ -24,6 +24,10 @@ Aici vezi dintr-o privire ce agenți lucrează acum în depozit, la ce și în c
 
 | Când | Sesiune (agent) | Eveniment | Detalii |
 |---|---|---|---|
+| 2026-10-30 17:10 | Polițe viniluri beton și stejar | terminat | propunerea „Polite viniluri beton” e în commit, pe ramura `polite-viniluri-beton`, publicată pe GitHub, dar neîmbinată în `master`, deci site-ul nu s-a schimbat; `README.md` din rădăcină e eliberat. Rămân de verificat prețurile noi, atelierul pentru microciment și cotele de la „Polite viniluri” |
+| 2026-10-30 17:10 | Polițe viniluri beton și stejar | commit | „Adaugă propunerea de polițe din beton decorativ și stejar pentru viniluri” |
+| 2026-10-30 15:27 | Polițe viniluri beton și stejar | rezervare | `Polite viniluri beton/` (nou), `.github/surse/polite-viniluri-beton/` (nou) și `README.md` din rădăcină (rândul proiectului), toate pe ramura `polite-viniluri-beton` |
+| 2026-10-30 15:15 | Polițe viniluri beton și stejar | început | propunere nouă, pe o ramură separată, pentru polițele de viniluri: beton decorativ și stejar natural, cu verticale între polițe |
 | 2026-10-30 06:53 | amenajare perete TV cu polite | terminat | proiectul „Polite viniluri” e în commit, fără push (utilizatorul a cerut doar commit-ul); `README.md` din rădăcină e eliberat. Înainte de comandă rămân de verificat tavanul, peretele, finisajul comodei, ușa din dreapta și cablurile |
 | 2026-10-30 06:53 | amenajare perete TV cu polite | commit | „Adaugă proiectul polițelor pentru viniluri de pe peretele cu televizorul” |
 | 2026-10-30 06:52 | amenajare perete TV cu polite | rezervare | `README.md` din rădăcină, pentru commit-ul proiectului; diff-ul are doar rândul „Polite viniluri” |

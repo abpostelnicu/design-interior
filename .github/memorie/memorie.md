@@ -17,7 +17,7 @@ Reguli pentru acest fișier:
 - **Proiecte executabile cu materiale din comerț**, cu prețuri estimative și linkuri.
 - **Montaj pas cu pas foarte detaliat.**
 - **Fără elemente adăugate din proprie inițiativă.** A respins banca de la cuier. Extra-urile apar doar ca opțiuni în text.
-- **Stil și materiale:** stejar natur și negru mat. Tâmplăria și ușa de intrare sunt negre sau antracit. Polițele de pe peretele cu televizorul trebuie să fie din stejar, asortate cu finisajul comodei.
+- **Stil și materiale:** stejar natur și negru mat. Tâmplăria și ușa de intrare sunt negre sau antracit. Polițele de pe peretele cu televizorul trebuie să fie din stejar, asortate cu finisajul comodei. Ca alternativă, pe o ramură separată, a cerut și polițe din beton decorativ, în stilul modern care îmbină lemnul natural cu betonul, cu polițele orizontale legate de verticale.
 - **Modern și minimalist, nu cutii:** a respins corpurile închise tip cutie pentru viniluri („nu doresc să arate ca niște cutii”, „mai moderne și mai minimaliste”), apoi și consolele la vedere („polițele doresc să fie direct prinse în perete, fără ca prinderile să fie vizibile”, „să nu aibă suporții negri”). Preferă polițe flotante, subțiri, prinse ascuns direct în perete, și cât mai puține elemente la vedere.
 - **Cote:** le dă ca listă numerotată, uneori doar cifre în mm. Scrie-i cum le-ai interpretat.
 - **Commit și push:** de obicei le cere explicit, la final. Fiecare push pe `master` republică site-ul public.
@@ -49,6 +49,7 @@ Aici trec doar cotele măsurate și datele primite de la utilizator. Ce e estima
 - Sus, în dreapta televizorului, e un dispozitiv alb, de la ~222,7 la ~248,5 cm înălțime, la ~348,5–373,7 cm de colț. Nu se acoperă.
 - Plinta: ~7,5 cm, din poză. Peretele: presupus din cărămidă, neconfirmat.
 - Proiect: „Polite viniluri”: 2 polițe flotante din stejar, de 80 × 33 × 4 cm, doar în dreapta televizorului (cerut de utilizator), de la ~329 la ~409 cm de colț, prinse pe tije ascunse. Peretele se termină la 419 cm într-o trecere; nu se știe dacă are ușă.
+- Proiect: „Polite viniluri beton”, pe ramura `polite-viniluri-beton`: aceleași 2 polițe, din microciment pe miez de placaj, legate de o verticală din stejar masiv de 4 cm. Verticala e lipită de polița de jos și are fața din stânga la ~387,6 cm de colț, în dreptul marginii din stânga a boxei de podea.
 
 ## Tiparul de design
 
@@ -168,7 +169,7 @@ Mediul Python: `python3 -m venv .venv && .venv/bin/pip install pillow numpy matp
   - Fotografia de pe telefon nu intră în depozit. Pozele de pe telefon au de obicei coordonate GPS, iar `sips` le păstrează la conversie (verificat).
   - În depozit pui doar imagini generate sau salvate din nou cu OpenCV sau PIL, care nu păstrează metadatele EXIF. Fotografia de lucru din `.github/surse/<proiect>/original.jpg` se salvează așa: `ImageOps.exif_transpose(Image.open(sursa)).convert("RGB").resize((768, 1024)).save("original.jpg", quality=95)`.
 - **Căile absolute** de pe calculator nu apar în fișiere: numele folderului local conține date personale.
-- **Adresa de email:** commit-urile se fac cu adresa „noreply” de la GitHub, care e deja setată local în depozit. Verifici cu `git config user.email`.
+- **Adresa de email:** commit-urile se fac cu adresa „noreply” de la GitHub, care e setată local în depozitul de pe calculatorul utilizatorului. Verifici cu `git config user.email`. Într-o clonă nouă, de exemplu în cloud, numele și adresa pot lipsi: le iei din `git log` și le pui doar pe comandă, cu `git -c user.name=… -c user.email=… commit …`.
 - **Mesajele de commit:** în română, la imperativ, de exemplu „Adaugă…” sau „Așază…”. La final pui rândul `Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>`.
 - **Semnătura GPG.** Configurația globală cere commit-uri semnate, dar parola se introduce într-o fereastră pinentry pe care un agent nu o poate completa. Utilizatorul a aprobat commit-uri nesemnate pentru acest depozit, așa că folosești `git -c commit.gpgsign=false commit …`. Opțiunea se pune doar pe comandă; configurația nu se modifică.
 - **Fără arhive:** în depozit nu se păstrează variante vechi; utilizatorul a cerut ștergerea arhivei. `.DS_Store` e ignorat.
@@ -229,6 +230,24 @@ Mediul Python: `python3 -m venv .venv && .venv/bin/pip install pillow numpy matp
 - **2026-10-29 · Polițe viniluri:** randarea pieselor cu multe fețe care se acoperă (polițe, discuri, opritoare) merge mai sigur cu buffer de adâncime (`Canvas.face` din `polite-viniluri/core.py`) decât cu ordine de desenare. Obiectele din poză care stau în fața celor noi (de exemplu boxele) se desenează doar în bufferul de adâncime.
 - **2026-10-29 · Polițe viniluri:** prețuri: Hornbach blochează și el descărcarea automată („Client Challenge”). La Dedeman, `curl` pe pagina produsului merge; prețul din `itemprop="price"` poate fi pe cutie, iar ambalajul apare la „Se livrează la: cutie (50 buc)”. Un subagent de cercetare cu 11 cerințe a rulat peste o oră fără rezultat: verifică direct prețurile esențiale și dă-i subagentului cerințe puține și precise.
 - **2026-10-29 · Polițe viniluri:** Cioata face mobilier la comandă: personalizează dimensiunea și finisajul lemnului, cu livrare în 2–8 săptămâni, dar nu montează pe perete. Mobilierul asortat cu o piesă Cioata se cere întâi de la ei.
+- **2026-10-30 · Polițe viniluri beton:** internetul public a fost blocat în mediul de lucru. `curl` dădea 000, `web_fetch` nu găsea adresele, Playwright dădea `ERR_BLOCKED_BY_CLIENT`, iar `web_search` a dat eroare la toți cei 4 subagenți de cercetare (inspirație, tehnică, prețuri), după 10–35 de încercări fiecare, în ~30 de minute. Încearcă tu o dată `web_search` și `curl` pe un magazin înainte să lansezi subagenți de cercetare. Dacă nu merg, nu-i lansa: prețurile noi le treci „de verificat”, iar la cele vechi scrii data ultimei verificări.
+- **2026-10-30 · Polițe viniluri beton:** revizuirea conceptului cu un agent rubber-duck, înainte de randări, a prins probleme de montaj:
+  - un ansamblu rigid pe 8 tije nu intră pe tije, pentru că gaura Ø13 la M12 lasă un joc de 0,5 mm;
+  - tijele puse direct în MDF ovalizează gaura;
+  - cepurile lipite peste lac nu țin.
+
+  Când legi polițele cu verticale, fiecare poliță se montează separat, pe tijele ei. Verticala se lipește în atelier de o singură poliță, pe lemn curat, iar la cealaltă rămâne un rost de umbră de 3 mm. Tijele le verifici cu discurile ticsite, iar ancora, la smulgere: `rod_check()` și `rod_pull()` din `polite-viniluri-beton/design.py`.
+- **2026-10-30 · Polițe viniluri beton:** pentru polițe din beton decorativ se folosește microciment de ~2 mm pe un miez ușor, nu beton turnat.
+  - Miezul e din placaj de mesteacăn, iar canalele tijelor se frezează înainte de lipirea plăcilor.
+  - O placă GFRC de 80 × 33 × 4 cm ar avea ~22 kg, față de ~8,5 kg.
+  - Muchiile se rotunjesc (R3), plasa trece peste muchii, lacul e poliuretanic bicomponent, iar spatele se sigilează.
+
+  Textura de microciment pentru randări o dă `beton.py` din [.github/surse/polite-viniluri-beton/](../surse/polite-viniluri-beton/README.md), cu tonurile „gri” și „antracit” (antracitul are ΔE ~0,4 față de fronturile comodei).
+- **2026-10-30 · Polițe viniluri beton:** când mai mulți subagenți folosesc în paralel același `design.py`, nu redenumi și nu șterge chei sau funcții. Aici, `drawing.py` folosea încă `D["dowel_len"]`. Adaugi cheile noi lângă cele vechi și le spui agenților ce s-a schimbat.
+- **2026-10-30 · Polițe viniluri beton:** în planul A3, notele scrise rând cu rând ieșeau din pagină sau peste desene.
+  - În `polite-viniluri-beton/drawing.py`, notele sunt paragrafe, iar `wrap()` le rupe pe lățimea coloanei, măsurând textul cu fontul real. Cifrele rămân lipite de unități.
+  - După fiecare schimbare din plan, rulezi `verifica_plan.py`, din același folder: găsește textele ieșite din pagină, suprapuse sau intrate în desene și indicațiile care trec prin texte.
+  - La adnotări măsori doar textul, cu `Text.get_window_extent(t, renderer)`; `Annotation.get_window_extent` include și linia de indicație și dă suprapuneri false.
 
 ## Proiecte
 
@@ -236,3 +255,4 @@ Mediul Python: `python3 -m venv .venv && .venv/bin/pip install pillow numpy matp
 |---|---|---|---|---|
 | Cuier hol | [Cuier hol](../../Cuier%20hol/README.md) | Gata: panou riflaj din stejar de 44 × 223,5 cm, așezat pe plintă, cu 5 cârlige negre mat | [.github/surse/cuier-hol/](../surse/cuier-hol/README.md) | Propunere cuier pentru fereastră |
 | Polițe viniluri (peretele cu televizorul) | [Polite viniluri](../../Polite%20viniluri/README.md) | Gata: 2 polițe flotante din stejar de 80 × 33 × 4 cm, doar în dreapta televizorului, prinse direct în perete pe câte 4 tije M12 ascunse, fără console; A cu opritoare îmbrăcate în stejar, B cu opritoare negre. Înainte de comandă rămân de verificat: tavanul, peretele, finisajul comodei, ușa din dreapta și cablurile | [.github/surse/polite-viniluri/](../surse/polite-viniluri/README.md) | amenajare perete TV cu polite |
+| Polițe viniluri beton (peretele cu televizorul) | [Polite viniluri beton](../../Polite%20viniluri%20beton/README.md) | Propunere pe ramura `polite-viniluri-beton`, neîmbinată în `master`: aceleași 2 polițe, din microciment pe placaj, legate de o verticală din stejar masiv; A beton gri, B beton antracit. Prețurile noi și atelierul pentru microciment sunt de verificat | [.github/surse/polite-viniluri-beton/](../surse/polite-viniluri-beton/README.md) | Polițe viniluri beton și stejar |

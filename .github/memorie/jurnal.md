@@ -58,3 +58,21 @@ Formatul unei intrări:
   Versiunile vechi au rămas doar în istoricul sesiunii, nu în depozit.
 - Întrebări fără răspuns: din ce e peretele și cât e de gros, codul de finisaj al comodei, înălțimea camerei (poza dă ~262 cm, nu 250), dacă trecerea din dreapta are ușă, pe unde trec cablurile sub dispozitivul alb.
 - Lecții: în [memorie.md](memorie.md), la „Polițe viniluri”: calibrarea pe obiecte cunoscute, curățarea ecranelor și a persoanelor din poze, dimensiunile pentru viniluri, polițe flotante în loc de corpuri, planul la 1:15 pentru un perete de 4 m, fără console și cu tijele verificate în cazul cel mai rău, ambiguitatea cuvântului „suport”, copertele care nu trebuie să semene cu stejarul, bufferul de adâncime, verificarea prețurilor și Cioata la comandă.
+
+### 2026-10-30 · Polițe viniluri beton · propunerea din beton decorativ și stejar
+- Cerere: pe o ramură separată, o propunere nouă pentru polițele de viniluri, „eventual polițele să fie dintr-un beton decorativ”, inspirată din designurile moderne care îmbină lemnul natural cu betonul decorativ; polițele orizontale pot fi legate între ele de verticale. Munca, împărțită în paralel pe cât mai mulți agenți.
+- Rezultat: proiectul [Polite viniluri beton](../../Polite%20viniluri%20beton/README.md), pe ramura `polite-viniluri-beton`, neîmbinat în `master`, deci site-ul nu s-a schimbat.
+  - Aceleași 2 polițe de 80 × 33 × 4 cm, din microciment de ~2 mm pe un miez de placaj de mesteacăn, legate de o verticală din stejar masiv de 4 cm, ca la comoda Veneto (rama din stejar, fronturile din microciment).
+  - Fiecare poliță stă pe 4 tije M12 de clasa 8.8. Verticala e lipită doar de polița de jos și se oprește la 3 mm sub cea de sus.
+  - A e în beton gri, B în beton antracit; amândouă au opritoare îmbrăcate în stejar.
+  - Livrabile: randări, comparație, plan A3 la 1:15 cu detaliile A, B și C, listă de materiale, montaj pas cu pas.
+  - Sursele sunt în `.github/surse/polite-viniluri-beton/`, cu textura nouă de microciment în `beton.py`.
+  - Commit-ul „Adaugă propunerea de polițe din beton decorativ și stejar pentru viniluri”.
+- Cum s-a lucrat: 10 subagenți în paralel: inspirația, tehnica microcimentului, prețurile vechi, prețurile noi, textura de beton, testul mediului, revizuirea conceptului, randările, planul tehnic și documentația. Coordonatorul a ținut `design.py`, memoria și commit-ul. Agentul de plan s-a oprit înainte de conceptul revizuit, așa că planul l-a terminat coordonatorul, cu verificarea automată din `verifica_plan.py`.
+- Corecturi: niciuna de la utilizator până acum. Revizuirea internă a schimbat conceptul înainte de randări:
+  - polițele nu se mai montează dintr-o bucată, ci fiecare pe tijele ei;
+  - miezul e din placaj, nu din MDF;
+  - tijele sunt de 8.8, nu de 4.8;
+  - s-au adăugat smulgerea ancorei și proba de încărcare.
+- Întrebări fără răspuns: cele de la „Polite viniluri”, plus atelierul care face microciment pe mobilier (dacă Cioata face polițele în finisajul comodei) și prețurile noi. Internetul a fost blocat în mediul de lucru, așa că inspirația de pe internet nu s-a putut căuta, iar prețurile noi sunt „de verificat”.
+- Lecții: în [memorie.md](memorie.md), la „Polițe viniluri beton”: rețeaua blocată, revizuirea conceptului înainte de randări, microcimentul pe miez ușor, cheile din `design.py` folosite în paralel, notele planului rupte automat și identitatea git într-o clonă nouă.
