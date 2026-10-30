@@ -1,2 +1,7 @@
 # Fișiere generate automat de macOS
 .DS_Store
+
+# Mediul Python și fișierele generate de scripturile din .github/unelte și .github/surse
+.venv/
+__pycache__/
+out/

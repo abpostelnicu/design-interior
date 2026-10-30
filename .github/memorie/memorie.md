@@ -54,7 +54,7 @@ Aici trec doar cotele măsurate și datele primite de la utilizator. Ce e estima
 
 ## Tiparul de design
 
-Tiparul a fost stabilit la proiectul „Cuier hol”, care rămâne referința ([pagina de pe site](https://abpostelnicu.github.io/design-interior/Cuier%20hol/)). Fiecare proiect nou trebuie să arate și să fie documentat la fel. Scripturile, cum le rulezi și cum le adaptezi sunt în [.github/surse/cuier-hol/](../surse/cuier-hol/README.md).
+Tiparul a fost stabilit la proiectul „Cuier hol”, care rămâne referința ([pagina de pe site](https://abpostelnicu.github.io/design-interior/Cuier%20hol/)). Fiecare proiect nou trebuie să arate și să fie documentat la fel. Uneltele cu care lucrezi, comenzile fiecărui pas și testele sunt în [.github/unelte/](../unelte/README.md). Scripturile cuierului, din [.github/surse/cuier-hol/](../surse/cuier-hol/README.md), rămân exemplul complet al unui proiect.
 
 ### Ce livrezi pentru fiecare proiect
 
@@ -104,11 +104,11 @@ Pe plan sunt trei blocuri de note: MATERIALE ȘI FERONERIE, DE CE AȘA și COTE.
 
 ### Pașii de lucru, în ordine
 
-1. **Fotografia.** O salvezi ca JPEG de 768 × 1024 cu PIL, ca să nu păstreze metadatele (vezi „Depozitul și site-ul”). Faci zoom-uri cu grilă de coordonate pe zona de lucru și notezi tot ce contează:
+1. **Fotografia.** O pregătești cu `foto.py pregateste`: 1024 px pe latura mare, în sRGB și fără metadate (vezi „Depozitul și site-ul”). Faci zoom-uri cu grilă de coordonate pe zona de lucru (`foto.py grila`) și notezi tot ce contează:
    - prize, întrerupătoare, senzori, termostat;
    - balamalele și sensul de deschidere al ușilor;
    - plinte, glafuri, rame.
-2. **Calibrarea camerei** (`camera.py`). Din muchiile drepte ale camerei obții un model al aparatului foto. Cu el estimezi cote reale direct din poză: lățimi de perete, înălțimi, poziția prizelor. Scara vine din înălțimea tavanului: întâi o presupui, apoi o înlocuiești cu valoarea măsurată.
+2. **Calibrarea camerei** (`segmente.py` și `camera.calibreaza`). Din muchiile drepte ale camerei obții un model al aparatului foto. Cu el estimezi cote reale direct din poză: lățimi de perete, înălțimi, poziția prizelor. Scara vine din tavanul măsurat, pe care îl ceri primul, sau din obiecte cu dimensiuni din fișă, ca televizorul și comoda, cu tavanul lăsat necunoscut. Un tavan presupus îl folosești doar provizoriu, cu cotele marcate „~”. Îți trebuie și muchii care ies din perete, iar la final verifici că distanța focală și poziția aparatului au sens, nu doar eroarea RMS (pasul 3 din [README-ul uneltelor](../unelte/README.md)).
 3. **Constrângerile.**
    - Ușile: în ce parte se deschid și cât loc rămâne la 90°, inclusiv mânerul.
    - Prizele și întrerupătoarele: le eviți sau faci decupaje.
@@ -116,8 +116,8 @@ Pe plan sunt trei blocuri de note: MATERIALE ȘI FERONERIE, DE CE AȘA și COTE.
    - Plinta nu se taie.
    - Aliniamentele cu liniile existente: partea de sus a golului ferestrei, capul ușii, glaful.
 4. **Designul.** Faci exact ce s-a cerut. Elementele în plus, cum ar fi o bancă sau o bandă LED, apar doar ca opțiuni în text, nu în randare.
-5. **Randările** (`render.py`) și **comparația** (`compare.py`). Verifici rezultatul cu crop-uri mărite pe margini, pe contactul cu plinta sau pardoseala și pe feronerie.
-6. **Planul tehnic** (`drawing.py`). Verifici, cu crop-uri din PNG-ul la 220 dpi, că textele nu se suprapun, și că PDF-ul e A3: `/MediaBox [ 0 0 1190.55 841.89 ]`.
+5. **Randările** (`render.py` al proiectului, cu `randare.py` și `materiale.py`) și **comparația** (`comparatie.py`). Verifici rezultatul cu crop-uri mărite pe margini, pe contactul cu plinta sau pardoseala și pe feronerie.
+6. **Planul tehnic** (`drawing.py` al proiectului, cu `plan.py`). După fiecare schimbare rulezi `plan.py verifica`, care găsește textele suprapuse, ieșite din pagină sau intrate în desene. Apoi te uiți pe crop-uri din PNG-ul la 220 dpi și verifici cu `plan.py a3` că PDF-ul e A3: `/MediaBox [ 0 0 1190.55 841.89 ]`.
 7. **Cotele reale.**
    - Le ceri cu `ask_user`, ca listă concretă: a), b), c)…
    - Dacă utilizatorul nu răspunde, continui cu estimările marcate „~”.
@@ -129,19 +129,22 @@ Pe plan sunt trei blocuri de note: MATERIALE ȘI FERONERIE, DE CE AȘA și COTE.
 9. **Lista de materiale.**
    - Cauți în magazine din România: Dedeman, eMAG, Hornbach, IKEA și magazine specializate.
    - Pui doar linkuri pe care le-ai deschis efectiv; nu inventezi niciodată URL-uri sau prețuri.
+   - Prețul și ambalajul le citești cu `preturi.py`, iar `preturi.py --lista` reverifică toată lista de materiale.
    - Dedeman afișează prețul fără localitate, dar stocul abia după ce alegi localitatea.
    - Leroy Merlin blochează descărcarea automată a paginilor (403).
    - Verifici că feroneria se potrivește peretelui. La cărămidă: dibluri Fischer DuoPower Ø6 și șuruburi destul de lungi ca să treacă prin panou până în perete.
 10. **Montajul pas cu pas**, în `README.md`-ul proiectului.
     - Îl scrii pentru cineva care face singur montajul.
     - Conține ordinea operațiilor, cotele de montaj, uneltele, adâncimile de găurit (cu bandă pe burghiu), timpii adezivului, cum se taie fără să se ciupească furnirul și verificările finale.
-11. **Verificările, commit-ul și push-ul**, ca mai jos.
+11. **Verificările, commit-ul și push-ul**, ca mai jos. Verificările automate le rulezi cu `python -B .github/unelte/verificari.py "<Proiect>"`, care trebuie să dea 0 probleme.
 
 ### Scripturile
 
-Sunt în [.github/surse/cuier-hol/](../surse/cuier-hol/README.md), cu instrucțiuni de rulare și de adaptare la o fotografie nouă. Pentru un proiect nou copiezi folderul în `.github/surse/<proiect>/`, cu numele fără diacritice și cu cratimă între cuvinte, și îl adaptezi acolo. Nu modifici scripturile altui proiect.
+Uneltele comune sunt în [.github/unelte/](../unelte/README.md), cu catalogul, comenzile fiecărui pas, testele și capcanele. Pentru un proiect nou nu mai copiezi scripturile altui proiect. În `.github/surse/<proiect>/`, cu numele fără diacritice și cu cratimă între cuvinte, scrii doar ce e al proiectului: `design.py`, dreptele pentru calibrare, scena randată și planul. Ele importă uneltele cu `from unelte import …`. Scripturile cuierului, din [.github/surse/cuier-hol/](../surse/cuier-hol/README.md), și ale polițelor reproduc imaginile publicate și rămân exemple; nu modifici scripturile altui proiect. O unealtă nouă, folositoare și altor proiecte, o muți în `.github/unelte/`, cu test.
 
-Mediul Python: `python3 -m venv .venv && .venv/bin/pip install pillow numpy matplotlib opencv-python-headless scipy`. Python-ul sistemului nu are numpy. Rezultatele se generează în `out/`, care nu intră în depozit, apoi se copiază în folderul proiectului cu numele finale.
+Mediul Python: `python3 -m venv .venv && .venv/bin/pip install pillow numpy matplotlib opencv-python-headless scipy`, din rădăcina depozitului. Python-ul sistemului nu are numpy. Scripturile le rulezi cu `python -B`, ca să nu apară `__pycache__`. Rezultatele se generează în `out/`, apoi se copiază în folderul proiectului cu numele finale. `.gitignore`-ul din rădăcină ignoră `.venv/`, `out/` și `__pycache__/` în tot depozitul.
+
+Scripturile cuierului, pe care le-au urmat proiectele de până acum, au în `.github/unelte/` aceste corespondente: `camera.py` → `segmente.py` și `camera.py`, `render.py` → `randare.py` și `materiale.py`, `drawing.py` → `plan.py`, `compare.py` → `comparatie.py`. `design.py` rămâne al fiecărui proiect.
 
 | Script | Ce face | Ce schimbi pentru o fotografie nouă |
 |---|---|---|
@@ -168,7 +171,7 @@ Mediul Python: `python3 -m venv .venv && .venv/bin/pip install pillow numpy matp
 
 - **Depozitul e public.** Nu conține date personale: adresa casei, numere de înmatriculare (atenție la mașinile din fereastră) sau coordonate GPS în fotografii.
   - Fotografia de pe telefon nu intră în depozit. Pozele de pe telefon au de obicei coordonate GPS, iar `sips` le păstrează la conversie (verificat).
-  - În depozit pui doar imagini generate sau salvate din nou cu OpenCV sau PIL, care nu păstrează metadatele EXIF. Fotografia de lucru din `.github/surse/<proiect>/original.jpg` se salvează așa: `ImageOps.exif_transpose(Image.open(sursa)).convert("RGB").resize((768, 1024)).save("original.jpg", quality=95)`.
+  - În depozit pui doar imagini generate sau salvate din nou cu OpenCV sau PIL, care nu păstrează metadatele EXIF. Fotografia de lucru din `.github/surse/<proiect>/original.jpg` o pregătești cu `foto.py pregateste` din `.github/unelte/`: o rotește după EXIF, o trece în sRGB și o salvează fără EXIF, GPS, XMP sau comentariu JPEG. `foto.py exif` verifică o imagine înainte de commit.
 - **Căile absolute** de pe calculator nu apar în fișiere: numele folderului local conține date personale.
 - **Adresa de email:** commit-urile se fac cu adresa „noreply” de la GitHub, care e deja setată local în depozit. Verifici cu `git config user.email`. Asta e valabil pe calculatorul utilizatorului. Identitatea folosită efectiv o verifici, oriunde, cu `git var GIT_AUTHOR_IDENT`. Comanda ține cont și de variabilele de mediu `GIT_AUTHOR_*` și `GIT_COMMITTER_*`, care au prioritate față de `git config` și de `-c user.…`. În clona din cloud, variabilele erau deja setate, cu numele de utilizator de pe GitHub și adresa „noreply”. Dacă într-o clonă nouă numele și adresa lipsesc, le iei din `git log` și le pui doar pe comandă, cu `git -c user.name=… -c user.email=… commit …`.
 - **Mesajele de commit:** în română, la imperativ, de exemplu „Adaugă…” sau „Așază…”. La final pui rândul `Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>`.
@@ -193,7 +196,7 @@ Mediul Python: `python3 -m venv .venv && .venv/bin/pip install pillow numpy matp
 - **Înainte de commit:** rulezi `git fetch` și `git status` și adaugi doar fișierele tale: `git add -- <căile tale>`, apoi `git commit -- <căile tale>`, ca să nu prinzi în commit fișiere puse în index de alt agent. Niciodată `git add -A` sau `git add .`. Fișierele din `.github/memorie/` le poți pune în commit chiar dacă au și intrări ale altor agenți.
 - **Lucrul pe o ramură:** clona e comună, așa că după commit o readuci pe `master`, ca alt agent să nu facă commit pe ramura ta fără să știe. Cât timp clona e pe ramură, scrii asta în rândul tău din `agent-activity.md`.
   - Mai simplu: ramura o lucrezi într-un `git worktree`, într-un folder temporar din afara clonei (`git worktree add <folder> <ramura>`; la final, `git worktree remove <folder>`). Clona comună rămâne tot timpul pe `master`, iar commit-ul și push-ul le faci din folderul acela, cu `git -C <folder> …`.
-  - Înainte de `git checkout master`, muți în afara depozitului sau ștergi folderele ignorate din `.github/surse/<proiect>/` (`.venv/`, `out/`, `__pycache__/`). `.gitignore`-ul care le ascunde există doar pe ramură, iar pe `master` ar apărea ca fișiere netrasate.
+  - Înainte de `git checkout master`, muți în afara depozitului sau ștergi folderele ignorate din `.github/surse/<proiect>/` (`.venv/`, `out/`, `__pycache__/`). `.gitignore`-ul care le ascunde există doar pe ramură, iar pe `master` ar apărea ca fișiere netrasate. De la uneltele comune, `.gitignore`-ul din rădăcină le ignoră în tot depozitul, și pe `master`.
   - Memoria și jurnalul scrise pe ramură ajung pe `master` abia la îmbinare.
   - **Aducerea în `master`.** Întâi verifici că ramura doar adaugă: `git diff --name-status master...<ramura>` nu are fișiere șterse (`D`), iar rândurile schimbate din fișierele comune sunt doar completate. Legăturile dintre variante din README-uri și scoaterea textelor „pe ramură, neîmbinat” și „proiectul vechi” le pui în commit tot pe ramură. Din clona din cloud nu poți actualiza `master` pe GitHub: și push-ul direct, și `gh pr merge` sunt refuzate („Cannot update this protected ref”), deși regula nu apare nici în setările ramurii, nici în API-ul de rulesets. N-o ocolești, nici cu `--admin`, nici cu alte unelte. Trimiți ramura, deschizi un pull request spre `master` (`gh pr create --base master --head <ramura>`), verifici că e `MERGEABLE` și `CLEAN` (`gh pr view <n> --json mergeable,mergeStateStatus`) și îi dai utilizatorului linkul. Îl îmbină el, cu „Create a merge commit”, ca toate commit-urile din jurnal să rămână în istoria lui `master`. Până atunci, clona comună rămâne pe `origin/master`: dacă ai adus commit-urile în `master` local, le trimiți cu `git push origin master:<ramura>`, verifici cu `git ls-remote --heads origin <ramura>` că ramura de pe GitHub are hash-ul lui `master` (clona aduce doar `master`, deci `origin/<ramura>` nu există) și abia apoi readuci `master` cu `git reset --keep origin/master`. După îmbinare, clona se aduce la zi cu `git fetch` și `git merge --ff-only origin/master`.
 - **Sesiunile din clone diferite,** de exemplu din cloud, nu se văd între ele: rândul din „Acum”, rezervările și munca fiecăreia apar abia după push. Le vezi cu `git ls-remote origin` (ramurile și `refs/pull/N/head`), `gh pr list` și `agent-activity.md` de pe ramura fiecăreia. Clona aduce doar `master`, așa că `git fetch` lasă `origin/<ramura>` neactualizată: ramurile le aduci explicit, cu `git fetch origin '+refs/heads/*:refs/remotes/origin/*'`. Mediul din cloud nu e permanent, așa că la final ceri acordul pentru push pe ramura ta (push-ul pe altă ramură decât `master` nu republică site-ul) și deschizi pull request-ul.
@@ -203,7 +206,7 @@ Mediul Python: `python3 -m venv .venv && .venv/bin/pip install pillow numpy matp
   3. **Istoria nu se rescrie:** o ramură publicată nu se rebazează, iar `git push --force` nu se folosește.
   4. **Conflictele:** când pull request-ul are conflicte, aduci `origin/master` în ramura ta, cu `git merge origin/master`. În `agent-activity.md`, `jurnal.md`, `memorie.md` și `README.md` din rădăcină păstrezi rândurile ambelor părți; „Istoric” rămâne în ordine descrescătoare după oră. La imagini și PDF-uri nu alegi o versiune peste alta: te oprești și întrebi utilizatorul.
   5. **Alt pull request deschis pe aceleași fișiere:** dacă un pull request încă neîmbinat modifică memoria sau README-urile pe care le modifici și tu, pornești ramura ta din capătul lui și scrii în descriere „se îmbină după #N”. Așa, cele două intră în `master` fără conflicte. Dacă ramura lui avansează între timp, aduci capătul nou în ramura ta, cu `git merge`, înainte de push. Dacă în capătul nou s-au mutat sau redenumit fișiere, actualizezi căile din fișierele tale care le folosesc (teste, linkuri, docstring-uri).
-  6. **Site-ul se construiește.** Pull request-urile nu au verificări automate, iar publicarea pornește abia după îmbinare. Imaginile noi nu au EXIF, iar linkurile duc la fișiere existente. Dacă ai Docker, construiești site-ul cu imaginea folosită de GitHub, într-o copie temporară a ramurii: `d=$(mktemp -d) && git clone -q --branch <ramura> . "$d" && docker run --rm -v "$d":/github/workspace -e GITHUB_WORKSPACE=/github/workspace -e GITHUB_REPOSITORY=abpostelnicu/design-interior -e INPUT_SOURCE=. -e INPUT_DESTINATION=_site ghcr.io/actions/jekyll-build-pages:v1.0.13; rm -rf "$d"`. Construcția e bună dacă se termină cu „done in … seconds”.
+  6. **Site-ul se construiește.** Pull request-urile nu au verificări automate, iar publicarea pornește abia după îmbinare. Imaginile noi nu au EXIF, iar linkurile duc la fișiere existente. Dacă ai Docker, construiești site-ul cu imaginea folosită de GitHub, într-o copie temporară a ramurii: `d=$(mktemp -d) && git clone -q --branch <ramura> . "$d" && docker run --rm -v "$d":/github/workspace -e GITHUB_WORKSPACE=/github/workspace -e GITHUB_REPOSITORY=abpostelnicu/design-interior -e INPUT_SOURCE=. -e INPUT_DESTINATION=_site ghcr.io/actions/jekyll-build-pages:v1.0.13; rm -rf "$d"`. Construcția e bună dacă se termină cu „done in … seconds”. Dacă pluginul de metadate nu ajunge la API („The GitHub API credentials you provided aren't valid”, la fel și pe `master`), adaugi doar în `_config.yml`-ul copiei temporare `url: "https://abpostelnicu.github.io"` și `baseurl: "/design-interior"` și rulezi cu `--network none`.
   7. **Verificarea o scrii în pull request,** ca utilizatorul să știe ce îmbină: ce se adaugă, ce se schimbă și că planurile și imaginile existente rămân neschimbate.
   8. **După îmbinare** ramura nu se mai folosește: continui pe `master` sau pe o ramură nouă, pornită din `master`. Verifici publicarea, cu `gh run list --workflow publicare-site.yml -L 1`, și pagina proiectului.
 - **Scripturile altui agent:** dacă le modifici, îi spui exact ce ai schimbat.
@@ -220,6 +223,7 @@ Mediul Python: `python3 -m venv .venv && .venv/bin/pip install pillow numpy matp
   - pașii sunt numerotați fără goluri.
 - **Prețurile:** totalurile sunt recalculate, iar fiecare link e deschis efectiv.
 - **Cotele:** sunt aceleași în README, în lista de materiale, pe plan și în randări.
+- **Automat:** `python -B .github/unelte/verificari.py "<Proiect>"` verifică livrabilele, metadatele imaginilor, formatul A3, linkurile relative, diacriticele, datele personale și calculele din lista de materiale. Trebuie să dea 0 probleme; avertismentele le citești pe rând.
 
 ## Lecții învățate
 
@@ -276,6 +280,9 @@ Mediul Python: `python3 -m venv .venv && .venv/bin/pip install pillow numpy matp
   - sursele stau într-un subfolder, `.github/surse/polite-viniluri/beton/`.
 
   Mutarea s-a făcut cu `git mv`. Randările nu au text, deci au rămas aceleași; comparația și planul, care aveau etichetele A și B, s-au regenerat. Ca probă, randările refăcute după redenumire au ieșit identice octet cu octet, iar planul nou diferă de cel vechi doar în zonele cu etichete.
+- **2026-10-30 · Depozit:** fiecare proiect își copia scripturile de la cel dinainte și le schimba pe drum, iar greșelile treceau odată cu ele: `sample` din `polite-viniluri/materials.py`, copiat identic și în sursele variantelor din beton, întorcea textura în oglindă. Uneltele sunt acum adunate și testate în [.github/unelte/](../unelte/README.md). Un proiect nou le importă, iar o unealtă care folosește și altor proiecte intră acolo, cu test.
+- **2026-10-30 · Depozit:** o calibrare doar pe muchii din planul peretelui a dat o distanță focală de 7 px, cu aparatul la 3 cm de perete, deși eroarea era mică (0,58 px). Calibrarea folosește doar dreptele pe care stau segmentele, nu capetele lor: scara vine din distanțele dintre drepte paralele, iar distanța până la aparat, din muchii care ies din perete, ca laturile comodei. Verifică și distanța focală (de obicei 0,5–0,9 × lățimea fotografiei) și poziția aparatului, nu doar eroarea RMS.
+- **2026-10-30 · Depozit:** sesiunea uneltelor a pornit din `master` și a trimis ramura `unelte-agenti` fără să mai verifice `gh pr list`; între timp apăruse PR #2, cu regulile „Fără suprascrieri la îmbinare” și cu modificări în aceleași fișiere din memorie. Ramura era deja publicată, așa că nu s-a rebazat: capătul lui #2 a intrat în ea cu `git merge`, iar în jurnal și în `agent-activity.md` au rămas rândurile tuturor. Înainte de push și de pull request rulezi din nou `gh pr list` și `git ls-remote origin`, chiar dacă ai verificat la început. Verifici și după ce ai deschis pull request-ul, înainte de fiecare push, până închei sesiunea: aici #2 a mai avansat de două ori, o dată cu o mutare de fișiere care a cerut căi noi în unelte (pasul 5).
 
 ## Proiecte
 
