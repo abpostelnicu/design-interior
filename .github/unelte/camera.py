@@ -8,7 +8,8 @@ Calibrarea: pentru fiecare grup de segmente din `segments.json` (de exemplu „c
 care întoarce dreapta 3D a grupului din parametrii scenei. `calibreaza` caută parametrii aparatului (f, yaw,
 pitch, roll, cx, cy, cz și, la nevoie, k1) și pe cei ai scenei, astfel încât dreptele proiectate să cadă peste
 segmente. Scara vine din ce e cunoscut: tavanul măsurat sau obiecte cu dimensiuni din fișa producătorului.
-O eroare medie (rms) sub 1 px e bună.
+O eroare medie (rms) sub 1 px e bună, dar nu garantează că fiecare parametru e determinat: `profil` fixează un
+parametru pe rând la mai multe valori și compară eroarea, iar `rezumat_profil` spune dacă fotografia îl determină.
 
 Preluat din `.github/surse/polite-viniluri/camera.py` (calibrarea pe obiecte cunoscute) și din
 `.github/surse/cuier-hol/camera.py` (calibrarea pe tavan): `Camera` dă exact aceleași proiecții.
@@ -221,4 +222,37 @@ def rezumat(q):
             rows.append(f"{k:8s} {v:9.3f}")
         else:
             rows.append(f"{k:8s} {v}")
+    return "\n".join(rows)
+
+
+def profil(segmente, dreapta, p0, size, parametru, valori, **kw):
+    """Profilul erorii: calibrează din nou cu `parametru` fixat, pe rând, la fiecare valoare din `valori`.
+
+    Înainte să crezi un parametru liber (tavanul, poziția unui obiect), îl fixezi la mai multe valori și compari
+    eroarea. Dacă rms-ul rămâne același, fotografia nu-l determină: alți parametri îl compensează (de exemplu
+    obiectul cunoscut se mută față de perete), iar limitele puse parametrilor nu rezolvă asta, doar ascund
+    problema. Atunci valoarea vine de la tine, măsurată. kw merg mai departe la `calibreaza` (fixe, k1_liber,
+    regularizare, max_nfev). Întoarce lista calibrărilor, câte un q pentru fiecare valoare, în ordine.
+    """
+    fixe = dict(kw.pop("fixe", None) or {})
+    return [calibreaza(segmente, dreapta, p0, size, fixe=dict(fixe, **{parametru: float(v)}), **kw) for v in valori]
+
+
+def rezumat_profil(qs, parametru, arata=(), prag=0.01):
+    """Tabelul profilului (valoarea, rms-ul și parametrii din `arata`) și concluzia: dacă rms-ul variază cu mai
+    puțin de `prag` px, parametrul nu e determinat de fotografie."""
+    def f(v, z=2):
+        return f"{v:.{z}f}".replace(".", ",")
+
+    rows = [f"{parametru:>9s} {'rms (px)':>9s}" + "".join(f" {k:>9s}" for k in arata)]
+    for q in qs:
+        rows.append(f"{f(q[parametru]):>9s} {f(q['rms'], 4):>9s}" + "".join(f" {f(q[k]):>9s}" for k in arata))
+    rms = [q["rms"] for q in qs]
+    if max(rms) - min(rms) < prag:
+        rows.append(f"rms-ul variază cu doar {f(max(rms) - min(rms), 4)} px: {parametru} nu e determinat de "
+                    "fotografie; îl dai tu, măsurat")
+    else:
+        best = qs[int(np.argmin(rms))]
+        rows.append(f"rms-ul variază cu {f(max(rms) - min(rms), 3)} px; e cel mai mic la {parametru} = "
+                    f"{f(best[parametru])}")
     return "\n".join(rows)

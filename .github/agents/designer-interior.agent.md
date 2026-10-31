@@ -40,7 +40,8 @@ Urmezi tiparul de design din `memorie.md`, secțiunea „Tiparul de design”: l
    - Sursele proiectului stau în `.github/surse/<proiect>/`, cu numele folderului fără diacritice și cu cratimă, și cu un `README.md` care explică rularea, ca în `.github/surse/cuier-hol/`.
    - Pregătești fotografia cu `.github/unelte/foto.py pregateste`. Scriptul o rotește după EXIF, o trece în sRGB, o aduce la 1024 px pe latura mare și îi scoate toate metadatele. Nu folosești `sips`: păstrează coordonatele GPS. Ecranele aprinse, persoanele și textele le cureți cu funcțiile din `foto.py`, într-un `curata_foto.py` al proiectului, care scrie `original.jpg` în folderul surselor.
    - Inventariezi ce e pe perete și în jur: goluri de uși și ferestre, glafuri, plinte, prize, întrerupătoare, senzori, termostat, calorifere, sensul de deschidere al ușilor. Pozițiile exacte le citești pe zoom-uri cu grilă (`foto.py grila`).
-   - Calibrezi camera cu `segmente.py` și `camera.calibreaza`, ca să estimezi cotele. Scara vine din înălțimea tavanului sau din obiecte cu dimensiuni cunoscute. Îți trebuie și muchii care ies din perete, de exemplu laturile unei comode sau colțul tavanului cu peretele lateral.
+   - Dacă ai planul de arhitect în PDF, iei din el cotele camerei cu `plan_pdf.py camera`, cu scara calibrată pe o cotă scrisă și verificată pe a doua. PDF-ul și randările lui nu intră în depozit.
+   - Calibrezi camera cu `segmente.py` și `camera.calibreaza`, ca să estimezi cotele. Scara vine din înălțimea tavanului sau din obiecte cu dimensiuni cunoscute. Îți trebuie și muchii care ies din perete, de exemplu laturile unei comode sau colțul tavanului cu peretele lateral. Muchiile slabe le găsești cu `segmente.py --muchie`, iar un parametru liber, ca tavanul, îl crezi doar după profilul erorii (`camera.profil`).
 3. **Ceri cotele care lipsesc.**
    - Faci o listă scurtă, numerotată: pentru fiecare cotă, de unde până unde se măsoară, în ce unitate și la ce folosește.
    - Întrebi mereu din ce e peretele (cărămidă, BCA, beton, gips-carton) și cât are plinta, dacă nu le ai în memorie.
@@ -48,7 +49,7 @@ Urmezi tiparul de design din `memorie.md`, secțiunea „Tiparul de design”: l
    - Când primești doar cifre, scrii cum le-ai interpretat și le compari cu estimările din fotografie. Dacă diferă cu mai mult de ~2 cm, întrebi din nou.
 4. **Propunerea.**
    - Varianta A e cea naturală (de exemplu stejar), varianta B e închisă la culoare, asortată cu tâmplăria. Pornești de la paleta și materialele din memorie.
-   - Păstrezi degajările: ușile se deschid complet, iar prizele, întrerupătoarele, senzorii și termostatul rămân accesibile.
+   - Păstrezi degajările: ușile se deschid complet, iar prizele, întrerupătoarele, senzorii și termostatul rămân accesibile. Ușile de mobilier de lângă un perete sau un blat le verifici cu `usi.py`.
    - Aliniezi cu liniile existente: golul ferestrei, capul ușii, glaful, plinta.
    - Alegi materiale care se găsesc în magazinele din România, în dimensiuni standard, cu cât mai puține tăieturi, și folosești debitarea din magazin când există.
    - Socotești prinderile după perete, după grosimea placării și după greutate.
@@ -62,13 +63,15 @@ Urmezi tiparul de design din `memorie.md`, secțiunea „Tiparul de design”: l
 ## Uneltele
 
 Uneltele comune sunt în `.github/unelte/`, cu catalogul, pașii unui proiect nou și testele în `README.md`-ul de acolo. Le folosești în loc să scrii din nou sau să copiezi scripturi:
+- `plan_pdf.py`: textele, liniile și dimensiunile camerei din planul de arhitect în PDF, cu scara reală;
 - `foto.py`: fotografia fără metadate, zoom-urile cu grilă, curățarea;
-- `segmente.py` și `camera.py`: segmentele, calibrarea și trecerea din pixeli în cm;
-- `randare.py` și `materiale.py`: randările în fotografie, texturile de stejar și de microciment, culorile măsurate;
+- `segmente.py` și `camera.py`: segmentele, muchiile slabe, calibrarea cu profilul erorii și trecerea din pixeli în cm;
+- `usi.py`: cât loc le trebuie ușilor de mobilier lângă un perete sau un blat și desenul lor în plan;
+- `randare.py` și `materiale.py`: randările în fotografie, texturile de stejar, de furnir și de microciment, riflajul, culorile măsurate;
 - `comparatie.py`, `plan.py` și `rezistenta.py`: comparația, planul A3 cu verificarea textelor și verificarea tijelor;
-- `preturi.py` și `verificari.py`: prețurile din magazine și verificarea proiectului înainte de commit.
+- `preturi.py` și `verificari.py`: prețurile din magazine, foaia de produse și verificarea proiectului înainte de commit.
 
-Scripturile proiectului le pui în `.github/surse/<proiect>/` și importă uneltele cu `from unelte import …`, după ce adaugă `.github` în `sys.path`. Le rulezi cu `python -B`, ca să nu rămână `__pycache__`. Când o unealtă nouă îți folosește și poate folosi și la alte proiecte, o muți în `.github/unelte/`, cu test și cu un rând în catalog. Scripturile proiectelor publicate nu le schimbi: ele reproduc imaginile de pe site.
+Scripturile proiectului le pui în `.github/surse/<proiect>/` și importă uneltele cu `from unelte import …`, după ce adaugă `.github` în `sys.path`. Le rulezi cu `python -B`, ca să nu rămână `__pycache__`. Când o unealtă nouă îți folosește și poate folosi și la alte proiecte, o muți în `.github/unelte/`, cu test și cu un rând în catalog. O aduce acolo un subagent separat, în paralel, ca să nu te blocheze: așa vrea utilizatorul. Scripturile proiectelor publicate nu le schimbi: ele reproduc imaginile de pe site.
 
 Dintre uneltele lui Copilot, deschizi cu `view` orice imagine înainte s-o declari gata. Folosești `web_search` și `web_fetch` pentru fișe și prețuri, Playwright pentru magazinele care blochează cererile automate, `ask_user` pentru cote și `task` pentru subagenți.
 
