@@ -8,6 +8,8 @@ merg de-a lungul lungimii piesei, coloanele pe lățime. Le citești în funcți
   capetele. Fără parchet în poză: `oak_procedural`.
 - Microciment (beton decorativ): `concrete_panel`, `concrete_edge`, `concrete_end`, în tonurile din TONES sau
   într-o culoare măsurată în fotografie.
+- Furnir și riflaj (fronturile comodei din „Comodă birou”): `veneer` dă harta de detaliu a furnirului de stejar,
+  iar `reeding`, umbrirea baghetelor; le înmulțești cu culoarea și cu lumina.
 - Culoarea: `rectify_z` și `rectify_floor` îndreaptă un plan din fotografie, `masoara` dă mediana și media unei
   zone, iar `bgr_to_lab` și `delta_e2000` spun cât de departe e o mostră de ce e deja în cameră
   (ΔE00 sub ~2 abia se vede; peste ~5 se vede clar).
@@ -149,6 +151,51 @@ def end_grain(w_cm, h_cm, rng, ref=OAK_REF):
     noise = cv2.GaussianBlur(rng.rand(h, w).astype(np.float32), (0, 0), 1.2)
     g = 0.86 + 0.07 * rings + 0.10 * (noise - 0.5)
     return np.clip(np.asarray(ref, np.float32) * 0.80 * g[..., None], 0, 1).astype(np.float32)
+
+
+def veneer(w_cm, h_cm, rng, vertical=True, contrast=1.0, r=R):
+    """Hartă de detaliu (media 1, între 0,7 și 1,3) pentru furnir de stejar tăiat radial: fibră dreaptă, cu dungi
+    fine și cu razele medulare, scurte și deschise la culoare.
+
+    Are int(h_cm·r) + 2 rânduri și int(w_cm·r) + 2 coloane; fibra merge pe rânduri (vertical=True) sau pe
+    coloane. E un singur canal: culoarea unei fețe e albedo × hartă × lumina din dreptul ei, de exemplu
+    `mat.din_rgb(191, 156, 120) * sample(harta, u, v)[..., None] * M[yy, xx][..., None]`. rng: RandomState sau
+    Generator. Preluat din `.github/surse/comoda-birou/materials.py` (acolo, r = 12 px pe cm).
+    """
+    w, h = int(w_cm * r) + 2, int(h_cm * r) + 2
+    L, Wd = (h, w) if vertical else (w, h)          # L = de-a lungul fibrei
+    cols = np.arange(Wd, dtype=np.float32)
+    prof = np.ones(Wd, np.float32)
+    for _ in range(max(int(Wd / r * 1.4), 1)):
+        c, wd, a = rng.uniform(0, Wd), rng.uniform(0.6, 2.6), rng.uniform(0.02, 0.10)
+        prof -= a * np.exp(-((cols - c) / wd) ** 2)
+    band = cv2.GaussianBlur(rng.random((1, Wd)).astype(np.float32), (0, 0), sigmaX=r * 2.5)[0]
+    prof *= 1 + 0.10 * (band - band.mean()) / max(band.std(), 1e-6) * 0.5
+    rows = np.arange(L, dtype=np.float32)[:, None]
+    wave = 1.2 * np.sin(rows / rng.uniform(300, 800) * 2 * np.pi + rng.uniform(0, 6.3))
+    u = np.clip(cols[None, :] + wave, 0, Wd - 1).astype(np.float32)
+    g = cv2.remap(prof[None, :].repeat(L, 0), u, np.repeat(rows, Wd, 1).astype(np.float32), cv2.INTER_LINEAR)
+    fl = (rng.random((L, Wd)) < 0.0009).astype(np.float32)      # razele medulare
+    fl = cv2.GaussianBlur(fl, (0, 0), sigmaX=0.6, sigmaY=r * 0.7)
+    g = g * (1 + 2.2 * fl)
+    g = 1 + (g / g.mean() - 1) * contrast
+    tex = g if vertical else g.T
+    return np.clip(tex, 0.7, 1.3).astype(np.float32)
+
+
+def reeding(u_cm, pitch, side_light=0.06):
+    """Umbrirea unui riflaj vertical, ca factor pe culoare: baghete convexe, late de `pitch` cm, cu rost întunecat
+    între ele; lumina vine puțin din dreapta (side_light).
+
+    u_cm: poziția pe lățimea frontului, în cm (un număr sau un tablou). Factorul e ~0,7…1,06; în rost scade cu 40 %.
+    Preluat din `.github/surse/comoda-birou/materials.py`.
+    """
+    fr = np.mod(u_cm / pitch, 1.0)
+    x = 2 * fr - 1
+    nz = np.sqrt(np.clip(1 - 0.85 * x * x, 0, 1))
+    f = 0.70 + 0.30 * nz + side_light * x
+    groove = np.clip((np.abs(x) - 0.86) / 0.14, 0, 1)
+    return f * (1 - 0.40 * groove)
 
 
 def sample(tex, u_px, v_px, mirror=True):

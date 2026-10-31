@@ -43,6 +43,7 @@ from matplotlib.text import Annotation, Text  # noqa: E402
 PAGE = (420.0, 297.0)                               # A3 culcat, mm
 MM15, MM5, MM3 = 10.0 / 15.0, 10.0 / 5.0, 10.0 / 3.0  # mm de hârtie pe cm real, la 1:15, 1:5 și 1:3
 K15, K5, K3 = 1.5, 0.5, 0.3                         # scalarea liniuțelor de cotă (k), după scară
+MM50, K50 = 10.0 / 50.0, 5.0                        # planul camerei, la 1:50 (de exemplu din planul PDF)
 FS = 5.6                                            # corpul de literă al cotelor (pt)
 NOTE_FS, NOTE_STEP, NOTE_W = 4.7, 2.25, 88.0        # notele: corp (pt), distanța dintre rânduri și lățimea (mm)
 NB = "\u00a0"                                       # spațiu de nedespărțit
@@ -137,6 +138,19 @@ def label(ax, x, y, tx, ty, text, fs=FS, ha="left"):
     ax.annotate(text, xy=(x, y), xytext=(tx, ty), fontsize=fs, color=C["note"], ha=ha, va="center",
                 arrowprops=dict(arrowstyle="-", lw=0.35, color=C["note"], shrinkA=0, shrinkB=0), zorder=22,
                 bbox=dict(fc="white", ec="none", pad=0.2, alpha=0.9))
+
+
+def callout(ax, x, y, r, name, tx, ty):
+    """Trimiterea la un detaliu: cercul de rază r (cm) în jurul punctului (x, y) și litera detaliului la (tx, ty),
+    lângă cerc, de exemplu „A” pentru „DETALIU A”. Preluat din `.github/surse/comoda-birou/drawing.py`."""
+    ax.add_patch(mp.Circle((x, y), r, fc="none", ec=C["dim"], lw=0.5, zorder=24))
+    ax.text(tx, ty, name, fontsize=7, weight="bold", ha="center", va="center", zorder=24,
+            bbox=dict(fc="white", ec="none", pad=0.3))
+
+
+def scara(n):
+    """Pentru scara 1:n: (mm de hârtie pe cm real, k pentru cote); scara(15) = (MM15, K15), scara(50) = (MM50, K50)."""
+    return 10.0 / n, n / 10.0
 
 
 def break_v(ax, x, y0, y1, a=0.25):
