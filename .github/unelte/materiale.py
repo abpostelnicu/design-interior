@@ -10,6 +10,9 @@ merg de-a lungul lungimii piesei, coloanele pe lățime. Le citești în funcți
   într-o culoare măsurată în fotografie.
 - Furnir și riflaj (fronturile comodei din „Comodă birou”): `veneer` dă harta de detaliu a furnirului de stejar,
   iar `reeding`, umbrirea baghetelor; le înmulțești cu culoarea și cu lumina.
+- Lamele (ușile Cioata Raya, din variantele C și D ale aceluiași proiect): `lamele` împarte frontul în lamele
+  verticale de lățimi diferite, cu ton, textură și relief proprii, `lamela_la` spune în ce lamelă cade un punct,
+  iar `lamele_umbrire` dă rosturile dintre ele.
 - Culoarea: `rectify_z` și `rectify_floor` îndreaptă un plan din fotografie, `masoara` dă mediana și media unei
   zone, iar `bgr_to_lab` și `delta_e2000` spun cât de departe e o mostră de ce e deja în cameră
   (ΔE00 sub ~2 abia se vede; peste ~5 se vede clar).
@@ -196,6 +199,64 @@ def reeding(u_cm, pitch, side_light=0.06):
     f = 0.70 + 0.30 * nz + side_light * x
     groove = np.clip((np.abs(x) - 0.86) / 0.14, 0, 1)
     return f * (1 - 0.40 * groove)
+
+
+def lamele(latime, rng, latimi=(5.5, 7.0, 8.5, 10.0, 12.0), ton=0.09, decalaj=25.0, reliefuri=(0.0, 0.0, 0.25)):
+    """Un front din lamele verticale de lățimi diferite, ca ușile Cioata Raya: lamelele se pun de la stânga la
+    dreapta, fiecare cu o lățime aleasă la întâmplare din `latimi` (cm), până se umple `latime`; ultima se taie.
+
+    Întoarce (margini, tonuri, decalaje, relief), tablouri numpy, pentru n lamele:
+    - margini: n + 1 margini, în cm de la marginea din stânga a frontului; prima e 0, ultima e exact `latime`;
+    - tonuri: factorul de ton al fiecărei lamele (media 1, abaterea `ton`), de înmulțit cu culoarea;
+    - decalaje: (u, v), în cm, între 0 și `decalaj`: de unde ia fiecare lamelă textura, ca fibra să nu continue
+      de la o lamelă la alta;
+    - relief: cât iese fiecare lamelă din front, în cm, ales din `reliefuri` (implicit, cam una din trei iese cu
+      0,25 cm).
+    tonuri, decalaje și relief au, ca în sursă, câte n + 1 valori: lamela i ia valoarea i, ultima nu se folosește.
+    Aceleași margini servesc și planului (liniile dintre lamele). rng: RandomState sau Generator; cu același
+    RandomState, două uși la rând ies ca în `lamele()` din sursă.
+    Preluat din `.github/surse/comoda-birou/cioata/` (`varianta.py`).
+    """
+    if latime <= 0 or min(latimi) <= 0:
+        raise ValueError("lățimea frontului și lățimile lamelelor trebuie să fie pozitive")
+    margini, x = [0.0], 0.0
+    while x < latime:
+        x += float(rng.choice(latimi))
+        margini.append(min(x, latime))
+    n = len(margini)
+    tonuri = 1 + ton * rng.standard_normal(n)
+    decalaje = rng.uniform(0, decalaj, size=(n, 2))
+    relief = rng.choice(reliefuri, size=n)
+    return np.array(margini), tonuri, decalaje, relief
+
+
+def lamela_la(u_cm, margini):
+    """Indicele lamelei în care cade u_cm (cm pe lățimea frontului, un număr sau un tablou), după marginile din
+    `lamele`; în afara frontului, prima sau ultima lamelă."""
+    return np.clip(np.searchsorted(margini, u_cm, side="right") - 1, 0, len(margini) - 2)
+
+
+def lamele_umbrire(u_cm, margini, relief=None, rost=0.12, intunecare=0.45, umbra=0.10, umbra_lungime=0.5,
+                   lumina=0.05, lumina_lungime=0.4):
+    """Umbrirea unui front din lamele (`lamele`), ca factor pe culoare, ca `reeding` la riflaj.
+
+    u_cm: poziția pe lățimea frontului, în cm (un număr sau un tablou). Rosturile dintre lamele sunt întunecate:
+    pe `rost` cm de fiecare parte a marginii, factorul scade până la 1 − `intunecare` (0,55). O lamelă care iese
+    (relief > 0, în cm) are umbră pe muchia din stânga (`umbra` × relief, pe `umbra_lungime` cm) și lumină pe cea
+    din dreapta (`lumina` × relief, pe `lumina_lungime` cm). Fără relief (None), doar rosturile. Mijlocul unei
+    lamele plate are factorul 1. Tonul, textura (`decalaje`) și banda neagră a mânerului le pui separat.
+    Preluat din `.github/surse/comoda-birou/cioata/` (`door_raya` din `randeaza.py`).
+    """
+    margini = np.asarray(margini, float)
+    i = lamela_la(u_cm, margini)
+    u = u_cm - margini[i]
+    lat = margini[i + 1] - margini[i]
+    groove = np.clip(1 - np.minimum(u, lat - u) / rost, 0, 1)
+    if relief is None:
+        return 1 - intunecare * groove
+    r = np.asarray(relief, float)[i]
+    sh = 1 - intunecare * groove - umbra * r * np.exp(-u / umbra_lungime)
+    return sh + lumina * r * np.exp(-(lat - u) / lumina_lungime)
 
 
 def sample(tex, u_px, v_px, mirror=True):

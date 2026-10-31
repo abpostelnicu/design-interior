@@ -15,6 +15,7 @@ Tiparul, ca în `.github/surse/polite-viniluri/`:
     save_jpg("out/propunere_A_stejar.jpg", finish(cv.img, cv.touch, cv.ss))
 
 Preluat din `polite-viniluri/core.py` și `polite-viniluri/render.py`; aceleași formule, fără variabile globale.
+Umbrele unei piese pe picioare, lipite de perete (`umbre_pe_picioare`), vin din `comoda-birou/cioata/randeaza.py`.
 """
 import cv2
 import numpy as np
@@ -202,6 +203,68 @@ def tone(x, k=0.82):
 def smooth(x):
     x = np.clip(x, 0, 1)
     return x * x * (3 - 2 * x)
+
+
+def umbre_pe_picioare(x0, x1, z0, z1, sus, dedesubt, picioare, raza, latura="dreapta",
+                      perete_margine=3.0, perete_sus=0.10, perete_lateral=0.20, perete_sub=0.62,
+                      perete_sub_peste=2.0, perete_sub_inaltime=6.0, perete_max=0.68,
+                      pardoseala_retras=2.0, pardoseala_contur=0.34, pardoseala_contur_lungime=8.0,
+                      pardoseala_sub=0.36, pardoseala_perete=0.20, contact=0.40, contact_lungime=1.4,
+                      pardoseala_max=0.68):
+    """Umbrele unei piese pe picioare lipite de perete (bufet, comodă, dulap), ca factori pe fotografie.
+
+    Întoarce (perete, pardoseala): perete(X, Y) pe peretele Z = 0, pentru `Canvas.multiply_wall`, și
+    pardoseala(X, Z) pe Y = 0, pentru `Canvas.multiply_floor` (în proiecte, `multiply_plane` cu „Z” și „Y”).
+    Cotele, în cm: x0, x1 = capetele corpului de-a lungul peretelui; z0, z1 = spatele și fața lui, de la perete;
+    sus = înălțimea blatului; dedesubt = fața de jos a corpului, deasupra picioarelor; picioare = centrele (x, z)
+    ale picioarelor; raza = raza lor.
+
+    Pe perete: banda de sub corp (`perete_sub`), care începe la `perete_sub_peste` cm deasupra lui `dedesubt` și
+    e plină după încă `perete_sub_inaltime` cm în jos, o umbră fină deasupra blatului (`perete_sus`) și una în
+    lateral, în partea `latura` („dreapta”, cu lumina din stânga, sau „stanga”), până la blat (`perete_lateral`);
+    dincolo de laterale se sting pe `perete_margine` cm. Pe pardoseală: umbra de sub corp (`pardoseala_sub`, mai
+    închisă spre perete cu `pardoseala_perete`), cu conturul retras cu `pardoseala_retras` cm față de laterale și
+    de față și stins în afară pe `pardoseala_contur_lungime` cm (de la `pardoseala_contur`), plus ocluzia de
+    contact a fiecărui picior (`contact`, pe `contact_lungime` cm). Factorul nu coboară sub 1 − `perete_max`,
+    respectiv 1 − `pardoseala_max`, iar sub pardoseală (Y < 0) și în spatele peretelui (Z < 0) e 1: `multiply_wall`
+    și `multiply_floor` îl calculează pe tot dreptunghiul de pixeli din jurul zonei.
+
+    Coeficienții impliciți sunt ai bufetelor Cioata Raya și Veneto 116 (adânci de 48 cm, cu corpul de la 20 cm).
+    Zonele, ca în proiect: lui `multiply_wall` îi dai X de la x0 − 15 la x1 + 20 și Y de la 0 la sus + 25, iar lui
+    `multiply_floor`, X de la x0 − 20 la x1 + 25 și Z de la 0 la z1 + 30. Preluat din
+    `.github/surse/comoda-birou/cioata/` (`shadows` din `randeaza.py`; aceeași formulă, cu alți coeficienți, la
+    dulapul Galla din `render_galla.py`).
+    """
+    if latura not in ("dreapta", "stanga"):
+        raise ValueError(f"latura: „dreapta” sau „stanga”, nu „{latura}”")
+    picioare = [(float(x), float(z)) for x, z in picioare]
+
+    def perete(X, Y):
+        dx = np.maximum(np.maximum(x0 - X, X - x1), 0)
+        inx = np.exp(-dx / perete_margine)
+        above = perete_sus * np.exp(-np.maximum(Y - sus, 0) / 3.0) * inx * (Y >= sus - 1)
+        if latura == "dreapta":
+            beside = perete_lateral * np.exp(-np.maximum(X - x1, 0) / 4.0) * (X >= x1)
+        else:
+            beside = perete_lateral * np.exp(-np.maximum(x0 - X, 0) / 4.0) * (X <= x0)
+        beside = beside * smooth((sus + 4 - Y) / 6.0)
+        under = perete_sub * smooth((dedesubt + perete_sub_peste - Y) / perete_sub_inaltime) * inx
+        return np.where(Y >= 0, 1 - np.clip(above + beside + under, 0, perete_max), 1.0)
+
+    def pardoseala(X, Z):
+        with np.errstate(over="ignore", invalid="ignore"):      # razele aproape paralele cu pardoseala
+            dx = np.maximum(np.maximum(x0 + pardoseala_retras - X, X - x1 + pardoseala_retras), 0)
+            dz = np.maximum(Z - z1 + pardoseala_retras, 0)
+            dist = np.hypot(dx, dz)
+            body = np.where(dist > 0, pardoseala_contur * np.exp(-dist / pardoseala_contur_lungime),
+                            pardoseala_sub + pardoseala_perete * np.exp(-(Z - z0) / 15.0))
+            cont = np.zeros_like(X, dtype=float)
+            for (lx, lz) in picioare:
+                rr = np.maximum(np.hypot(X - lx, Z - lz) - raza, 0)
+                cont = np.maximum(cont, contact * np.exp(-rr / contact_lungime))
+            return np.where(Z >= 0, 1 - np.clip(body + cont, 0, pardoseala_max), 1.0)
+
+    return perete, pardoseala
 
 
 def finish(img, touch, ss=2, seed=7, noise=0.009):

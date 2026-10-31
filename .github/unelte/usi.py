@@ -29,7 +29,8 @@ parte, iar fața lui e la 51,5 cm de perete. Ușa din dreapta, de 34 cm, are 1,1
 ~5,8 cm în blatul biroului la 110°; cea din stânga, de 51 cm, are tot 1,1 cm liberi la 90°, până la perete.
 Ușile se deschid deci până la ~90°, nu până la cei 110° ai balamalelor.
 
-În planul tehnic, `deseneaza` pune ușa într-o vedere în plan făcută cu `plan.make_axes(..., invert=True)`.
+În planul tehnic, `deseneaza` pune ușa într-o vedere în plan făcută cu `plan.make_axes(..., invert=True)`; cu
+`nume` și `obstacol`, legenda spune care ușă e și în ce ar intra, ca să deosebești două uși din aceeași vedere.
 Codul de ieșire: 0 dacă ușa ajunge la unghiul maxim fără să atingă obstacolul, 1 dacă îl atinge înainte, 2 la
 argumente greșite. Generalizat din `door_check` din `.github/surse/comoda-birou/render_galla.py`.
 """
@@ -154,7 +155,7 @@ def _dim_h(ax, x0, x1, y, text, dy, fs, k):
 
 
 def deseneaza(ax, rez, balama, x_balama=0.0, k=1.0, fs=5.0, cote=True, legenda=True, latime_obstacol=25.0,
-              corp=None):
+              corp=None, nume=None, obstacol=None):
     """Ușa, în plan, pe axele date: X de-a lungul peretelui, Z = adâncimea de la perete (în jos, ca în vederile
     în plan din proiecte, cu `invert=True`), în cm.
 
@@ -163,11 +164,18 @@ def deseneaza(ax, rez, balama, x_balama=0.0, k=1.0, fs=5.0, cote=True, legenda=T
     maxim (punctat) și la cel de contact (roșu), arcul muchiei libere și, cu `cote`, distanța până la obstacol și
     cât intră ușa în el la unghiul maxim. `legenda` explică liniile, în colțul din stânga jos al vederii sau la
     (x, y), în fracțiuni din vedere; două uși în aceeași vedere primesc legende în locuri diferite sau False.
+    Ca să le deosebești, legenda spune care ușă e, cu `nume` (de exemplu „ușa din stânga (spre colț)”), și în ce
+    intră, cu `obstacol`, perechea (nearticulat, articulat): („perete”, „peretele”) sau („blat”, „blatul”). Cu
+    amândouă: „ușa din stânga (spre colț): la 90° (plin); la 110° (punctat) ar intra 15,8 cm în perete; atinge
+    peretele la ~93° (roșu)”; fără ele: „ușa de 55 cm la 90° (plin); … intră 15,8 cm în obstacol; …”.
     corp: (x0, x1) ale corpului, dacă îl vrei desenat, cu spatele la 0,5 cm de perete, sau (x0, x1, z_spate).
-    k scalează cotele, ca în `plan` (K15, K5).
+    k scalează cotele, ca în `plan` (K15, K5). Legenda cu `nume` și `obstacol` e preluată din
+    `.github/surse/comoda-birou/cioata/` (`vedere_plan` din `planul.py`).
     """
     import matplotlib.patches as mp
 
+    if obstacol is not None and (isinstance(obstacol, str) or len(obstacol) != 2):
+        raise ValueError("obstacol: perechea (nearticulat, articulat), de exemplu („perete”, „peretele”)")
     sg = 1.0 if balama == "dreapta" else -1.0
     w, t, g, fata = rez["latime"], rez["grosime"], rez["distanta"], rez["fata"]
     z0, z1 = rez["obstacol"]
@@ -208,11 +216,17 @@ def deseneaza(ax, rez, balama, x_balama=0.0, k=1.0, fs=5.0, cote=True, legenda=T
     oc = rez["la_max"]["ocupat"]
     intra = oc is not None and oc > g + 0.05
     if legenda:
-        parti = [f"ușa de {_fmt(w)} cm la 90° (plin)"]
+        parti = [f"{nume}: la 90° (plin)" if nume else f"ușa de {_fmt(w)} cm la 90° (plin)"]
         if abs(umax - 90.0) > 0.01:
-            parti.append(f"la {_fmt(umax)}° (punctat)" + (f" intră {_fmt(oc - g)} cm în obstacol" if intra else ""))
+            if not intra:
+                parti.append(f"la {_fmt(umax)}° (punctat)")
+            elif obstacol is None:
+                parti.append(f"la {_fmt(umax)}° (punctat) intră {_fmt(oc - g)} cm în obstacol")
+            else:
+                parti.append(f"la {_fmt(umax)}° (punctat) ar intra {_fmt(oc - g)} cm în {obstacol[0]}")
         if contact is not None and contact < umax:
-            parti.append(f"atinge obstacolul la {_fmt(contact)}° (roșu)")
+            parti.append(f"atinge obstacolul la {_fmt(contact)}° (roșu)" if obstacol is None
+                         else f"atinge {obstacol[1]} la ~{_fmt(contact)}° (roșu)")
         xl, yl = legenda if isinstance(legenda, (tuple, list)) else (0.01, 0.01)
         ax.text(xl, yl, "; ".join(parti), transform=ax.transAxes, fontsize=fs, color=_C["note"], ha="left",
                 va="bottom", zorder=9, bbox=dict(fc="white", ec="none", pad=0.2, alpha=0.9))
