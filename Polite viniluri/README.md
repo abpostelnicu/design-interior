@@ -21,7 +21,7 @@ Două polițe flotante din stejar pentru viniluri, pe peretele cu televizorul di
 | [propunere_C_beton_gri.jpg](propunere_C_beton_gri.jpg) | Randarea propunerii C |
 | [varianta_D_beton_antracit.jpg](varianta_D_beton_antracit.jpg) | Randarea variantei D |
 | [plan_tehnic_polite_viniluri_beton.pdf](plan_tehnic_polite_viniluri_beton.pdf) | Planul tehnic A3 al variantelor C și D, scara 1:15, comun pentru amândouă: vedere frontală, secțiune prin verticală, plan, detaliul A (tija), detaliul B (opritorul) și detaliul C (îmbinarea verticalei), plus cotele de măsurat ([PNG](plan_tehnic_polite_viniluri_beton.png)) |
-| [lista_materiale_beton.md](lista_materiale_beton.md) | Lista de cumpărături pentru C și D: prețuri verificate și linkuri, plus ce mai e de verificat |
+| [lista_materiale_beton.md](lista_materiale_beton.md) | Lista de cumpărături pentru C și D: de unde comanzi polițele (Cioata, un atelier de microciment sau un tâmplar) și feroneria, cu prețuri verificate și linkuri |
 
 ## Ce e acum pe perete
 
@@ -265,9 +265,10 @@ Sunt și pe [planul lui C și D](plan_tehnic_polite_viniluri_beton.pdf). Canalel
 
 ### Execuția cerută atelierului
 
-Polițe de 80 × 33 × 4 cm din microciment, cu canale pentru tije și cu o verticală din stejar, nu există gata făcute, așa că se comandă. Două căi, cu prețul la cerere:
-- **Un atelier de mobilier care lucrează cu microciment,** după [planul tehnic al lui C și D](plan_tehnic_polite_viniluri_beton.pdf). Verticala și plăcile de stejar le poate face același atelier sau un tâmplar.
-- **Cioata, de întrebat.** Pe site scrie că fiecare piesă se personalizează, ca dimensiune și finisaj, dar nu e sigur că face și piese din microciment la comandă. Întreabă-i dacă pot face polițele în microcimentul fronturilor comodei, iar verticala și plăcile opritoarelor în stejarul ramei. Cioata nu montează pe perete, așa că montajul îl faci după pașii de mai jos.
+Polițe de 80 × 33 × 4 cm din microciment, cu canale pentru tije și cu o verticală din stejar, nu există gata făcute, așa că se comandă, cu prețul la cerere. Căile, în ordinea în care merită încercate, cu firmele, prețurile de referință și linkurile, sunt în [lista de materiale pentru C și D](lista_materiale_beton.md#cum-le-procuri):
+1. **Cioata, prima de întrebat.** Face în fabrica din Târgu Mureș linia Veneto, din stejar și microciment: la comoda ta, fronturile sunt din MDF acoperit cu microciment. Pe site scrie că fiecare piesă se personalizează, inclusiv ca dimensiune și finisaj al lemnului, iar termenul e de 2–8 săptămâni. Microcimentul are în paletar un singur ton, „C9 - antracit spre negru”, al fronturilor: e tonul variantei D. Pentru C, întreabă dacă pot face și un microciment gri. Cere miez din placaj, nu din MDF, ca în plan, iar verticala și plăcile opritoarelor în stejarul ramei. Cioata nu montează pe perete, așa că montajul îl faci după pașii de mai jos.
+2. **Un atelier sau un aplicator de microciment** care lucrează și pe mobilier, după [planul tehnic al lui C și D](plan_tehnic_polite_viniluri_beton.pdf). Verticala, plăcile de stejar și miezul le poate face același atelier sau un tâmplar.
+3. **Un tâmplar, cu un set de microciment pentru mobilier,** pe care îl aplică el sau tu. Faci întâi mostra, pe un rest de placaj.
 
 Ce ceri, oricine le face:
 1. **Polițele:** 2 bucăți de 80 × 33 × 4 cm. Miezul e din 2 plăci de placaj de mesteacăn de 18 mm, lipite, iar deasupra, dedesubt, în față și la capete are ~2 mm de microciment.
@@ -283,6 +284,22 @@ Ce ceri, oricine le face:
 8. **O mostră** de microciment cu o muchie finisată, în tonul ales, pe care o compari cu comoda, la lumina zilei, înainte de execuție. În varianta D, o compari cu fronturile.
 9. **Șablonul:** o bucată de 80 × 20 × 4 cm din același miez, cu aceleași 4 canale, în aceleași poziții. Axul canalelor e la 2 cm de fața de jos, ca la poliță. Cu el marchezi găurile din perete și ții tijele paralele până se întărește ancora.
 10. **Plăcile opritoarelor:** 4 plăci de stejar de 2 × 12 × 18 cm, în finisajul verticalei.
+
+#### Cererea de ofertă
+
+Un mesaj gata de trimis, pe e-mail sau prin formularul de contact, cu [planul lui C și D](plan_tehnic_polite_viniluri_beton.pdf) atașat. Ce e între paranteze drepte completezi tu.
+
+> Bună ziua,
+>
+> Aș vrea o ofertă pentru două polițe de perete la comandă, după planul tehnic atașat (PDF, A3, scara 1:15):
+> - 2 polițe de 80 × 33 × 4 cm, din microciment de ~2 mm, în tonul [gri natural / antracit, ca fronturile comodei Veneto], pe un miez din 2 plăci de placaj de mesteacăn de 18 mm, lipite;
+> - în fiecare poliță, 4 canale de Ø14 mm × 26 cm, în cantul din spate, făcute din semicanale frezate înainte de lipire, la cotele din plan;
+> - muchiile rotunjite R3, plasă din fibră de sticlă peste muchii, lac poliuretanic bicomponent mat, iar spatele și canalele sigilate;
+> - o verticală din stejar masiv încleiat, de 4 × 33 × 39,3 cm, lipită de polița de jos cu cepuri, ca în detaliul C din plan, și 4 plăci de stejar de 2 × 12 × 18 cm, în finisajul [codul de finisaj al comodei];
+> - un șablon de 80 × 20 × 4 cm, din același miez, cu aceleași 4 canale;
+> - o mostră de microciment cu o muchie finisată, înainte de execuție.
+>
+> Vă rog să-mi spuneți prețul, termenul, costul transportului și ce sistem de microciment folosiți, inclusiv cum se reîmprospătează lacul. Montajul îl fac eu.
 
 Prețurile de referință și materialele sunt în [lista de materiale pentru C și D](lista_materiale_beton.md).
 
@@ -309,14 +326,14 @@ Toate cotele de înălțime se raportează la marginea de sus a televizorului, *
 Materialele, cu prețuri și linkuri, sunt în [lista_materiale_beton.md](lista_materiale_beton.md):
 - polița de jos, cu verticala lipită din atelier (~12,2 kg), polița de sus (~8,5 kg) și șablonul de 80 × 20 × 4 cm;
 - 4 tije filetate M12 de clasa 8.8, de 1 m: din fiecare ies două bucăți de 38 cm. Nu folosi tija zincată obișnuită, de clasa 4.8;
-- un cartuș de ancoră chimică și, numai pentru cărămidă cu goluri sau BCA, 8 manșoane-sită;
+- un cartuș de ancoră chimică, cu două mixere, câte unul pentru fiecare repriză, și, numai pentru cărămidă cu goluri sau BCA, 8 manșoane-sită Fischer FIS H 20 × 130 K;
 - adeziv epoxidic bicomponent, pentru tijele din polițe;
 - 4 opritoare L din oțel, 4 plăci de stejar de 2 × 12 × 18 cm, adeziv Fix All Crystal și folie transparentă autoadezivă pentru tălpile opritoarelor;
 - pentru proba de încărcare: 55 kg pe fiecare poliță (de exemplu, 11 bidoane de 5 l cu apă) și scânduri, cu o pânză moale dedesubt.
 
 Unelte:
 - bormașină cu percuție, care să poată merge și doar pe rotire;
-- burghiu de zidărie Ø14 mm, lung de cel puțin 160 mm, și unul de Ø6 mm, pentru gaura de probă;
+- burghiu de zidărie Ø14 mm, lung de cel puțin 160 mm (pentru cărămidă cu goluri sau BCA, Ø20 mm, la fel de lung), și unul de Ø6 mm, pentru gaura de probă;
 - nivelă laser sau nivelă de 1–2 m, ruletă, creion;
 - detector de cabluri și țevi;
 - pistol pentru cartuș, o perie pentru găuri și o pompă de suflat;
@@ -356,7 +373,7 @@ Unelte:
 5. Taie tijele M12 în 8 bucăți de 38 cm și pilește capetele. Pe fiecare tijă, lipește o bandă de mascare la 13 cm de un capăt: până acolo intră în perete.
 6. Lipește bandă de mascare pe burghiul de Ø14, la 140 mm de vârf. Dă găurile până la bandă, perpendicular pe perete:
    - în cărămidă plină sau în beton, cu percuție;
-   - în cărămidă cu goluri sau în BCA, cum cere manșonul-sită (diametrul și adâncimea sunt pe ambalaj), doar pe rotire, ca să nu spargi pereții interiori ai cărămizii.
+   - în cărămidă cu goluri sau în BCA, cum cere manșonul-sită FIS H 20 × 130 K: cu burghiul de Ø20 mm, cu banda pusă tot la 140 mm de vârf (manșonului îi trebuie cel puțin 135 mm), doar pe rotire, ca să nu spargi pereții interiori ai cărămizii.
 
 #### 3. Prinde tijele poliței de jos
 
@@ -382,7 +399,7 @@ Unelte:
 3. Verifică: fața de jos a șablonului ar trebui să iasă pe linia T − 35,4. Dacă diferă cu câțiva milimetri, te iei după verticală: rostul de 3 mm se vede, diferența față de televizor nu.
 4. Trasează prin canale centrele găurilor, ca la pasul 2, apoi ia șablonul jos.
 5. Găurește la fel ca la pasul 2, cu aspiratorul ținut sub gaură.
-6. Pune ancora și tijele la fel ca la pasul 3: tijele trec prin șablon, iar șablonul stă pe verticală, peste distanțiere, și pe calup, la ~1 cm de perete și la nivel, până se întărește ancora.
+6. Pune pe cartuș mixerul nou: ancora din primul s-a întărit. Apoi pune ancora și tijele la fel ca la pasul 3: tijele trec prin șablon, iar șablonul stă pe verticală, peste distanțiere, și pe calup, la ~1 cm de perete și la nivel, până se întărește ancora.
 
 #### 6. Pune polița de sus
 

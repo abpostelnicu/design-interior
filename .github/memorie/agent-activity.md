@@ -19,11 +19,15 @@ Aici vezi dintr-o privire ce agenți lucrează acum în depozit, la ce și în c
 
 | Sesiune (agent) | Proiect | Ce face acum | Fișiere | Stare | Început | Actualizat |
 |---|---|---|---|---|---|---|
+| actualizare politelor de beton | Polițe viniluri, variantele C și D (beton decorativ și stejar) | utilizatorul a cerut commit-ul: fac commit pe ramură, push-ul ramurii și pull request-ul spre `master` | `Polite viniluri/lista_materiale_beton.md` și secțiunea C și D din `Polite viniluri/README.md`, pe ramura `polite-beton-procurare`, într-un worktree separat; clona comună rămâne pe `master` | lucrează | 2026-10-31 08:17 | 2026-10-31 10:00 |
 
 ## Istoric
 
 | Când | Sesiune (agent) | Eveniment | Detalii |
 |---|---|---|---|
+| 2026-10-31 10:00 | actualizare politelor de beton | commit | „Adaugă prețurile și căile de procurare pentru polițele din beton”, pe ramura `polite-beton-procurare`, după ce utilizatorul a scris „commit”; urmează push-ul ramurii și pull request-ul spre `master`, pe care îl îmbină utilizatorul |
+| 2026-10-31 09:52 | actualizare politelor de beton | gata (necomis) | variantele C și D au prețurile și căile de procurare verificate: Cioata întâi, ateliere de microciment, un tâmplar cu setul Epodex, feroneria (tije 8.8 de la Hornbach, ancora cu două mixere, manșoanele FIS H 20 × 130 K) și o cerere de ofertă în README. Utilizatorul n-a putut răspunde la întrebarea despre commit, așa că modificările stau necomise pe ramura `polite-beton-procurare`, în worktree; planurile și imaginile rămân neschimbate, iar fișierele comune nu sunt rezervate |
+| 2026-10-31 08:17 | actualizare politelor de beton | început | prețurile și căile de procurare pentru variantele C și D ale polițelor, acum că internetul merge: ateliere de microciment, Cioata, feroneria „de verificat”. Lucrez pe ramura `polite-beton-procurare`, pornită din `origin/master`, într-un worktree din afara clonei; planurile și imaginile existente nu se ating |
 | 2026-10-30 18:49 | Supraveghere agenți și aducere în master | terminat | Toate cele trei sesiuni au trecut „terminat”, iar „Acum” e gol. Fiecare pull request îl conține pe cel dinainte: [#1](https://github.com/abpostelnicu/design-interior/pull/1) (variantele C și D din beton, în „Polite viniluri”), [#2](https://github.com/abpostelnicu/design-interior/pull/2) (regulile pentru aducerea în `master`) și [#3](https://github.com/abpostelnicu/design-interior/pull/3) (uneltele comune). Utilizatorul le îmbină în ordine sau direct pe #3. Nicio imagine și niciun plan existent nu se modifică |
 | 2026-10-30 18:49 | Supraveghere agenți și aducere în master | commit | „Îmbină în ramura uneltelor încheierea urmăririi agenților”, pe ramura `unelte-agenti`, în [pull request-ul #3](https://github.com/abpostelnicu/design-interior/pull/3), a cărui sesiune se încheiase |
 | 2026-10-30 18:49 | Supraveghere agenți și aducere în master | commit | „Încheie urmărirea agenților cu starea finală a pull request-urilor”, pe ramura `reguli-aducere-in-master`, în [pull request-ul #2](https://github.com/abpostelnicu/design-interior/pull/2) |
