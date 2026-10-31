@@ -4,7 +4,7 @@ Aici sunt uneltele comune ale agenților care lucrează în depozit, mai ales al
 
 Uneltele vin din sursele celor două proiecte, [`cuier-hol/`](../surse/cuier-hol/README.md) și [`polite-viniluri/`](../surse/polite-viniluri/README.md), inclusiv din subfolderul variantelor C și D ale polițelor, din beton decorativ, [`polite-viniluri/beton/`](../surse/polite-viniluri/beton/README.md). Scripturile acelor proiecte rămân neschimbate, pentru că reproduc imaginile publicate. Testele de aici verifică faptul că uneltele dau aceleași rezultate ca ele.
 
-Planul de arhitect în PDF (`plan_pdf.py`), ușile de mobilier (`usi.py`) și câteva funcții din modulele de mai jos vin din proiectul „Comodă birou”, din [`comoda-birou/`](../surse/comoda-birou/README.md) și din uneltele scrise atunci pentru el.
+Planul de arhitect în PDF (`plan_pdf.py`), ușile de mobilier (`usi.py`) și câteva funcții din modulele de mai jos vin din proiectul „Comodă birou”, din [`comoda-birou/`](../surse/comoda-birou/README.md) și din uneltele scrise atunci pentru el. Lamelele ușilor Cioata Raya (`materiale.lamele`), umbrele pieselor pe picioare (`randare.umbre_pe_picioare`) și legenda ușilor cu nume și obstacol (`usi.deseneaza`) vin din variantele C și D ale aceluiași proiect, din [`comoda-birou/cioata/`](../surse/comoda-birou/cioata/README.md).
 
 Folderul începe cu punct, deci nu apare pe site, dar depozitul e public: fără căi absolute sau date personale în fișiere.
 
@@ -55,9 +55,9 @@ Opt module se rulează și din linia de comandă: `foto.py`, `segmente.py`, `com
 | [`foto.py`](foto.py) | Fotografia de lucru: fără metadate, cu 1024 px pe latura mare, în sRGB. Face zoom-uri cu grilă de coordonate și curăță ecranele, persoanele și textele | `pregateste`, `metadate`, `citeste`, `scrie`, `grila`, `stinge_ecran`, `umple_de_sus`, `sterge`, `estompeaza` | `polite-viniluri/curata_foto.py` |
 | [`segmente.py`](segmente.py) | Segmentele de dreaptă din fotografie (LSD), numerotate, ca să le alegi pe grupuri; LSD pe poza mărită, la pozele mici, și muchiile slabe, din gradient, pe care LSD nu le prinde | `detecteaza` (cu `marire`), `deseneaza`, `alege`, `muchie_slaba`, `abateri_segment`, `deseneaza_muchie` | metoda din [README-ul cuierului](../surse/cuier-hol/README.md); mărirea și muchia slabă, din trusa „Comodă birou” |
 | [`camera.py`](camera.py) | Aparatul foto: proiecții, raze, trecerea din pixeli în cm și calibrarea, cu profilul erorii pentru parametrii liberi | `Camera` (`project`, `backproject`, `scaled`, `fara_distorsiune`), `calibreaza`, `profil`, `rezumat_profil`, `incarca`, `salveaza`, `citeste_segmente`, `puncte`, `rezumat` | `camera.py` din ambele proiecte; profilul, din `comoda-birou/camera.py` |
-| [`usi.py`](usi.py) | Ușile de mobilier: unghiul la care o ușă atinge peretele sau blatul de lângă ea, cât rămâne liber la 90° și cât ar intra în obstacol la unghiul maxim al balamalelor; desenul ușii în vederea în plan | `analizeaza`, `deseneaza`, `imagine`, `colturi_usa`, `ocupat` | `door_check` din `comoda-birou/render_galla.py`, generalizat |
-| [`randare.py`](randare.py) | Piesele noi, desenate în fotografie cu buffer de adâncime, în lumina peretelui și cu umbre | `Canvas` (`din_foto`, `face`, `multiply_wall`, `multiply_floor`), `box`, `solid`, `wall_light_map`, `finish`, `current_photo`, `save_jpg` | `polite-viniluri/core.py` și `render.py` |
-| [`materiale.py`](materiale.py) | Texturile: stejar luat din parchetul din poză sau procedural, microciment, furnir și riflaj. Măsoară culorile din poză și diferența dintre ele (Lab, ΔE00) | `oak_source`, `glued_panel`, `end_grain`, `oak_procedural`, `veneer`, `reeding`, `concrete_panel`, `concrete_edge`, `concrete_end`, `sample`, `masoara`, `diferenta` | `polite-viniluri/materials.py`, `polite-viniluri/beton/beton.py` și `comoda-birou/materials.py` |
+| [`usi.py`](usi.py) | Ușile de mobilier: unghiul la care o ușă atinge peretele sau blatul de lângă ea, cât rămâne liber la 90° și cât ar intra în obstacol la unghiul maxim al balamalelor; desenul ușii în vederea în plan, cu legenda care spune care ușă e și în ce ar intra | `analizeaza`, `deseneaza`, `imagine`, `colturi_usa`, `ocupat` | `door_check` din `comoda-birou/render_galla.py`, generalizat; legenda cu nume și obstacol, din `comoda-birou/cioata/planul.py` |
+| [`randare.py`](randare.py) | Piesele noi, desenate în fotografie cu buffer de adâncime, în lumina peretelui și cu umbre, inclusiv umbrele gata făcute ale unei piese pe picioare | `Canvas` (`din_foto`, `face`, `multiply_wall`, `multiply_floor`), `box`, `solid`, `wall_light_map`, `umbre_pe_picioare`, `finish`, `current_photo`, `save_jpg` | `polite-viniluri/core.py` și `render.py`; `umbre_pe_picioare`, din `comoda-birou/cioata/randeaza.py` |
+| [`materiale.py`](materiale.py) | Texturile: stejar luat din parchetul din poză sau procedural, microciment, furnir, riflaj și fronturi din lamele. Măsoară culorile din poză și diferența dintre ele (Lab, ΔE00) | `oak_source`, `glued_panel`, `end_grain`, `oak_procedural`, `veneer`, `reeding`, `lamele`, `lamela_la`, `lamele_umbrire`, `concrete_panel`, `concrete_edge`, `concrete_end`, `sample`, `masoara`, `diferenta` | `polite-viniluri/materials.py`, `polite-viniluri/beton/beton.py` și `comoda-birou/materials.py`; lamelele, din `comoda-birou/cioata/` |
 | [`comparatie.py`](comparatie.py) | Imaginea de comparație: Acum și propunerile (A și B sau, la variantele în plus, C și D), cu titluri și subtitluri | `compune` | `compare.py` din ambele proiecte |
 | [`plan.py`](plan.py) | Planul tehnic A3 la 1:15: pagina, cotele, notele și trimiterile la detalii, plus verificarea automată a textelor și a formatului PDF | `pagina`, `make_axes`, `rect`, `dim_h`, `dim_v`, `label`, `callout`, `text_block`, `legend`, `scara`, `save`, `verifica_figura`, `e_a3` | `drawing.py` și `verifica_plan.py` din `polite-viniluri/beton/`, `polite-viniluri/drawing.py`; `callout`, din `comoda-birou/drawing.py` |
 | [`rezistenta.py`](rezistenta.py) | Verificări de ordinul de mărime: tije în consolă, smulgerea din ancoră, greutăți | `rod_check`, `rod_pull`, `kg_placa`, `greutate`, `RHO`, `FY` | `design.py` din `polite-viniluri/` și `polite-viniluri/beton/` |
@@ -65,6 +65,7 @@ Opt module se rulează și din linia de comandă: `foto.py`, `segmente.py`, `com
 | [`verificari.py`](verificari.py) | Verificarea unui proiect înainte de commit, cu variantele lui în plus: livrabile, metadate, linkuri, diacritice, date personale, calculele din listele de materiale | `verifica`, `verifica_texte`, `verifica_linkuri` | nou, după regulile din memorie |
 | [`teste/test_unelte.py`](teste/test_unelte.py) | Testele tuturor uneltelor, inclusiv paritatea cu scripturile proiectelor | – | – |
 | [`teste/test_unelte_noi.py`](teste/test_unelte_noi.py) | Testele uneltelor aduse din „Comodă birou”: planul PDF, pe planuri sintetice, ușile, funcțiile noi și paritatea cu `comoda-birou/` | – | – |
+| [`teste/test_unelte_cioata.py`](teste/test_unelte_cioata.py) | Testele uneltelor aduse din variantele C și D ale „Comodă birou”: lamelele, legenda ușilor și umbrele pieselor pe picioare, cu paritatea cu `comoda-birou/cioata/` și cu `render_galla.py` | – | – |
 
 ## Un proiect nou, pas cu pas
 
@@ -229,6 +230,21 @@ print(mat.diferenta(perete, mat.din_rgb(200, 196, 188)))           # ΔE00 faț�
 
 ΔE00 sub 2 abia se vede; peste 5 se vede clar. Dacă poza nu are parchet liber, iei `oak_procedural(rng)`. Un front din furnir de stejar are harta de detaliu `mat.veneer(lățime, înălțime, rng)`, iar unul riflat, umbrirea `mat.reeding(u_cm, pas)`; amândouă le înmulțești cu culoarea produsului și cu lumina peretelui, ca la „Comodă birou”.
 
+Un front din lamele verticale de lățimi diferite, ca ușile Cioata Raya, îl împarți cu `mat.lamele`: marginile lamelelor, tonul, decalajul texturii și relieful fiecăreia. `mat.lamele_umbrire` dă rosturile întunecate dintre ele, umbra și lumina de pe muchiile lamelelor care ies; aceleași margini le desenezi și în plan, ca linii. Banda neagră a mânerului o pui separat. Preluat din `.github/surse/comoda-birou/cioata/`.
+
+```python
+margini, tonuri, decalaje, relief = mat.lamele(55, rng)          # o ușă de 55 cm
+fibra = mat.veneer(30, 60, rng, contrast=2.0)                    # fibra verticală, aceeași pentru toate lamelele
+
+
+def usa(s, t, X, yy, xx):                                        # s, t: cm pe ușă; M: lumina peretelui (pasul 6)
+    i = mat.lamela_la(s, margini)                                # lamela fiecărui pixel
+    u = s - margini[i]
+    det = mat.sample(fibra, (u + decalaje[i, 0]) * mat.R, (t + decalaje[i, 1]) * mat.R)
+    f = det * tonuri[i] * mat.lamele_umbrire(s, margini, relief) * M[yy, xx]
+    return mat.din_rgb(140, 107, 68) * f[..., None]
+```
+
 ### 6. Randarea
 
 ```python
@@ -257,6 +273,15 @@ rd.save_jpg(os.path.join(HERE, "out", "acum.jpg"), rd.current_photo(photo))
 
 Ce acoperă ce se rezolvă cu bufferul de adâncime, nu cu ordinea de desenare. Obiectele din poză care stau în fața pieselor noi, de exemplu boxele, le desenezi fără culoare (`color=None`, iar la `box`, `lambda n: None`): intră doar în buffer și ascund ce e în spatele lor. Fețele mari ale poliței, sus și jos, au textura; canturile au culoarea medie a lemnului. Toate sunt umbrite după orientare (`SHADE`). Aparatul e aici la 1 m înălțime, deci se vede fața de jos. După fiecare randare te uiți pe imagine cu `view`, mărit pe îmbinări, umbre și margini.
 
+O piesă pe picioare lipită de perete (bufet, comodă, dulap) are umbrele gata făcute în `rd.umbre_pe_picioare`: banda de pe perete de sub corp, umbra corpului pe pardoseală și ocluzia de contact a fiecărui picior, plus umbrele fine de deasupra blatului și din lateral (implicit în dreapta; `latura="stanga"`, când lumina vine din dreapta). Coeficienții impliciți sunt ai bufetelor Cioata Raya și Veneto; pentru alte piese îi schimbi după ce vezi randarea (cei ai dulapului Galla sunt în `teste/test_unelte_cioata.py`). Preluat din `.github/surse/comoda-birou/cioata/`.
+
+```python
+picioare = [(x, z) for x in (17.6, 108.6) for z in (5, 43)]      # centrele picioarelor (x, z), în cm
+pe_perete, pe_jos = rd.umbre_pe_picioare(5.1, 121.1, 0, 48, 82, 20, picioare, raza=1.2)   # x0, x1, z0, z1, sus, dedesubt
+cv.multiply_wall(pe_perete, 5.1 - 15, 121.1 + 20, 0, 82 + 25)
+cv.multiply_floor(pe_jos, 5.1 - 20, 121.1 + 25, 0, 48 + 30)
+```
+
 ### 7. Comparația
 
 ```sh
@@ -277,8 +302,11 @@ from unelte import usi
 
 ax = make_axes(fig, 4, 3, (-38, 334), (-14, 120), "PLAN – VEDERE DE SUS (1:15)", MM15, invert=True)
 rez = usi.analizeaza(34, 2.5, 3.6, fata=51.5, obstacol_pana_la=70)
-usi.deseneaza(ax, rez, "dreapta", x_balama=122.6, k=K15, legenda=(0.30, 0.01))   # două uși: legende în locuri diferite
+usi.deseneaza(ax, rez, "dreapta", x_balama=122.6, k=K15, legenda=(0.30, 0.01),   # două uși: legende în locuri diferite
+              nume="ușa din dreapta (spre birou)", obstacol=("blat", "blatul"))
 ```
+
+Cu `nume` și `obstacol`, perechea (nearticulat, articulat), legenda spune care ușă e și în ce ar intra: „ușa din dreapta (spre birou): la 90° (plin); la 110° (punctat) ar intra 5,8 cm în blat; atinge blatul la ~93,4° (roșu)”. Fără ele, începe cu lățimea ușii („ușa de 34 cm la 90° …”), iar două uși la fel nu se deosebesc. Preluat din `.github/surse/comoda-birou/cioata/`.
 
 După fiecare schimbare:
 
@@ -371,7 +399,7 @@ Te oprești când: <criteriul>.
 .venv/bin/python -B -m unittest discover -s .github/unelte/teste -v -k Camera       # doar o parte
 ```
 
-Sunt 89 de teste: 57 în `test_unelte.py` și 32 în `test_unelte_noi.py`, pentru uneltele aduse din „Comodă birou”. Niciunul nu are nevoie de rețea. Ce verifică:
+Sunt 111 teste: 57 în `test_unelte.py`, 32 în `test_unelte_noi.py`, pentru uneltele aduse din „Comodă birou”, și 22 în `test_unelte_cioata.py`, pentru cele aduse din variantele C și D ale lui. Niciunul nu are nevoie de rețea. Ce verifică:
 - paritatea cu scripturile proiectelor: aceleași proiecții ca `camera.py` de la cuier și de la polițe, aceeași calibrare (rms 0,5956 px la polițe și 0,5961 px la cuier) și aceleași calcule de rezistență;
 - fotografiile: `pregateste` scoate EXIF-ul, GPS-ul și comentariul JPEG, rotește după EXIF și trece culorile în sRGB;
 - randarea, texturile, culorile (ΔE00 pe perechile de referință publicate), comparația și planul A3;
@@ -379,9 +407,10 @@ Sunt 89 de teste: 57 în `test_unelte.py` și 32 în `test_unelte_noi.py`, pentr
 - liniile de comandă ale modulelor;
 - planul PDF, pe planuri sintetice făcute în test (o cameră de 327 × 366 cm la ~1:52,2, cu un gol de ușă în dreptul etichetei), fără planul real, care are date personale;
 - ușile, pe cazul Cioata Galla 120, și desenul lor într-un plan care trece `verifica_figura`;
-- mărirea pentru LSD, muchia slabă, profilul erorii pe o scenă sintetică, pagina care cere browserul, PRP-ul de la Cioata și foaia de produse.
+- mărirea pentru LSD, muchia slabă, profilul erorii pe o scenă sintetică, pagina care cere browserul, PRP-ul de la Cioata și foaia de produse;
+- lamelele ușilor Raya și rosturile lor, legenda ușilor cu nume și obstacol și umbrele pieselor pe picioare, inclusiv pe pânza din trusă.
 
-Trei teste compară uneltele cu sursele variantelor din beton (`beton.py`, `design.py` și `verifica_plan.py`). Ele rulează când există `.github/surse/polite-viniluri/beton/` sau când variabila `UNELTE_BETON` arată spre o copie a folderului. Pe o ramură fără acel folder, se sar. La fel, două teste compară `veneer`, `reeding` și `callout` cu sursele din `.github/surse/comoda-birou/`, iar testele planului PDF se sar dacă PyMuPDF nu e instalat.
+Trei teste compară uneltele cu sursele variantelor din beton (`beton.py`, `design.py` și `verifica_plan.py`). Ele rulează când există `.github/surse/polite-viniluri/beton/` sau când variabila `UNELTE_BETON` arată spre o copie a folderului. Pe o ramură fără acel folder, se sar. La fel, două teste compară `veneer`, `reeding` și `callout` cu sursele din `.github/surse/comoda-birou/`, iar testele planului PDF se sar dacă PyMuPDF nu e instalat. Cinci teste din `test_unelte_cioata.py` compară uneltele cu funcțiile din `.github/surse/comoda-birou/cioata/` (lamelele, umbrirea lor din `door_raya`, legenda din planul C și D, umbrele) și cu umbrele dulapului Galla, din `render_galla.py`, fără randarea întreagă; pe o ramură fără acel folder, se sar.
 
 O unealtă nouă intră aici când a folosit la un proiect și poate folosi și la altele:
 1. O pui în modulul potrivit sau într-unul nou, cu nume în română, fără diacritice, și cu docstring în română.

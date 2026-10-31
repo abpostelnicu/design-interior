@@ -4,6 +4,8 @@
 
 O comodă cu sertare în Dormitor 2, în stânga biroului Secretlab MAGNUS Pro de 1,5 m, pe peretele cu fereastra de colț. E comoda BoConcept Element cu 3 sertare, de 115 × 46,2 × 90,8 cm: furnir de stejar, fronturi cu riflaj vertical, sertare fără mânere, care se deschid prin apăsare (push-to-open), și picioare duble negre, ca ale biroului. Stă la 8 cm de birou, lipită de perete, deasupra plintei, și se prinde de perete cu banda anti-răsturnare din cutie. Propunerea A e în stejar natur, iar varianta B, în stejar închis.
 
+Variantele C și D sunt de la Cioata: bufetele Raya 116 și Veneto 116, din stejar masiv, cu un sertar în spatele ușilor. Le găsești [mai jos](#variantele-c-și-d-de-la-cioata), cu randările, planul tehnic și lista lor de materiale. Nu le înlocuiesc pe A și B.
+
 ![Situația actuală și cele două variante](comparatie_acum_vs_propuneri.jpg)
 
 ## Conținutul folderului
@@ -16,6 +18,11 @@ O comodă cu sertare în Dormitor 2, în stânga biroului Secretlab MAGNUS Pro d
 | [alternativa_cioata_galla_120.jpg](alternativa_cioata_galla_120.jpg) | Dulapul Cioata Galla 120, despre care ai întrebat, în același loc, pentru comparație (vezi [Alternative analizate](#alternative-analizate)) |
 | [plan_tehnic_comoda_birou.pdf](plan_tehnic_comoda_birou.pdf) | Planul tehnic A3, scara 1:15: vedere frontală, plan și secțiune; detaliul A (prinderea anti-răsturnare) și detaliul B (plinta și picioarele) la 1:5; planul camerei la 1:50, cu ușa; notele și cotele de măsurat ([PNG](plan_tehnic_comoda_birou.png)) |
 | [lista_materiale.md](lista_materiale.md) | Lista de cumpărături, cu prețuri și linkuri |
+| [comparatie_acum_vs_propuneri_cioata.jpg](comparatie_acum_vs_propuneri_cioata.jpg) | Situația actuală, propunerea C (Cioata Raya) și varianta D (Cioata Veneto) |
+| [propunere_C_cioata_raya.jpg](propunere_C_cioata_raya.jpg) | Randarea propunerii C |
+| [varianta_D_cioata_veneto.jpg](varianta_D_cioata_veneto.jpg) | Randarea variantei D |
+| [plan_tehnic_comoda_birou_cioata.pdf](plan_tehnic_comoda_birou_cioata.pdf) | Planul tehnic A3 al variantelor C și D, scara 1:15: vedere frontală cu C, plan cu ușile deschise și sertarul scos, secțiune prin bufet și fața lui D; planul camerei la 1:50; notele și cotele de măsurat ([PNG](plan_tehnic_comoda_birou_cioata.png)) |
+| [lista_materiale_cioata.md](lista_materiale_cioata.md) | Lista de cumpărături pentru C și D, cu prețuri verificate și linkuri |
 
 ## Ce e acum lângă perete
 
@@ -189,3 +196,128 @@ Unelte:
   - copiii nu se urcă pe sertare și nu se agață de ele.
 - Sarcina maximă e de 20 kg după pagina produsului; instrucțiunile spun 40 kg. Te ții de 20 kg: dosarele și topurile de hârtie sunt grele.
 - O dată pe an verifici șuruburile picioarelor și pe cele ale benzii anti-răsturnare.
+
+## Variantele C și D: de la Cioata
+
+Pentru că A și B nu ți-au plăcut ca aspect, C și D sunt de la Cioata, producătorul comodei Veneto din living. Nu le înlocuiesc pe A și B. Sunt două bufete cu același corp, de 116 × 48 × 82 cm, din stejar masiv Natural Oak, pe picioare negre, fiecare cu sertarul opțional VE390 în spatele ușilor:
+- **C, Raya 116:** uși din lamele verticale de stejar, cu un mâner negru pe toată înălțimea;
+- **D, Veneto 116:** uși din microciment antracit, cu un mâner rotund din stejar, ca la comoda din living.
+
+Stau centrate în peretele liber, la ~5,1 cm de colț și la ~5,1 cm de birou. C și D au [planul lor tehnic](plan_tehnic_comoda_birou_cioata.pdf), [lista lor de materiale](lista_materiale_cioata.md) și montajul lor, descrise mai jos.
+
+![Situația actuală, propunerea C și varianta D](comparatie_acum_vs_propuneri_cioata.jpg)
+
+### Cum sunt gândite C și D
+
+- **Aceeași familie cu living-ul.** La Cioata, lateralele, blatul, fundul, polița, mânerele și traversele picioarelor sunt din stejar masiv, cu noduri și fibra la vedere. Picioarele sunt din oțel negru, ca ale biroului.
+- **Mai joasă decât comoda BoConcept.** La 82 cm, bufetul e cu ~6 cm peste blatul biroului când stai jos (~75,8 cm) și sub el când lucrezi în picioare.
+- **Lângă birou, cu loc de ambele părți.** 116 cm în ~126,2 cm liberi: ~5,1 cm până în colț și ~5,1 cm până la birou. Biroul urcă și coboară liber.
+- **Ușile ajung la 90°.** Cea din stânga se deschide spre colț, cea din dreapta spre birou. Cea din stânga atinge peretele la ~93°, iar cea din dreapta atinge muchia blatului la ~97,5°, numai când blatul e sub ~77 cm. Două butoane transparente, pe perete și pe blat, le opresc fără urme.
+- **Peste plintă.** Corpul începe la 20 cm, deasupra plintei de ~8,5 cm, iar picioarele din spate stau la ~5 cm de perete. Bufetul stă lipit de perete, iar plinta rămâne întreagă.
+- **Fără găuri în perete.** Cioata nu cere prinderea de perete: bufetul e jos, are 56 kg și uși, nu sertare la vedere.
+
+### Raya sau Veneto
+
+- **Propunerea C: Raya** ([randarea](propunere_C_cioata_raya.jpg)), 7 009 lei cu sertarul. Ușile sunt din lamele de stejar masiv, de lățimi diferite, iar mânerul e o lamelă neagră, pe toată înălțimea ușii din stânga, lângă rost. E varianta caldă și luminoasă: lamelele verticale se potrivesc cu riflajul de stejar din hol ([Cuier hol](../Cuier%20hol/README.md)).
+- **Varianta D: Veneto** ([randarea](varianta_D_cioata_veneto.jpg)), 7 497 lei cu sertarul. Ușile sunt din MDF acoperit cu microciment antracit (C9), iar mânerul rotund, din stejar, e împărțit între uși. E aceeași familie cu comoda din living, iar ușile închise la culoare se leagă de biroul negru.
+
+### Sertarul
+
+Cioata nu are o comodă cu sertare la vedere de ~115 cm:
+- comodele Galla și Linea, cu 6 sertare, au 136 și 130 cm și se pot cere pe măsură, cu prețul la cerere;
+- seria Atlas are module cu sertare, dar nu o compoziție de ~100–118 cm: comoda cu 2 sertare are 70 cm, iar nișa se prinde doar între două module.
+
+De aceea C și D au sertarul opțional VE390, din stejar masiv, pe glisiere cu închidere lentă. Stă pe fundul corpului, în spatele ușilor, iar polița se mută deasupra lui. Sertarul are 85 × 27 × 11 cm în interior și iese ~30 cm, printre ușile deschise. Se poate cumpăra și mai târziu. Alternativele, cu prețuri, sunt în [lista lui C și D](lista_materiale_cioata.md#alternative).
+
+### Cote pentru C și D
+
+Bufetul are 116 × 48 × 82 cm. Corpul, de 62 cm, începe la 20 cm de pardoseală, iar ușile au 55 × 55 cm (desenul cotat Cioata). Cotele camerei sunt cele de la [Cote măsurate](#cote-măsurate).
+
+Ușile sunt calculate ca uși aplicate pe față, cazul cel mai strâns. Ușile Cioata stau în ramă, deci au ceva mai mult loc.
+
+#### Cote de măsurat pentru C și D, înainte de comandă
+
+Sunt și pe [planul lui C și D](plan_tehnic_comoda_birou_cioata.pdf).
+1. Peretele liber dintre colț și birou, la nivelul plintei (~126,2 cm). Bufetul are 116 cm; ca ușile să ajungă la 90°, îți trebuie cel puțin ~121 cm.
+2. Dacă pe perete, de la colț până la birou și până la 82 cm înălțime, e o priză sau un întrerupător. Bufetul le-ar acoperi.
+3. Scara până la etaj: bufetul vine într-un colet de 58 kg, iar la etaj fără lift Cioata poate cere o taxă.
+
+### Montaj pas cu pas pentru C și D
+
+Bufetul vine cu corpul montat: prinzi doar picioarele, cu șuruburile din colet, după instrucțiunile Cioata. Are 56 kg, așa că îl muți cu încă o persoană. Sertarul VE390 vine separat, cu un șablon de montaj și 2 șuruburi.
+
+#### Cote de montaj pentru C și D
+
+| Ce | Cât |
+|---|---|
+| Bufetul | 116 × 48 × 82 cm; corpul de 62 cm începe la 20 cm de pardoseală |
+| Distanța până la birou | ~5,1 cm, între latura dreaptă a bufetului și blat |
+| Distanța până în colț | ~5,1 cm |
+| Distanța de la perete | 0: spatele stă lipit de perete, iar corpul trece peste plintă |
+| Sertarul VE390 | pe fundul corpului, cu fața la ~1 cm în spatele ușilor; iese ~30 cm, cu ușile deschise |
+| Polița | mutată deasupra sertarului, la ~52 cm de pardoseală |
+| Butoanele de protecție (opțional) | unul pe peretele din colț, la ~1 m de peretele cu biroul și la ~50 cm înălțime; unul pe cantul din stânga al blatului biroului, lângă colțul din față |
+
+#### Materiale și unelte pentru C și D
+
+Materialele, cu prețuri și linkuri, sunt în [lista_materiale_cioata.md](lista_materiale_cioata.md):
+- bufetul Raya 116 (C) sau Veneto 116 (D), cu picioarele și șuruburile lor;
+- sertarul VE390, cu șablonul și cele 2 șuruburi;
+- opțional, un set de butoane transparente autoadezive de Ø10 mm.
+
+Unelte:
+- șurubelnița sau cheia cerute de instrucțiunile Cioata pentru picioare și pentru sertar;
+- nivelă, ruletă și creion;
+- o pătură sau cartonul din ambalaj, ca să nu zgârii parchetul și blatul;
+- alcool izopropilic și o lavetă, pentru locul butoanelor.
+
+#### 1. Înainte de comandă
+
+1. Măsori cotele de la [Cote de măsurat pentru C și D](#cote-de-măsurat-pentru-c-și-d-înainte-de-comandă). Dacă peretele liber are sub ~121 cm, ușile nu mai ajung la 90°.
+2. Alegi C sau D și finisajul lemnului; randările sunt în Natural Oak. Sertarul îl comanzi în același finisaj. Dacă poți, vezi finisajele în showroom-ul Cioata din București (Băneasa).
+3. La comandă, întrebi de termen și de taxa pentru etaj fără lift. Pe 31.10.2026, site-ul dădea livrarea pe 30.11.2026.
+
+#### 2. La livrare
+
+1. Verifici coletul înainte să semnezi: colțurile, ușile și blatul.
+2. Îl desfaci în Dormitor 2, pe pătură sau pe carton, aproape de locul bufetului.
+
+#### 3. Prinde picioarele
+
+1. Culci bufetul pe pătură, cu ușile închise, cum arată instrucțiunile.
+2. Prinzi picioarele, cu traversele lor, cu șuruburile din colet.
+3. Ridici bufetul în picioare cu încă o persoană. Nu-l târî pe picioare.
+
+#### 4. Așază bufetul
+
+1. Îl duci la locul lui, cu spatele lipit de perete, centrat între colț și birou: ~5,1 cm pe fiecare parte. Măsori în față și în spate.
+2. Pui nivela pe blat, pe lungime și pe lățime, și reglezi piciorușele până nu se mai clatină.
+3. Ridici biroul până sus (125 cm), apoi îl cobori până jos (65 cm). Blatul lui nu trebuie să atingă bufetul.
+
+#### 5. Sertarul VE390 și polița
+
+1. Deschizi ambele uși și scoți polița.
+2. Pui sertarul pe fundul corpului, îl așezi cu șablonul din cutie și îl prinzi cu cele 2 șuruburi, după instrucțiunile lui.
+3. Pui polița la loc, deasupra sertarului.
+4. Deschizi ușile la 90° și tragi sertarul: iese ~30 cm, printre uși, și se închide singur.
+
+#### 6. Butoanele pentru uși (opțional)
+
+1. Deschizi încet ușa din stânga până atinge peretele. Faci un semn pe perete, în dreptul muchiei ei, la ~50 cm înălțime. Ștergi locul cu alcool și lipești un buton.
+2. Cobori blatul biroului sub ~77 cm și deschizi încet ușa din dreapta până atinge blatul. Lipești un buton pe cantul blatului, în dreptul ei.
+
+#### 7. Verificare finală
+
+- Ușile se deschid la 90° fără să atingă peretele sau biroul și se închid încet.
+- Sertarul iese drept și se închide singur.
+- Bufetul nu se clatină, iar biroul urcă și coboară fără să-l atingă.
+- Plinta e întreagă, iar corpul trece pe deasupra ei.
+
+### Întreținere pentru C și D
+
+- Stejarul îl ștergi cu o lavetă moale, ușor umedă, pe direcția fibrei, apoi cu una uscată. Nu folosești detergenți abrazivi, solvenți sau spray-uri cu silicon.
+- Nodurile, crăpăturile fine și variațiile de culoare sunt ale stejarului masiv: Cioata le lasă la vedere.
+- Microcimentul ușilor D îl ștergi cu o lavetă umedă, cu puțin săpun neutru. Nu folosești produse acide, ca oțetul sau anticalcarul, și nici abrazive.
+- Sub pahare și ghivece pui un suport. Ce se varsă ștergi imediat.
+- Stejarul își schimbă puțin nuanța la lumină, mai ales în primele luni. Muți din când în când obiectele de pe blat.
+- O dată pe an verifici șuruburile picioarelor și dacă bufetul stă drept; la nevoie, reglezi piciorușele.

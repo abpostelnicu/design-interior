@@ -10,7 +10,7 @@ Fiecare proiect are un folder propriu, cu documentația și fișierele aferente.
 |---|---|---|
 | [Cuier hol](Cuier%20hol/) | Comparație între situația actuală și propuneri, randări, plan tehnic în PDF și PNG, listă de materiale cu prețuri și linkuri | [Prezentare, cote, montaj pas cu pas și întreținere](Cuier%20hol/README.md) |
 | [Polite viniluri](Polite%20viniluri/) | Peretele cu televizorul: comparație între situația actuală și propuneri, randări, plan tehnic în PDF și PNG, listă de materiale cu prețuri și linkuri | [Prezentare, cote, cum e gândit, execuție, montaj pas cu pas și întreținere](Polite%20viniluri/README.md) |
-| [Comoda birou](Comoda%20birou/) | Dormitor 2, lângă birou: comparație între situația actuală și propuneri, randări, alternativa Cioata Galla 120, plan tehnic în PDF și PNG, listă de materiale cu prețuri și linkuri | [Prezentare, cote, cum e gândit, alternative, montaj pas cu pas și întreținere](Comoda%20birou/README.md) |
+| [Comoda birou](Comoda%20birou/) | Dormitor 2, lângă birou: comparație între situația actuală și propuneri, randări, alternativa Cioata Galla 120, variantele C și D de la Cioata (bufetele Raya și Veneto), planuri tehnice în PDF și PNG, liste de materiale cu prețuri și linkuri | [Prezentare, cote, cum e gândit, alternative, montaj pas cu pas și întreținere](Comoda%20birou/README.md) |
 
 ## Organizarea documentației
 
